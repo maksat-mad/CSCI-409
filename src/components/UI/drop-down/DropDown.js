@@ -1,5 +1,5 @@
 import React from 'react';
-import drop from '../../../assets/drop.svg';
+import drop from '../../../assets/UI/drop.svg';
 import './DropDown.css';
 
 const DropDown = () => {

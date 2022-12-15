@@ -2,11 +2,21 @@
     box-sizing: border-box;
 }
 
+:root {
+    --bg-button: #9dfafc;
+    --bg-button-active: #f1f1f1;
+    --bg-nav: #d9feff;
+    --bg: #f0f7f1;
+    --bg-menu: #d3dbd5;
+    --input-border: #ced4da;
+    --input-focus-border: #1ee63a;
+}
+
 body {
     margin: 0;
     font-family: cursive;
     color: black;
-    background-color: #f0f7f1;
+    background-color: var(--bg);
 }
 
 nav {
@@ -17,10 +27,10 @@ nav {
     padding: 0.5rem;
     gap: 1rem;
     border-bottom: solid 1px #aaa;
-    background-color: #d9feff;
+    background-color: var(--bg-nav);
 }
 
-nav a, .menu a {
+nav a, .menu a, .modal-body a {
     display: inline-block;
     min-width: 4rem;
     padding: 0.5rem;
@@ -29,7 +39,7 @@ nav a, .menu a {
     text-align: center;
     text-decoration: none;
     color: black;
-    background-color: #9dfafc;
+    background-color: var(--bg-button);
 }
 
 input {
@@ -37,19 +47,27 @@ input {
     height: 2.5rem;
     padding: .375rem .75rem;
     font-size: 1rem;
-    border: 1px solid #ced4da;
+    border: 1px solid var(--input-border);
     border-radius: .375rem;
     transition: border-color .2s ease-in-out, box-shadow .2s ease-in-out;
 }
 
 input:focus {
-    border-color: #1ee63a;
+    border-color: var(--input-focus-border);
     outline: 0;
     box-shadow: 0 0 0 .25rem rgb(199, 255, 207);
 }
 
 button {
     display: none;
+}
+
+button:active, button:hover {
+    background-color: var(--bg-button-active);
+}
+
+a:active, a:hover {
+    background-color: var(--bg-button-active);
 }
 
 .menu > input {
@@ -63,13 +81,14 @@ button {
     align-items: center;
     padding: 0.5rem;
     gap: 1rem;
-    background-color: #d3dbd5;
+    background-color: var(--bg-menu);
 }
 
 .menu-buttons {
     display: flex;
     gap: 1rem;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 @media only screen and (max-width: 992px) {
@@ -87,7 +106,7 @@ button {
     button {
         display: flex;
         align-items: center;
-        background-color: #d9feff;
+        background-color: var(--bg-nav);
         border-radius: 0.2rem;
         border: solid 1px #aaa;
     }

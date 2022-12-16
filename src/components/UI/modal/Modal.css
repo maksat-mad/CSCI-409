@@ -62,14 +62,14 @@
     flex-wrap: wrap;
 }
 
-.modal-body a {
+.modal-body .modal-button {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
 }
 
-.modal-body a img {
+.modal-body .modal-button img {
     max-width: 50px;
     max-height: 25px;
 }

@@ -4,10 +4,15 @@ import logo from '../../../assets/logo.png';
 import menu from '../../../assets/UI/menu.svg';
 import category from '../../../assets/UI/angle-double-down.svg';
 import DropDown from "../drop-down/DropDown";
+import Modal from "../modal/Modal";
+import languages from "../../utils/languages";
+import cities from "../../utils/cities";
 
 const Navbar = () => {
     const [isMenuOpened, setIsMenuOpened] = useState(false);
     const [isCategoryOpened, setIsCategoryOpened] = useState(false);
+    const [isModalLangOpen, setIsModalLangOpen] = useState(false);
+    const [isModalCityOpen, setIsModalCityOpen] = useState(false);
 
     const menuClick = () => {
         if (isCategoryOpened === true) {
@@ -23,23 +28,19 @@ const Navbar = () => {
         setIsCategoryOpened(!isCategoryOpened);
     }
 
-    // const displayLangModel = () => {
-    //     console.log("Open lang model");
-    // }
-
     return (
         <header>
             <nav>
                 <img src={logo} alt={"logo"}/>
                 <DropDown/>
                 <input type="text" id="search" name="search" placeholder={"Search"}/>
-                <a href={"/App/"}>Astana</a>
-                <a href={"/App/"}>English</a>
-                <a href={"/App/"}>Sign In</a>
-                <button onClick={categoryClick}>
+                <button className={"nav-button"} onClick={() => setIsModalCityOpen(true)}>Astana</button>
+                <button className={"nav-button"} onClick={() => setIsModalLangOpen(true)}>English</button>
+                <button className={"nav-button"}>Sign In</button>
+                <button className={"mob-button"} onClick={categoryClick}>
                     <img src={category} alt={"category"}/>
                 </button>
-                <button onClick={menuClick}>
+                <button className={"mob-button"} onClick={menuClick}>
                     <img src={menu} alt={"menu"}/>
                 </button>
             </nav>
@@ -57,13 +58,18 @@ const Navbar = () => {
                 <div className={"menu"}>
                     <input type="text" id="search" name="search" placeholder={"Search"}/>
                     <div className={"menu-buttons"}>
-                        <a href={"/App/"}>Astana</a>
-                        <a href={"/App/"}>English</a>
-                        <a href={"/App/"}>Sign In</a>
+                        <button className={"nav-button"} onClick={() => setIsModalCityOpen(true)}>Astana</button>
+                        <button className={"nav-button"} onClick={() => setIsModalLangOpen(true)}>English</button>
+                        <button className={"nav-button"}>Sign In</button>
                     </div>
                 </div>
             }
-            {/*<Modal/>*/}
+            {isModalLangOpen &&
+                <Modal setIsOpen={setIsModalLangOpen} values={languages} from={"language"}/>
+            }
+            {isModalCityOpen &&
+                <Modal setIsOpen={setIsModalCityOpen} values={cities} from={"city"}/>
+            }
         </header>
     );
 };

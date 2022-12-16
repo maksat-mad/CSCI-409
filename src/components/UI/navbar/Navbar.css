@@ -4,7 +4,8 @@
 
 :root {
     --bg-button: #9dfafc;
-    --bg-button-active: #f1f1f1;
+    --bg-button-hover: #f1f1f1;
+    --bg-button-active: #b1fab6;
     --bg-nav: #d9feff;
     --bg: #f0f7f1;
     --bg-menu: #d3dbd5;
@@ -30,7 +31,7 @@ nav {
     background-color: var(--bg-nav);
 }
 
-nav a, .menu a, .modal-body a {
+nav .nav-button, .menu a, .menu .nav-button, .modal-body .modal-button {
     display: inline-block;
     min-width: 4rem;
     padding: 0.5rem;
@@ -40,6 +41,7 @@ nav a, .menu a, .modal-body a {
     text-decoration: none;
     color: black;
     background-color: var(--bg-button);
+    font-family: cursive;
 }
 
 input {
@@ -58,15 +60,15 @@ input:focus {
     box-shadow: 0 0 0 .25rem rgb(199, 255, 207);
 }
 
-button {
+.mob-button {
     display: none;
 }
 
-button:active, button:hover {
-    background-color: var(--bg-button-active);
+.mob-button:hover, .modal-button:hover, .nav-button:hover, a:hover {
+    background-color: var(--bg-button-hover);
 }
 
-a:active, a:hover {
+.mob-button:active, .modal-button:active, .nav-button:active, a:active {
     background-color: var(--bg-button-active);
 }
 
@@ -92,7 +94,7 @@ a:active, a:hover {
 }
 
 @media only screen and (max-width: 992px) {
-    nav a {
+    nav .nav-button {
         display: none;
     }
     nav > input {
@@ -103,10 +105,10 @@ a:active, a:hover {
         padding-left: 3%;
         padding-right: 3%;
     }
-    button {
+    .mob-button {
         display: flex;
         align-items: center;
-        background-color: var(--bg-nav);
+        background-color: var(--bg-button);
         border-radius: 0.2rem;
         border: solid 1px #aaa;
     }

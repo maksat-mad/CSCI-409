@@ -1,31 +1,45 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import './Modal.css';
-import kazakh from '../../../assets/language/kazakh.png';
-import russian from '../../../assets/language/russian.png';
-import uk from '../../../assets/language/uk.svg';
 
-const Modal = () => {
+const Modal = ({setIsOpen, values, from}) => {
+    const modalRef = useRef();
+
+    useEffect(() => {
+        let closeModal = (event) => {
+            if (!modalRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", closeModal);
+        return () => {
+            document.removeEventListener("mousedown", closeModal);
+        };
+    });
+
     return (
         <div>
-            <div id="myModal" className="modal">
-                <div className="modal-content">
+            <div className="modal">
+                <div ref={modalRef} className="modal-content">
                     <div className="modal-header">
-                        <span className="close">&times;</span>
-                        <h2>Choose language</h2>
+                        <span className="close" onClick={() => setIsOpen(false)}>&times;</span>
+                        <h2>Choose {from}</h2>
                     </div>
                     <div className="modal-body">
-                        <a href={"/App/"}>
-                            Қазақша
-                            <img src={kazakh} alt={"flag of kazakhstan"}/>
-                        </a>
-                        <a href={"/App/"}>
-                            Русский
-                            <img src={russian} alt={"flag of russia"}/>
-                        </a>
-                        <a href={"/App/"}>
-                            English
-                            <img src={uk} alt={"flag of the uk"}/>
-                        </a>
+                        {from === "language" ?
+                            values.map((obj, index) =>
+                                <button className={"modal-button"} key={index}>
+                                    {obj.name}
+                                    <img src={obj.src} alt={obj.name}/>
+                                </button>
+                            )
+                            :
+                            values.map((obj, index) =>
+                                <button className={"modal-button"} key={index}>
+                                    {obj.nameKz}
+                                    <img src={obj.src} alt={obj.nameEn}/>
+                                </button>
+                            )
+                        }
                     </div>
                 </div>
             </div>

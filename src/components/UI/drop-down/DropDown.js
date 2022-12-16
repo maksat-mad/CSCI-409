@@ -9,10 +9,10 @@ const DropDown = () => {
                 <img src={drop} alt={"drop"}/>
             </div>
             <div className={"dropdown-content"}>
-                <a href={"/App/"}>Fruits</a>
-                <a href={"/App/"}>Vegetables</a>
-                <a href={"/App/"}>Drinks</a>
-                <a href={"/App/"}>Meats</a>
+                <a href={"/"}>Fruits</a>
+                <a href={"/"}>Vegetables</a>
+                <a href={"/"}>Drinks</a>
+                <a href={"/"}>Meats</a>
             </div>
         </div>
     );

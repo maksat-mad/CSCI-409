@@ -64,11 +64,11 @@ input:focus {
     display: none;
 }
 
-.mob-button:hover, .modal-button:hover, .nav-button:hover, a:hover {
+.mob-button:hover, .modal-button:hover, .nav-button:hover, .menu-buttons > a:hover {
     background-color: var(--bg-button-hover);
 }
 
-.mob-button:active, .modal-button:active, .nav-button:active, a:active {
+.mob-button:active, .modal-button:active, .nav-button:active, .menu-buttons > a:active {
     background-color: var(--bg-button-active);
 }
 

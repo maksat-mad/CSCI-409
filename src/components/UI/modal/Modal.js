@@ -35,7 +35,7 @@ const Modal = ({setIsOpen, values, from}) => {
                             :
                             values.map((obj, index) =>
                                 <button className={"modal-button"} key={index}>
-                                    {obj.nameKz}
+                                    {obj.nameEn}
                                     <img src={obj.src} alt={obj.nameEn}/>
                                 </button>
                             )

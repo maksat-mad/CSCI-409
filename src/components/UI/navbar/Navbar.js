@@ -31,7 +31,9 @@ const Navbar = () => {
     return (
         <header>
             <nav>
-                <img src={logo} alt={"logo"}/>
+                <a href={"/"}>
+                    <img src={logo} alt={"logo"}/>
+                </a>
                 <DropDown/>
                 <input type="text" id="search" name="search" placeholder={"Search"}/>
                 <button className={"nav-button"} onClick={() => setIsModalCityOpen(true)}>Astana</button>
@@ -47,10 +49,10 @@ const Navbar = () => {
             {isCategoryOpened &&
                 <div className={"menu"}>
                     <div className={"menu-buttons"}>
-                        <a href={"/App/"}>Fruits</a>
-                        <a href={"/App/"}>Vegetables</a>
-                        <a href={"/App/"}>Drinks</a>
-                        <a href={"/App/"}>Meats</a>
+                        <a href={"/"}>Fruits</a>
+                        <a href={"/"}>Vegetables</a>
+                        <a href={"/"}>Drinks</a>
+                        <a href={"/"}>Meats</a>
                     </div>
                 </div>
             }

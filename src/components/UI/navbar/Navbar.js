@@ -58,7 +58,7 @@ const Navbar = () => {
             }
             {isMenuOpened &&
                 <div className={"menu"}>
-                    <input type="text" id="search" name="search" placeholder={"Search"}/>
+                    <input type="text" id="search2" name="search" placeholder={"Search"}/>
                     <div className={"menu-buttons"}>
                         <button className={"nav-button"} onClick={() => setIsModalCityOpen(true)}>Astana</button>
                         <button className={"nav-button"} onClick={() => setIsModalLangOpen(true)}>English</button>

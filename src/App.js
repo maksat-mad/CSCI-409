@@ -1,13 +1,15 @@
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/UI/navbar/Navbar";
 import Footer from "./components/UI/footer/Footer";
-import Main from "./components/UI/main/Main";
+// import Main from "./components/UI/main/Main";
+import Register from "./components/UI/register-login/Register";
+// import Login from "./components/UI/register-login/Login";
 
 function App() {
     return (
         <div>
             <Navbar/>
-            <Main/>
+            {/*<Main/>*/}
             {/*<BrowserRouter>*/}
             {/*    <Routes>*/}
             {/*        <Route path="/" element={<Layout />}>*/}
@@ -18,6 +20,8 @@ function App() {
             {/*        </Route>*/}
             {/*    </Routes>*/}
             {/*</BrowserRouter>*/}
+            <Register/>
+            {/*<Login/>*/}
             <Footer/>
         </div>
     );

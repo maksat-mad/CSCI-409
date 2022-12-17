@@ -44,7 +44,7 @@ nav .nav-button, .menu a, .menu .nav-button, .modal-body .modal-button {
     font-family: cursive;
 }
 
-input {
+#search, #search2 {
     width: 30%;
     height: 2.5rem;
     padding: .375rem .75rem;
@@ -54,7 +54,11 @@ input {
     transition: border-color .2s ease-in-out, box-shadow .2s ease-in-out;
 }
 
-input:focus {
+#search2 {
+    width: 80%;
+}
+
+#search:focus, #search2:focus {
     border-color: var(--input-focus-border);
     outline: 0;
     box-shadow: 0 0 0 .25rem rgb(199, 255, 207);

@@ -1,4 +1,4 @@
-.register-login {
+.signup-login {
     padding: 1rem;
 }
 
@@ -6,6 +6,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.container-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.my-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem;
 }
 
 .container-fieldset {
@@ -72,4 +88,19 @@ div > form > input:focus {
 .input-error {
     color: crimson;
     padding-bottom: 1rem;
+}
+
+.input-success {
+    color: limegreen;
+    padding-bottom: 1rem;
+}
+
+.line {
+    display: inline-block;
+}
+
+@media only screen and (min-width: 500px) {
+    div > form > input {
+        width: 350px;
+    }
 }

@@ -1,28 +1,46 @@
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/UI/navbar/Navbar";
 import Footer from "./components/UI/footer/Footer";
-// import Main from "./components/UI/main/Main";
-import Register from "./components/UI/register-login/Register";
-// import Login from "./components/UI/register-login/Login";
+import Signup from "./components/UI/signup-login/Signup";
+import Login from "./components/UI/signup-login/Login";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { AuthProvider } from "./components/context/AuthContext";
+import ForgotPassword from "./components/UI/signup-login/ForgotPassword";
+import UserProfile from "./components/UI/profile/UserProfile";
+import PrivateRoute from "./components/UI/private-route/PrivateRoute";
+import UpdateProfile from "./components/UI/profile/UpdateProfile";
+import Main from "./components/UI/main/Main";
+import NoPage from "./components/UI/no-page/NoPage";
 
 function App() {
     return (
         <div>
-            <Navbar/>
-            {/*<Main/>*/}
-            {/*<BrowserRouter>*/}
-            {/*    <Routes>*/}
-            {/*        <Route path="/" element={<Layout />}>*/}
-            {/*            <Route index element={<Home />} />*/}
-            {/*            <Route path="blogs" element={<Blogs />} />*/}
-            {/*            <Route path="contact" element={<Contact />} />*/}
-            {/*            <Route path="*" element={<NoPage />} />*/}
-            {/*        </Route>*/}
-            {/*    </Routes>*/}
-            {/*</BrowserRouter>*/}
-            <Register/>
-            {/*<Login/>*/}
-            <Footer/>
+            <Router>
+                <AuthProvider>
+                    <Navbar/>
+                    <Routes>
+                        <Route path="/profile"
+                               element={
+                                   <PrivateRoute>
+                                       <UserProfile/>
+                                   </PrivateRoute>
+                               }
+                        ></Route>
+                        <Route path="/update-profile"
+                               element={
+                                   <PrivateRoute>
+                                       <UpdateProfile/>
+                                   </PrivateRoute>
+                               }
+                        ></Route>
+                        <Route path="/signup" element={<Signup/>}/>
+                        <Route path="/login" element={<Login/>}/>
+                        <Route path="/forgot-password" element={<ForgotPassword/>} />
+                        <Route path="/" element={<Main/>}/>
+                        <Route path="*" element={<NoPage/>}/>
+                    </Routes>
+                    <Footer/>
+                </AuthProvider>
+            </Router>
         </div>
     );
 }

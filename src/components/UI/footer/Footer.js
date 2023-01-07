@@ -5,13 +5,14 @@ import telegram from '../../../assets/social-media/telegram.svg';
 import whatsapp from '../../../assets/social-media/whatsapp.svg';
 import instagram from '../../../assets/social-media/instagram.svg';
 import youtube from '../../../assets/social-media/youtube.svg';
+import {Link} from "react-router-dom";
 
 const Footer = () => {
     return (
         <footer>
-            <a href={"/"}>
+            <Link to={"/"}>
                 <img src={logo} alt={"logo"}/>
-            </a>
+            </Link>
             <div className={"footer-content"}>
                 Astana, Kazakhstan<br/>Phone: +7 705 100 10 10<br/>help@naturalgoods.com
             </div>

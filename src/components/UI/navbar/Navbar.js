@@ -7,12 +7,17 @@ import DropDown from "../drop-down/DropDown";
 import Modal from "../modal/Modal";
 import languages from "../../utils/languages";
 import cities from "../../utils/cities";
+import { useAuth } from "../../context/AuthContext";
+import {Link, useNavigate} from "react-router-dom";
 
 const Navbar = () => {
     const [isMenuOpened, setIsMenuOpened] = useState(false);
     const [isCategoryOpened, setIsCategoryOpened] = useState(false);
     const [isModalLangOpen, setIsModalLangOpen] = useState(false);
     const [isModalCityOpen, setIsModalCityOpen] = useState(false);
+
+    const { currentUser } = useAuth();
+    const navigate = useNavigate();
 
     const menuClick = () => {
         if (isCategoryOpened === true) {
@@ -28,17 +33,29 @@ const Navbar = () => {
         setIsCategoryOpened(!isCategoryOpened);
     }
 
+    const goToLogin = () => {
+        navigate('/login');
+    }
+
+    const goToProfile = () => {
+        navigate('profile');
+    }
+
     return (
         <header>
             <nav>
-                <a href={"/"}>
+                <Link to={"/"}>
                     <img src={logo} alt={"logo"}/>
-                </a>
+                </Link>
                 <DropDown/>
                 <input type="text" id="search" name="search" placeholder={"Search"}/>
                 <button className={"nav-button"} onClick={() => setIsModalCityOpen(true)}>Astana</button>
                 <button className={"nav-button"} onClick={() => setIsModalLangOpen(true)}>English</button>
-                <button className={"nav-button"}>Sign In</button>
+                {currentUser ?
+                    <button className={"nav-button"} onClick={goToProfile}>My Profile</button>
+                    :
+                    <button className={"nav-button"} onClick={goToLogin}>Log In</button>
+                }
                 <button className={"mob-button"} onClick={categoryClick}>
                     <img src={category} alt={"category"}/>
                 </button>
@@ -62,7 +79,11 @@ const Navbar = () => {
                     <div className={"menu-buttons"}>
                         <button className={"nav-button"} onClick={() => setIsModalCityOpen(true)}>Astana</button>
                         <button className={"nav-button"} onClick={() => setIsModalLangOpen(true)}>English</button>
-                        <button className={"nav-button"}>Sign In</button>
+                        {currentUser ?
+                            <button className={"nav-button"} onClick={goToProfile}>My Profile</button>
+                            :
+                            <button className={"nav-button"} onClick={goToLogin}>Log In</button>
+                        }
                     </div>
                 </div>
             }

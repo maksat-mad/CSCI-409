@@ -7,7 +7,7 @@ import DropDown from "../drop-down/DropDown";
 import Modal from "../modal/Modal";
 import languages from "../../utils/languages";
 import cities from "../../utils/cities";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../../context/AuthContext";
 import {Link, useNavigate} from "react-router-dom";
 
 const Navbar = () => {
@@ -66,10 +66,18 @@ const Navbar = () => {
             {isCategoryOpened &&
                 <div className={"menu"}>
                     <div className={"menu-buttons"}>
-                        <a href={"/"}>Fruits</a>
-                        <a href={"/"}>Vegetables</a>
-                        <a href={"/"}>Drinks</a>
-                        <a href={"/"}>Meats</a>
+                        <Link to={"/fruits"}>
+                            Fruits
+                        </Link>
+                        <Link to={"/vegetables"}>
+                            Vegetables
+                        </Link>
+                        <Link to={"/drinks"}>
+                            Drinks
+                        </Link>
+                        <Link to={"/meats"}>
+                            Meats
+                        </Link>
                     </div>
                 </div>
             }

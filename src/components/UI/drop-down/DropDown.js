@@ -1,6 +1,7 @@
 import React from 'react';
 import drop from '../../../assets/UI/drop.svg';
 import './DropDown.css';
+import {Link} from "react-router-dom";
 
 const DropDown = () => {
     return (
@@ -9,10 +10,18 @@ const DropDown = () => {
                 <img src={drop} alt={"drop"}/>
             </div>
             <div className={"dropdown-content"}>
-                <a href={"/"}>Fruits</a>
-                <a href={"/"}>Vegetables</a>
-                <a href={"/"}>Drinks</a>
-                <a href={"/"}>Meats</a>
+                <Link to={"/fruits"}>
+                    Fruits
+                </Link>
+                <Link to={"/vegetables"}>
+                    Vegetables
+                </Link>
+                <Link to={"/drinks"}>
+                    Drinks
+                </Link>
+                <Link to={"/meats"}>
+                    Meats
+                </Link>
             </div>
         </div>
     );

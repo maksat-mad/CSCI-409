@@ -4,19 +4,34 @@ import CardService from "../../../service/main/CardService";
 import Loader from "../loader/Loader";
 import Card from '../card/Card';
 import {useFetching} from "../../../hook/useFetching";
-import fruits from "../../../assets/fruits.jpg";
+import {getPageCount} from "../../utils/pages";
+import {useLocation} from 'react-router-dom';
+import Pagination from "../pagination/Pagination";
 
-const Fruits = () => {
-    const [fruitCards, setFruitCards] = useState([]);
+const Category = () => {
+    const [cards, setCards] = useState([]);
+    const location = useLocation();
+    const {category} = location.state;
 
-    const [fetchFruitCards, isFruitCardsLoading, fruitCardsError] = useFetching(async () => {
-        const response = await CardService.getItems();
-        setFruitCards([...response.data]);
+    const [totalPages, setTotalPages] = useState(0);
+    const [limit, setLimit] = useState(30);
+    const [page, setPage] = useState(1);
+
+    const [fetchCards, isCardsLoading, cardsError] = useFetching(async (limit, page) => {
+        const response = await CardService.getCategory(limit, page, category);
+        setCards([...response.data]);
+        const totalCount = response.headers['x-total-count'];
+        setTotalPages(getPageCount(totalCount, limit));
     });
 
     useEffect(() => {
-        fetchFruitCards();
+        fetchCards(limit, page);
     }, []);
+
+    const changePage = (page) => {
+        setPage(page);
+        fetchCards(limit, page);
+    }
 
     return (
         <div>
@@ -47,27 +62,39 @@ const Fruits = () => {
                         </div>
                     </div>
                     <div className={"container"}>
-                        <h4>Rating range</h4>
+                        <h4>Rating range (1-5)</h4>
                         <div>
-                            <input className={"sort-inputs"}/>-<input className={"sort-inputs"}/>
+                            <input className={"sort-inputs"}/>
+                            -
+                            <input className={"sort-inputs"}/>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div className={"container"}>
-                {fruitCardsError &&
-                    <h1>Error: ${fruitCardsError}</h1>
+                {cardsError &&
+                    <h1>Error: ${cardsError}</h1>
                 }
-                {isFruitCardsLoading && <Loader/>}
-                <div>
-                    {fruitCards.map(el => {
-                        return <Card key={el.url} image={el.url} name={"Apple"} price={"320 tg/kg"} buttonText={"buy"}/>
-                    })}
+                {isCardsLoading && <Loader/>}
+                <div className={"wrapper"}>
+                    <div className={"cards-wrap"}>
+                        {cards.map(el => {
+                            return <Card key={el.url} image={el.url} name={"Apple"} price={"320 tg/kg"}
+                                         buttonText={"buy"}/>
+                        })}
+                    </div>
                 </div>
+            </div>
+            <div className={"container"}>
+                <Pagination
+                    page={page}
+                    totalPages={totalPages}
+                    changePage={changePage}
+                />
             </div>
         </div>
     );
 };
 
-export default Fruits;
+export default Category;

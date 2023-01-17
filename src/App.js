@@ -10,7 +10,7 @@ import PrivateRoute from "./components/UI/private-route/PrivateRoute";
 import UpdateProfile from "./components/UI/profile/UpdateProfile";
 import Main from "./components/UI/main/Main";
 import NoPage from "./components/UI/no-page/NoPage";
-import Fruits from "./components/UI/categories/Fruits";
+import Category from "./components/UI/categories/Category";
 
 function App() {
     return (
@@ -33,7 +33,7 @@ function App() {
                                    </PrivateRoute>
                                }
                         ></Route>
-                        <Route path={"/fruits"} element={<Fruits/>}/>
+                        <Route path={"/category"} element={<Category/>}/>
                         <Route path="/signup" element={<Signup/>}/>
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/forgot-password" element={<ForgotPassword/>} />

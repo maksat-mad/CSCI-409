@@ -1,11 +1,11 @@
 import axios from "axios";
 
 export default class CardService {
-    static async getItems() {
+    static async getCategory(limit = 10, page = 1, category) {
         return await axios.get('https://jsonplaceholder.typicode.com/photos', {
             params: {
-                _limit: 10,
-                _page: 1
+                _limit: limit,
+                _page: page
             }
         });
     }

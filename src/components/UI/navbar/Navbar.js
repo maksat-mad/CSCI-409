@@ -16,7 +16,7 @@ const Navbar = () => {
     const [isModalLangOpen, setIsModalLangOpen] = useState(false);
     const [isModalCityOpen, setIsModalCityOpen] = useState(false);
 
-    const { currentUser } = useAuth();
+    const { currentUser, logout } = useAuth();
     const navigate = useNavigate();
 
     const menuClick = () => {
@@ -41,6 +41,15 @@ const Navbar = () => {
         navigate('profile');
     }
 
+    async function handleLogout() {
+        try {
+            await logout();
+            navigate("/login");
+        } catch {
+            console.error("Failed to log out");
+        }
+    }
+
     return (
         <header>
             <nav>
@@ -52,7 +61,10 @@ const Navbar = () => {
                 <button className={"nav-button"} onClick={() => setIsModalCityOpen(true)}>Astana</button>
                 <button className={"nav-button"} onClick={() => setIsModalLangOpen(true)}>English</button>
                 {currentUser ?
-                    <button className={"nav-button"} onClick={goToProfile}>My Profile</button>
+                    <>
+                        <button className={"nav-button"} onClick={goToProfile}>My Profile</button>
+                        <button className={"nav-button"} onClick={handleLogout}>Log Out</button>
+                    </>
                     :
                     <button className={"nav-button"} onClick={goToLogin}>Log In</button>
                 }
@@ -66,16 +78,16 @@ const Navbar = () => {
             {isCategoryOpened &&
                 <div className={"menu"}>
                     <div className={"menu-buttons"}>
-                        <Link to={"/fruits"}>
+                        <Link to={"/category"} state={{ category: "fruits" }}>
                             Fruits
                         </Link>
-                        <Link to={"/vegetables"}>
+                        <Link to={"/category"} state={{ category: "vegetables" }}>
                             Vegetables
                         </Link>
-                        <Link to={"/drinks"}>
+                        <Link to={"/category"} state={{ category: "drinks" }}>
                             Drinks
                         </Link>
-                        <Link to={"/meats"}>
+                        <Link to={"/category"} state={{ category: "meats" }}>
                             Meats
                         </Link>
                     </div>
@@ -88,7 +100,10 @@ const Navbar = () => {
                         <button className={"nav-button"} onClick={() => setIsModalCityOpen(true)}>Astana</button>
                         <button className={"nav-button"} onClick={() => setIsModalLangOpen(true)}>English</button>
                         {currentUser ?
-                            <button className={"nav-button"} onClick={goToProfile}>My Profile</button>
+                            <>
+                                <button className={"nav-button"} onClick={goToProfile}>My Profile</button>
+                                <button className={"nav-button"} onClick={handleLogout}>Log Out</button>
+                            </>
                             :
                             <button className={"nav-button"} onClick={goToLogin}>Log In</button>
                         }

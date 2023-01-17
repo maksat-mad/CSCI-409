@@ -19,8 +19,8 @@ const breakPoints = [
 const Main = () => {
     const [fruitCards, setFruitCards] = useState([]);
 
-    const [fetchFruitCards, isFruitCardsLoading, fruitCardsError] = useFetching(async () => {
-        const response = await CardService.getItems();
+    const [fetchFruitCards, isFruitCardsLoading, fruitCardsError] = useFetching(async (limit = 10, page = 1) => {
+        const response = await CardService.getCategory(limit, page, "fruits");
         setFruitCards([...response.data]);
     });
 
@@ -36,7 +36,7 @@ const Main = () => {
                 </div>
             </div>
             <div className={"main-title"}>
-                <Link to={"/fruits"} style={{textDecoration: "none"}}>
+                <Link to={"/category"} state={{ category: "fruits" }} style={{textDecoration: "none"}}>
                     <h2>Fruits</h2>
                 </Link>
             </div>

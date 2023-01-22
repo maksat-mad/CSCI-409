@@ -9,6 +9,7 @@ import languages from "../../utils/languages";
 import cities from "../../utils/cities";
 import { useAuth } from "../../../context/AuthContext";
 import {Link, useNavigate} from "react-router-dom";
+import { useDispatch } from 'react-redux';
 
 const Navbar = () => {
     const [isMenuOpened, setIsMenuOpened] = useState(false);
@@ -18,6 +19,14 @@ const Navbar = () => {
 
     const { currentUser, logout } = useAuth();
     const navigate = useNavigate();
+
+    const [inputValue, setInputValue] = useState('');
+    const dispatch = useDispatch();
+
+    const handleInputChange = (event) => {
+        setInputValue(event.target.value);
+        dispatch({ type: 'UPDATE_NAVBAR_INPUT', payload: event.target.value });
+    }
 
     const menuClick = () => {
         if (isCategoryOpened === true) {
@@ -57,7 +66,9 @@ const Navbar = () => {
                     <img src={logo} alt={"logo"}/>
                 </Link>
                 <DropDown/>
-                <input type="text" id="search" name="search" placeholder={"Search"}/>
+                <input
+                    onChange={handleInputChange} value={inputValue}
+                    type="text" id="search" name="search" placeholder={"Search"}/>
                 <button className={"nav-button"} onClick={() => setIsModalCityOpen(true)}>Astana</button>
                 <button className={"nav-button"} onClick={() => setIsModalLangOpen(true)}>English</button>
                 {currentUser ?
@@ -78,16 +89,16 @@ const Navbar = () => {
             {isCategoryOpened &&
                 <div className={"menu"}>
                     <div className={"menu-buttons"}>
-                        <Link to={"/category"} state={{ category: "fruits" }}>
+                        <Link to={"/search"} state={{ category: "fruits" }}>
                             Fruits
                         </Link>
-                        <Link to={"/category"} state={{ category: "vegetables" }}>
+                        <Link to={"/search"} state={{ category: "vegetables" }}>
                             Vegetables
                         </Link>
-                        <Link to={"/category"} state={{ category: "drinks" }}>
+                        <Link to={"/search"} state={{ category: "drinks" }}>
                             Drinks
                         </Link>
-                        <Link to={"/category"} state={{ category: "meats" }}>
+                        <Link to={"/search"} state={{ category: "meats" }}>
                             Meats
                         </Link>
                     </div>

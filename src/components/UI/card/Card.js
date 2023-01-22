@@ -9,6 +9,13 @@ const Card = ({image, name, price, buttonText}) => {
                 <h4><b>{name}</b></h4>
                 <p>{price}</p>
             </div>
+            <div className={price === '' ? "hidden" : "container-ratings"}>
+                <span className="fa fa-star checked"></span>
+                <span className="fa fa-star checked"></span>
+                <span className="fa fa-star checked"></span>
+                <span className="fa fa-star"></span>
+                <span className="fa fa-star"></span>
+            </div>
             <div className={"container"}>
                 <button className={"button-buy"}>{buttonText}</button>
             </div>

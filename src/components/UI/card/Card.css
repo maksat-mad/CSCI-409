@@ -32,7 +32,7 @@
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
-    padding: 16px 32px;
+    padding: 10px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -46,4 +46,18 @@
     background-color: #008CBA;
     transform: scale(1.2);
     font-weight: bold;
+}
+
+.checked {
+    color: orange;
+}
+
+.container-ratings {
+    display: flex;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.hidden {
+    display: none;
 }

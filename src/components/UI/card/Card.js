@@ -1,7 +1,9 @@
 import React from 'react';
 import './Card.css';
+import {Link} from "react-router-dom";
 
-const Card = ({image, name, price, buttonText}) => {
+const Card = ({image, name, price, buttonText, category}) => {
+
     return (
         <div className={"card"}>
             <img className={"card-image"} src={image} alt={name} style={{width: "100%"}}/>
@@ -17,7 +19,16 @@ const Card = ({image, name, price, buttonText}) => {
                 <span className="fa fa-star"></span>
             </div>
             <div className={"container"}>
-                <button className={"button-buy"}>{buttonText}</button>
+                {category === undefined ?
+                    // <Link to={"/category"} state={{category: category}} style={{textDecoration: "none"}}>
+                    //     <button className={"button-cart"}>{buttonText}</button>
+                    // </Link>
+                    <button className={"button-cart"}>{buttonText}</button>
+                    :
+                    <Link to={"/category"} state={{category: category}} style={{textDecoration: "none"}}>
+                        <button className={"button-cart"}>{buttonText}</button>
+                    </Link>
+                }
             </div>
         </div>
     );

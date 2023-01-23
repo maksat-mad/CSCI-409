@@ -12,27 +12,27 @@ const Main = () => {
     const [vegetableCards, setVegetableCards] = useState([]);
     const [drinkCards, setDrinkCards] = useState([]);
     const [meatCards, setMeatCards] = useState([]);
-
-    const navbarInput = useSelector(state => state.navbarInput);
     const [search, setSearch] = useState(false);
 
+    const navbarInput = useSelector(state => state.navbarInput);
+
     const [fetchFruitCards, isFruitCardsLoading, fruitCardsError] = useFetching(async (limit = 10, page = 1) => {
-        const response = await CardService.getCategory(limit, page);
+        const response = await CardService.getItems(limit, page, "fruits");
         setFruitCards([...response.data]);
     });
 
     const [fetchVegetableCards, isVegetableCardsLoading, vegetableCardsError] = useFetching(async (limit = 10, page = 1) => {
-        const response = await CardService.getCategory(limit, page);
+        const response = await CardService.getItems(limit, page, "vegetables");
         setVegetableCards([...response.data]);
     });
 
     const [fetchDrinkCards, isDrinkCardsLoading, drinkCardsError] = useFetching(async (limit = 10, page = 1) => {
-        const response = await CardService.getCategory(limit, page);
+        const response = await CardService.getItems(limit, page, "drinks");
         setDrinkCards([...response.data]);
     });
 
     const [fetchMeatCards, isMeatCardsLoading, meatCardsError] = useFetching(async (limit = 10, page = 1) => {
-        const response = await CardService.getCategory(limit, page);
+        const response = await CardService.getItems(limit, page, "meats");
         setMeatCards([...response.data]);
     });
 
@@ -44,13 +44,11 @@ const Main = () => {
     }, []);
 
     useEffect(() => {
-        console.log(navbarInput);
         if (navbarInput !== '') {
             setSearch(true);
         } else {
             setSearch(false);
         }
-        console.log(search);
     }, [navbarInput]);
 
     return (

@@ -20,7 +20,7 @@ const MainCarousel = ({error, loading, cards, name}) => {
     return (
         <>
             <div className={"main-title"}>
-                <Link to={"/search"} state={{category: "fruits"}} style={{textDecoration: "none"}}>
+                <Link to={"/category"} state={{category: "fruits"}} style={{textDecoration: "none"}}>
                     <h2>{name}</h2>
                 </Link>
             </div>
@@ -32,15 +32,22 @@ const MainCarousel = ({error, loading, cards, name}) => {
                 <Carousel style={{width: "1200px"}} breakPoints={breakPoints} pagination={false}
                           itemPadding={[20, 20, 20, 20]}>
                     {cards.map(el => {
-                        return <Card key={el.url} image={el.url} name={"Apple"} price={"320 tg/kg"}
-                                     buttonText={"buy"}/>
+                        return <Card key={el.url} image={el.url}
+                                     name={el.title.split(' ').slice(0,1).join('')}
+                                     price={"320 tg/kg"}
+                                     buttonText={"add to cart"}
+                        />
                     })}
                     <Card image={
                         name === "Fruits" ? fruits :
                             name === "Vegetables" ? vegetables :
                                 name === "Drinks" ? drinks : meats
                     }
-                          name={"Check out other " + name} price={""} buttonText={"more..."}/>
+                          name={"Check out other " + name}
+                          price={""}
+                          buttonText={"more..."}
+                          category={name.toLowerCase()}
+                    />
                 </Carousel>
             </div>
         </>

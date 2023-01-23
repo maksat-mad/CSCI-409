@@ -10,16 +10,16 @@ const DropDown = () => {
                 <img src={drop} alt={"drop"}/>
             </div>
             <div className={"dropdown-content"}>
-                <Link to={"/search"} state={{ category: "fruits" }}>
+                <Link to={"/category"} state={{ category: "fruits" }}>
                     Fruits
                 </Link>
-                <Link to={"/search"} state={{ category: "vegetables" }}>
+                <Link to={"/category"} state={{ category: "vegetables" }}>
                     Vegetables
                 </Link>
-                <Link to={"/search"} state={{ category: "drinks" }}>
+                <Link to={"/category"} state={{ category: "drinks" }}>
                     Drinks
                 </Link>
-                <Link to={"/search"} state={{ category: "meats" }}>
+                <Link to={"/category"} state={{ category: "meats" }}>
                     Meats
                 </Link>
             </div>

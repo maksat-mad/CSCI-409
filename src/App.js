@@ -10,9 +10,9 @@ import PrivateRoute from "./components/UI/private-route/PrivateRoute";
 import UpdateProfile from "./components/UI/profile/UpdateProfile";
 import Main from "./components/UI/main/Main";
 import NoPage from "./components/UI/no-page/NoPage";
-import Search from "./components/UI/search/Search";
 import {Provider} from 'react-redux';
 import store from './components/utils/redux/store';
+import Category from "./components/UI/category/Category";
 
 function App() {
     return (
@@ -36,6 +36,7 @@ function App() {
                                        </PrivateRoute>
                                    }
                             ></Route>
+                            <Route path="/category" element={<Category/>}/>
                             <Route path="/signup" element={<Signup/>}/>
                             <Route path="/login" element={<Login/>}/>
                             <Route path="/forgot-password" element={<ForgotPassword/>}/>

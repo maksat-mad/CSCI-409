@@ -68,7 +68,9 @@ const Navbar = () => {
                 <DropDown/>
                 <input
                     onChange={handleInputChange} value={inputValue}
-                    type="text" id="search" name="search" placeholder={"Search"}/>
+                    type="text" id="search" name="search"
+                    placeholder={"Search"} autoComplete={"off"}
+                />
                 <button className={"nav-button"} onClick={() => setIsModalCityOpen(true)}>Astana</button>
                 <button className={"nav-button"} onClick={() => setIsModalLangOpen(true)}>English</button>
                 {currentUser ?
@@ -89,16 +91,16 @@ const Navbar = () => {
             {isCategoryOpened &&
                 <div className={"menu"}>
                     <div className={"menu-buttons"}>
-                        <Link to={"/search"} state={{ category: "fruits" }}>
+                        <Link to={"/category"} state={{ category: "fruits" }}>
                             Fruits
                         </Link>
-                        <Link to={"/search"} state={{ category: "vegetables" }}>
+                        <Link to={"/category"} state={{ category: "vegetables" }}>
                             Vegetables
                         </Link>
-                        <Link to={"/search"} state={{ category: "drinks" }}>
+                        <Link to={"/category"} state={{ category: "drinks" }}>
                             Drinks
                         </Link>
-                        <Link to={"/search"} state={{ category: "meats" }}>
+                        <Link to={"/category"} state={{ category: "meats" }}>
                             Meats
                         </Link>
                     </div>
@@ -106,7 +108,11 @@ const Navbar = () => {
             }
             {isMenuOpened &&
                 <div className={"menu"}>
-                    <input type="text" id="search2" name="search" placeholder={"Search"}/>
+                    <input
+                        onChange={handleInputChange} value={inputValue}
+                        type="text" id="search2" name="search"
+                        placeholder={"Search"} autoComplete={"off"}
+                    />
                     <div className={"menu-buttons"}>
                         <button className={"nav-button"} onClick={() => setIsModalCityOpen(true)}>Astana</button>
                         <button className={"nav-button"} onClick={() => setIsModalLangOpen(true)}>English</button>

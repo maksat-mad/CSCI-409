@@ -28,8 +28,8 @@
     padding-left: 2rem;
 }
 
-.button-buy {
-    background-color: #4CAF50; /* Green */
+.button-cart {
+    background-color: #008CBA;
     border: none;
     color: white;
     padding: 10px 32px;
@@ -42,8 +42,8 @@
     border-radius: 5%;
 }
 
-.button-buy:hover {
-    background-color: #008CBA;
+.button-cart:hover {
+    background-color: #4CAF50;
     transform: scale(1.2);
     font-weight: bold;
 }

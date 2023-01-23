@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import './Search.css';
+import '../search/Search.css';
 import CardService from "../../../service/main/CardService";
 import Loader from "../loader/Loader";
 import Card from '../card/Card';
@@ -7,11 +7,13 @@ import {useFetching} from "../../../hook/useFetching";
 import {getPageCount} from "../../utils/pages";
 import Pagination from "../pagination/Pagination";
 import Select from "../select/Select";
+import {useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
 
-const Search = () => {
+const Category = () => {
     const limit = 21;
-
+    const { state } = useLocation();
+    const category = state === null ? "all" : state.category;
     const navbarInput = useSelector(state => state.navbarInput);
 
     const [cards, setCards] = useState([]);
@@ -25,6 +27,10 @@ const Search = () => {
         const totalCount = response.headers['x-total-count'];
         setTotalPages(getPageCount(totalCount, limit));
     });
+
+    useEffect(() => {
+        setFilter({...filter, category: category});
+    }, []);
 
     useEffect(() => {
         fetchCards(limit, page, filter);
@@ -42,18 +48,7 @@ const Search = () => {
     return (
         <div>
             <div className={"sort"}>
-                <Select
-                    value={filter.category}
-                    onChange={selectedCategory => setFilter({...filter, category: selectedCategory})}
-                    defaultValue={"Category"}
-                    options={[
-                        {value: 'all', name: 'all'},
-                        {value: 'fruit', name: 'fruit'},
-                        {value: 'vegetable', name: 'vegetable'},
-                        {value: 'drink', name: 'drink'},
-                        {value: 'meat', name: 'meat'}
-                    ]}
-                />
+                <h2>{category}</h2>
                 <Select
                     value={filter.sort}
                     onChange={selectedSort => setFilter({...filter, sort: selectedSort})}
@@ -112,4 +107,4 @@ const Search = () => {
     );
 };
 
-export default Search;
+export default Category;

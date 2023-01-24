@@ -1,5 +1,9 @@
 const initialState = {
-    navbarInput: ''
+    navbarInput: '',
+    city: 'Astana',
+    cartButtonClick: false,
+    cartItemsNumber: 0,
+    cartItemsIds: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -8,6 +12,26 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 navbarInput: action.payload
+            };
+        case 'UPDATE_CITY':
+            return {
+                ...state,
+                city: action.payload
+            };
+        case 'CART_BUTTON_CLICK':
+            return {
+                ...state,
+                cartButtonClick: action.payload
+            };
+        case 'CART_ITEMS_NUMBER':
+            return {
+                ...state,
+                cartItemsNumber: action.payload
+            };
+        case 'CART_ITEMS_IDS':
+            return {
+                ...state,
+                cartItemsIds: action.payload
             };
         default:
             return state;

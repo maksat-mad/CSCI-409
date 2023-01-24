@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './Navbar.css';
 import logo from '../../../assets/logo.png';
 import menu from '../../../assets/UI/menu.svg';
@@ -9,19 +9,28 @@ import languages from "../../utils/languages";
 import cities from "../../utils/cities";
 import { useAuth } from "../../../context/AuthContext";
 import {Link, useNavigate} from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import CartButton from "../cart-button/CartButton";
 
 const Navbar = () => {
     const [isMenuOpened, setIsMenuOpened] = useState(false);
     const [isCategoryOpened, setIsCategoryOpened] = useState(false);
     const [isModalLangOpen, setIsModalLangOpen] = useState(false);
     const [isModalCityOpen, setIsModalCityOpen] = useState(false);
+    const [city, setCity] = useState('Astana');
+
+    const selectedCity = useSelector(state => state.city);
+    const cartButton = useSelector(state => state.cartButtonClick);
 
     const { currentUser, logout } = useAuth();
     const navigate = useNavigate();
 
     const [inputValue, setInputValue] = useState('');
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        setCity(selectedCity);
+    }, [selectedCity]);
 
     const handleInputChange = (event) => {
         setInputValue(event.target.value);
@@ -71,7 +80,7 @@ const Navbar = () => {
                     type="text" id="search" name="search"
                     placeholder={"Search"} autoComplete={"off"}
                 />
-                <button className={"nav-button"} onClick={() => setIsModalCityOpen(true)}>Astana</button>
+                <button className={"nav-button"} onClick={() => setIsModalCityOpen(true)}>{city}</button>
                 <button className={"nav-button"} onClick={() => setIsModalLangOpen(true)}>English</button>
                 {currentUser ?
                     <>
@@ -114,7 +123,7 @@ const Navbar = () => {
                         placeholder={"Search"} autoComplete={"off"}
                     />
                     <div className={"menu-buttons"}>
-                        <button className={"nav-button"} onClick={() => setIsModalCityOpen(true)}>Astana</button>
+                        <button className={"nav-button"} onClick={() => setIsModalCityOpen(true)}>{city}</button>
                         <button className={"nav-button"} onClick={() => setIsModalLangOpen(true)}>English</button>
                         {currentUser ?
                             <>
@@ -133,6 +142,7 @@ const Navbar = () => {
             {isModalCityOpen &&
                 <Modal setIsOpen={setIsModalCityOpen} values={cities} from={"city"}/>
             }
+            {cartButton && <CartButton/>}
         </header>
     );
 };

@@ -13,11 +13,13 @@ const Search = () => {
     const limit = 21;
 
     const navbarInput = useSelector(state => state.navbarInput);
+    const selectedCity = useSelector(state => state.city);
 
     const [cards, setCards] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [page, setPage] = useState(1);
-    const [filter, setFilter] = useState({category: 'all', sort: '', priceFrom: '', priceTo: '', query: ''});
+    const [filter, setFilter] = useState({category: 'all', sort: '',
+        priceFrom: '', priceTo: '', query: '', city: 'Astana'});
 
     const [fetchCards, isCardsLoading, cardsError] = useFetching(async (limit, page, filter) => {
         const response = await CardService.getItemsByFilter(limit, page, filter);
@@ -33,6 +35,10 @@ const Search = () => {
     useEffect(() => {
         setFilter({...filter, query: navbarInput});
     }, [navbarInput]);
+
+    useEffect(() => {
+        setFilter({...filter, city: selectedCity});
+    }, [selectedCity]);
 
     const changePage = (page) => {
         setPage(page);
@@ -69,11 +75,13 @@ const Search = () => {
                     <h4>Price range</h4>
                     <div>
                         <input
+                            onChange={e => setFilter({...filter, priceFrom: e.target.value})}
                             type="number"
                             className={"sort-inputs"}
                         />
                         -
                         <input
+                            onChange={e => setFilter({...filter, priceTo: e.target.value})}
                             type="number"
                             className={"sort-inputs"}
                         />
@@ -92,11 +100,7 @@ const Search = () => {
                 <div className={"wrapper"}>
                     <div className={"cards-wrap"}>
                         {cards.map(el => {
-                            return <Card key={el.url} image={el.url}
-                                         name={el.title.split(' ').slice(0,1).join('')}
-                                         price={"320 tg/kg"}
-                                         buttonText={"add to cart"}
-                            />
+                            return <Card key={el.url} card={el}/>
                         })}
                     </div>
                 </div>

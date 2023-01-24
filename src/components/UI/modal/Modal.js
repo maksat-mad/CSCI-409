@@ -1,8 +1,16 @@
 import React, {useEffect, useRef} from 'react';
 import './Modal.css';
+import {useDispatch} from "react-redux";
 
 const Modal = ({setIsOpen, values, from}) => {
     const modalRef = useRef();
+
+    const dispatch = useDispatch();
+
+    const handleCityChange = (city) => {
+        dispatch({ type: 'UPDATE_CITY', payload: city });
+        setIsOpen(false);
+    }
 
     useEffect(() => {
         let closeModal = (event) => {
@@ -34,7 +42,11 @@ const Modal = ({setIsOpen, values, from}) => {
                             )
                             :
                             values.map((obj, index) =>
-                                <button className={"modal-button"} key={index}>
+                                <button
+                                    className={"modal-button"}
+                                    key={index}
+                                    onClick={() => handleCityChange(obj.nameEn)}
+                                >
                                     {obj.nameEn}
                                     <img src={obj.src} alt={obj.nameEn}/>
                                 </button>

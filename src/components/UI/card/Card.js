@@ -14,11 +14,24 @@ const Card = ({card, category}) => {
     const cartItemsIds = useSelector(state => state.cartItemsIds);
 
     const handleButtonClick = () => {
-        dispatch({ type: 'CART_BUTTON_CLICK', payload: true });
+        dispatch({type: 'CART_BUTTON_CLICK', payload: true});
         if (!cartItemsIds.includes(card.id)) {
-            dispatch({ type: 'CART_ITEMS_NUMBER', payload: cartItemsNumber + 1 });
-            dispatch({ type: 'CART_ITEMS_IDS', payload: [...cartItemsIds, card.id] });
+            dispatch({type: 'CART_ITEMS_NUMBER', payload: cartItemsNumber + 1});
+            dispatch({type: 'CART_ITEMS_IDS', payload: [...cartItemsIds, card.id]});
         }
+    }
+
+    const handleTrashButtonClick = () => {
+        dispatch({type: 'CART_ITEMS_IDS',
+            payload: cartItemsIds.map(id => {
+                if (id !== card.id) {
+                    return id;
+                }
+            }) });
+        if (cartItemsNumber === 1) {
+            dispatch({type: 'CART_BUTTON_CLICK', payload: false});
+        }
+        dispatch({type: 'CART_ITEMS_NUMBER', payload: cartItemsNumber - 1});
     }
 
     return (
@@ -29,11 +42,13 @@ const Card = ({card, category}) => {
                     category === "fruits" ? fruits :
                         category === "vegetables" ? vegetables :
                             category === "drinks" ? drinks : meats}
-                alt={card !== undefined ? card.title.split(' ').slice(0,1).join('') : category}
+                alt={card !== undefined ? card.title.split(' ').slice(0, 1).join('') : category}
                 style={{width: "100%"}}
             />
             <div className={"container-left"}>
-                <h4><b>{card !== undefined ? card.title.split(' ').slice(0,1).join('') : "Check out other " + category}</b></h4>
+                <h4>
+                    <b>{card !== undefined ? card.title.split(' ').slice(0, 1).join('') : "Check out other " + category}</b>
+                </h4>
                 <p>{card !== undefined ? "320 tg/kg" : ""}</p>
             </div>
             <div className={category !== undefined ? "hidden" : "container-ratings"}>
@@ -45,12 +60,27 @@ const Card = ({card, category}) => {
             </div>
             <div className={"container"}>
                 {category === undefined ?
-                    <button
-                        onClick={handleButtonClick}
-                        className={"button-cart"}
-                    >
-                        {"add to cart"}
-                    </button>
+                    <>
+                        {cartItemsIds.includes(card.id) ?
+                            <>
+                                <button
+                                    className={"button-cart cart-added"}
+                                >
+                                    {"added"}
+                                </button>
+                                <span
+                                    onClick={handleTrashButtonClick}
+                                    className={"fa fa-trash trash-icon-cart"}></span>
+                            </>
+                            :
+                            <button
+                                onClick={handleButtonClick}
+                                className={"button-cart"}
+                            >
+                                {"add to cart"}
+                            </button>
+                        }
+                    </>
                     :
                     <Link to={"/category"} state={{category: category}} style={{textDecoration: "none"}}>
                         <button className={"button-cart"}>{"more"}</button>

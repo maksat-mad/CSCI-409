@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 import './Signup-Login.css';
 
@@ -10,6 +10,8 @@ const Login = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const { state } = useLocation();
+    const prevPath = state === null ? "/" : state.prevPath;
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -22,7 +24,7 @@ const Login = () => {
             setError("");
             setLoading(true);
             await login(emailRef.current.value, passwordRef.current.value);
-            navigate('/');
+            navigate(prevPath);
         } catch {
             setError("Failed to log in");
         }

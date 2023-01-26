@@ -114,7 +114,8 @@ nav .nav-button, .menu a, .menu .nav-button, .modal-body .modal-button {
         align-items: center;
         background-color: var(--bg-button);
         border-radius: 0.2rem;
-        border: solid 1px #aaa;
+        border: none;
+        padding: 5px;
     }
     .menu {
         display: flex;

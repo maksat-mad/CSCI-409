@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import './Navbar.css';
 import logo from '../../../assets/logo.png';
-import menu from '../../../assets/UI/menu.svg';
-import category from '../../../assets/UI/angle-double-down.svg';
+import menu from '../../../assets/UI/options.png';
+import category from '../../../assets/UI/app.png';
 import DropDown from "../drop-down/DropDown";
 import Modal from "../modal/Modal";
 import languages from "../../utils/languages";
@@ -91,10 +91,10 @@ const Navbar = () => {
                     <button className={"nav-button"} onClick={goToLogin}>Log In</button>
                 }
                 <button className={"mob-button"} onClick={categoryClick}>
-                    <img src={category} alt={"category"}/>
+                    <img src={category} alt={"category"} style={{width:"35px", height:"35px"}}/>
                 </button>
                 <button className={"mob-button"} onClick={menuClick}>
-                    <img src={menu} alt={"menu"}/>
+                    <img src={menu} alt={"menu"} style={{width:"35px", height:"35px"}}/>
                 </button>
             </nav>
             {isCategoryOpened &&

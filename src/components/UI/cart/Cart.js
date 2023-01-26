@@ -4,8 +4,14 @@ import {useSelector} from "react-redux";
 import shopping from '../../../assets/UI/shopping.png';
 import {Link} from "react-router-dom";
 import './Cart.css';
+import CartBuyButton from "../cart-parts/CartBuyButton";
+import {useAuth} from "../../../context/AuthContext";
+import LoginToBuy from "../cart-parts/LoginToBuy";
+import CartBuyBottom from "../cart-parts/CartBuyBottom";
 
 const Cart = () => {
+    const { currentUser } = useAuth();
+
     const cartButton = useSelector(state => state.cartButtonClick);
 
     return (
@@ -16,8 +22,18 @@ const Cart = () => {
                     <div className={"cart-container"}>
                         <div>
                             <CartCard/>
+                            <CartCard/>
+                            <CartCard/>
+                            <CartCard/>
                         </div>
-                        <div></div>
+                        {currentUser ?
+                            <>
+                                <CartBuyButton/>
+                                <CartBuyBottom/>
+                            </>
+                            :
+                            <LoginToBuy/>
+                        }
                     </div>
                 </div>
                 :
@@ -26,7 +42,7 @@ const Cart = () => {
                         <h2>Cart is empty</h2>
                     </div>
                     <div className={"cart-container"}>
-                        <img src={shopping} alt={"shopping"} style={{height:"300px"}}/>
+                        <img src={shopping} alt={"shopping"} style={{height: "300px"}}/>
                     </div>
                     <div className={"cart-container"}>
                         <Link to={"/"} style={{textDecoration: "none"}}>

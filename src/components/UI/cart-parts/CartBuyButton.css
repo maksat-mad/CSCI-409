@@ -1,0 +1,43 @@
+.cart-buy-button {
+    position: fixed;
+    bottom: 30%;
+    right: 20px;
+    cursor: pointer;
+}
+
+.cart-buy-button:hover {
+    transition-duration: 0.4s;
+    transform: scale(1.2);
+    font-weight: bold;
+}
+
+.cart-buy-button-icon {
+    width: 100px;
+    height: 100px;
+}
+
+@media only screen and (max-width: 800px) {
+    .cart-buy-button {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .cart-buy-button {
+        right: 20px;
+    }
+}
+
+@media only screen and (min-width: 1238px) {
+    .cart-buy-button {
+        right: 100px;
+    }
+}
+
+.cart-buy-money {
+    color: coral;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    font-family: cursive;
+}

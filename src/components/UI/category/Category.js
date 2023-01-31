@@ -83,20 +83,23 @@ const Category = () => {
                     </div>
                 </div>
             </div>
-
             <div className={"container"}>
                 {cardsError &&
                     <h1>Error: ${cardsError}</h1>
                 }
                 {isCardsLoading && <Loader/>}
-                {!cardsError && cards.length === 0 &&
+                {!isCardsLoading && !cardsError && cards.length === 0 &&
                     <h1>No items found</h1>
                 }
+            </div>
+            <div className={"container"}>
                 <div className={"wrapper"}>
                     <div className={"cards-wrap"}>
-                        {cards.map(el => {
-                            return <Card key={el.url} card={el}/>
-                        })}
+                        {!cardsError && !isCardsLoading && cards.length !== 0 &&
+                            cards.map(el => {
+                                return <Card key={el.url} card={el}/>
+                            })
+                        }
                     </div>
                 </div>
             </div>

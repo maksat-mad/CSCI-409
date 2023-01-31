@@ -18,7 +18,11 @@ const Cart = () => {
         <>
             {cartButton ?
                 <div>
-                    <div className={"cart-container"}>Cart, Sum</div>
+                    <div className={"cart-container"}>
+                        <div>
+                            <h2>Items = 17 Total sum = 2500 tg</h2>
+                        </div>
+                    </div>
                     <div className={"cart-container"}>
                         <div>
                             <CartCard/>

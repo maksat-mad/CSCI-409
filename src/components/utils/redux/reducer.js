@@ -3,7 +3,11 @@ const initialState = {
     city: 'Astana',
     cartButtonClick: false,
     cartItemsNumber: 0,
-    cartItemsIds: []
+    cartItemsIds: [],
+    cartItems: new Map(),
+    cartItemsQuantity: 0,
+    cartItemsIdsAndQuantity: new Map(),
+    totalMoney: 0
 };
 
 const reducer = (state = initialState, action) => {
@@ -32,6 +36,26 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 cartItemsIds: action.payload
+            };
+        case 'CART_ITEMS':
+            return {
+                ...state,
+                cartItems: action.payload
+            };
+        case 'CART_ITEMS_QUANTITY':
+            return {
+                ...state,
+                cartItemsQuantity: action.payload
+            };
+        case 'CART_ITEMS_IDS_AND_QUANTITY':
+            return {
+                ...state,
+                cartItemsIdsAndQuantity: action.payload
+            };
+        case 'TOTAL_MONEY':
+            return {
+                ...state,
+                totalMoney: action.payload
             };
         default:
             return state;

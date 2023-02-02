@@ -18,11 +18,12 @@
 }
 
 .cart-card-content {
-    background-color: cyan;
+    background-color: #8AFFFF;
     height: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 @media only screen and (min-width: 800px) {

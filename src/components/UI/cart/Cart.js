@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import CartCard from "../card/CartCard";
 import {useSelector} from "react-redux";
 import shopping from '../../../assets/UI/shopping.png';
@@ -10,25 +10,32 @@ import LoginToBuy from "../cart-parts/LoginToBuy";
 import CartBuyBottom from "../cart-parts/CartBuyBottom";
 
 const Cart = () => {
-    const { currentUser } = useAuth();
+    const {currentUser} = useAuth();
+
+    const [items, setItems] = useState([]);
 
     const cartButton = useSelector(state => state.cartButtonClick);
+    const cartItems = useSelector(state => state.cartItems);
+    const cartItemsNumber = useSelector(state => state.cartItemsNumber);
+    const cartItemsQuantity = useSelector(state => state.cartItemsQuantity);
+    const totalMoney = useSelector(state => state.totalMoney);
+
+    useEffect(() => {
+        setItems(Array.from(cartItems.values()));
+    }, [cartItemsNumber]);
 
     return (
         <>
             {cartButton ?
                 <div>
-                    <div className={"cart-container"}>
-                        <div>
-                            <h2>Items = 17 Total sum = 2500 tg</h2>
-                        </div>
+                    <div className={"cart-container-title"}>
+                        <h2>Number of Items = {cartItemsQuantity}</h2>
+                        <h2>Total Cost = {totalMoney} tg</h2>
                     </div>
                     <div className={"cart-container"}>
-                        <div>
-                            <CartCard/>
-                            <CartCard/>
-                            <CartCard/>
-                            <CartCard/>
+                        <div>{items.map(item => {
+                            return <CartCard key={item.id} card={item}/>
+                        })}
                         </div>
                         {currentUser ?
                             <>

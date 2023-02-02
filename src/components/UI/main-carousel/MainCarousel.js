@@ -16,7 +16,7 @@ const MainCarousel = ({error, loading, cards, name}) => {
     return (
         <>
             <div className={"main-title"}>
-                <Link to={"/category"} state={{category: "fruits"}} style={{textDecoration: "none"}}>
+                <Link to={"/category"} state={{category: name.toLowerCase()}} style={{textDecoration: "none"}}>
                     <h2>{name}</h2>
                 </Link>
             </div>

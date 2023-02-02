@@ -12,12 +12,26 @@ const Card = ({card, category}) => {
 
     const cartItemsNumber = useSelector(state => state.cartItemsNumber);
     const cartItemsIds = useSelector(state => state.cartItemsIds);
+    const cartItems = useSelector(state => state.cartItems);
+    const cartItemsQuantity = useSelector(state => state.cartItemsQuantity);
+    const cartItemsIdsAndQuantity = useSelector(state => state.cartItemsIdsAndQuantity);
+    const totalMoney = useSelector(state => state.totalMoney);
 
     const handleButtonClick = () => {
         dispatch({type: 'CART_BUTTON_CLICK', payload: true});
         if (!cartItemsIds.includes(card.id)) {
             dispatch({type: 'CART_ITEMS_NUMBER', payload: cartItemsNumber + 1});
             dispatch({type: 'CART_ITEMS_IDS', payload: [...cartItemsIds, card.id]});
+
+            cartItems.set(card.id, card);
+            dispatch({type: 'CART_ITEMS', payload: cartItems});
+
+            dispatch({type: 'CART_ITEMS_QUANTITY', payload: cartItemsQuantity + 1});
+
+            cartItemsIdsAndQuantity.set(card.id, 1);
+            dispatch({type: 'CART_ITEMS_IDS_AND_QUANTITY', payload: cartItemsIdsAndQuantity});
+
+            dispatch({type: 'TOTAL_MONEY', payload: totalMoney + 1000});
         }
     }
 
@@ -32,6 +46,12 @@ const Card = ({card, category}) => {
             dispatch({type: 'CART_BUTTON_CLICK', payload: false});
         }
         dispatch({type: 'CART_ITEMS_NUMBER', payload: cartItemsNumber - 1});
+        dispatch({type: 'CART_ITEMS_QUANTITY', payload: cartItemsQuantity - cartItemsIdsAndQuantity.get(card.id)});
+        dispatch({type: 'TOTAL_MONEY', payload: totalMoney - cartItemsIdsAndQuantity.get(card.id) * 1000});
+        cartItemsIdsAndQuantity.delete(card.id);
+        cartItems.delete(card.id);
+        dispatch({type: 'CART_ITEMS', payload: cartItems});
+        dispatch({type: 'CART_ITEMS_IDS_AND_QUANTITY', payload: cartItemsIdsAndQuantity});
     }
 
     return (

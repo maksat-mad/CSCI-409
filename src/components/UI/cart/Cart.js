@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import './Cart.css';
 import CartBuyButton from "../cart-parts/CartBuyButton";
 import {useAuth} from "../../../context/AuthContext";
-import LoginToBuy from "../cart-parts/LoginToBuy";
+import LoginToProceed from "../cart-parts/LoginToProceed";
 import CartBuyBottom from "../cart-parts/CartBuyBottom";
 
 const Cart = () => {
@@ -43,7 +43,7 @@ const Cart = () => {
                                 <CartBuyBottom/>
                             </>
                             :
-                            <LoginToBuy/>
+                            <LoginToProceed text={"Login to Buy"}/>
                         }
                     </div>
                 </div>

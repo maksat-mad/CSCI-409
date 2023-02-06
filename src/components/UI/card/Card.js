@@ -65,19 +65,21 @@ const Card = ({card, category}) => {
                 alt={card !== undefined ? card.title.split(' ').slice(0, 1).join('') : category}
                 style={{width: "100%"}}
             />
-            <div className={"container-left"}>
-                <h4>
-                    <b>{card !== undefined ? card.title.split(' ').slice(0, 1).join('') : "Check out other " + category}</b>
-                </h4>
-                <p>{card !== undefined ? "320 tg/kg" : ""}</p>
-            </div>
-            <div className={category !== undefined ? "hidden" : "container-ratings"}>
-                <span className="fa fa-star checked"></span>
-                <span className="fa fa-star checked"></span>
-                <span className="fa fa-star checked"></span>
-                <span className="fa fa-star"></span>
-                <span className="fa fa-star"></span>
-            </div>
+            <Link to={card !== undefined ? `/products/${card.id}` : '/'} style={{textDecoration: "none", color:"black"}}>
+                <div className={"container-left"}>
+                    <h4>
+                        <b>{card !== undefined ? card.title.split(' ').slice(0, 1).join('') : "Check out other " + category}</b>
+                    </h4>
+                    <p>{card !== undefined ? "320 tg/kg" : ""}</p>
+                </div>
+                <div className={category !== undefined ? "hidden" : "container-ratings"}>
+                    <span className="fa fa-star checked"></span>
+                    <span className="fa fa-star checked"></span>
+                    <span className="fa fa-star checked"></span>
+                    <span className="fa fa-star"></span>
+                    <span className="fa fa-star"></span>
+                </div>
+            </Link>
             <div className={"container"}>
                 {category === undefined ?
                     <>

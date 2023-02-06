@@ -1,0 +1,46 @@
+.checked {
+    color: orange;
+}
+
+.container-ratings {
+    display: flex;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.hidden {
+    display: none;
+}
+
+.product-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.individual-photo-info {
+    display: flex;
+    align-content: center;
+}
+
+.individual-photo {
+    margin: 0 35px;
+    width: 20rem;
+    height: 20rem;
+    border-radius: 5px 5px 0 0;
+}
+
+.individual-info {
+    padding: 2rem;
+}
+
+.individual-text {
+    text-align: center;
+    width: 20rem;
+}
+
+@media only screen and (max-width: 830px) {
+    .individual-photo-info {
+        display: inline-block;
+    }
+}

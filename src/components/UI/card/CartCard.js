@@ -12,7 +12,7 @@ const CartCard = ({card}) => {
             <div className={"cart-card-content"}>
                 <div>
                     <h3 style={{margin: "0", padding: "0"}}>Item</h3><br/>
-                    <Link to={"/cart"} style={{textDecoration: "none"}}>
+                    <Link to={`/products/${card.id}`} style={{textDecoration: "none"}}>
                         <h4 style={{margin: "0", padding: "0"}}>More info...</h4><br/>
                     </Link><br/>
                     <CartCardButtonsAndInput cardId={card.id} maxValue={5}/>

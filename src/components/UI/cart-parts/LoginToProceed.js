@@ -1,17 +1,17 @@
 import React from 'react';
-import './LoginToBuy.css';
+import './LoginToProceed.css';
 import {Link} from "react-router-dom";
 
-const LoginToBuy = () => {
+const LoginToProceed = ({text}) => {
     return (
         <>
             <Link to={"/login"} state={{ prevPath: "/cart" }} style={{textDecoration: "none"}} >
-                <div className={"login-to-buy-button"}>
-                    Login to Buy
+                <div className={"login-to-proceed-button"}>
+                    {text}
                 </div>
             </Link>
         </>
     );
 };
 
-export default LoginToBuy;
+export default LoginToProceed;

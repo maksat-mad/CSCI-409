@@ -14,6 +14,7 @@ import {Provider} from 'react-redux';
 import store from './components/utils/redux/store';
 import Category from "./components/UI/category/Category";
 import Cart from "./components/UI/cart/Cart";
+import Product from "./components/UI/product/Product";
 
 function App() {
     return (
@@ -37,6 +38,7 @@ function App() {
                                        </PrivateRoute>
                                    }
                             ></Route>
+                            <Route path="/products/:productId" element={<Product/>}/>
                             <Route path="/category" element={<Category/>}/>
                             <Route path="/cart" element={<Cart/>}/>
                             <Route path="/signup" element={<Signup/>}/>

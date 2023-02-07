@@ -85,7 +85,7 @@ const Category = () => {
             </div>
             <div className={"container"}>
                 {cardsError &&
-                    <h1>Error: ${cardsError}</h1>
+                    <h1>Error: {cardsError}</h1>
                 }
                 {isCardsLoading && <Loader/>}
                 {!isCardsLoading && !cardsError && cards.length === 0 &&

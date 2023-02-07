@@ -22,7 +22,7 @@ const MainCarousel = ({error, loading, cards, name}) => {
             </div>
             <div className={"container"}>
                 {error &&
-                    <h1>Error: ${error}</h1>
+                    <h1>Error: {error}</h1>
                 }
                 {loading && <Loader/>}
                 <Carousel style={{width: "1200px"}} breakPoints={breakPoints} pagination={false}
@@ -30,7 +30,7 @@ const MainCarousel = ({error, loading, cards, name}) => {
                     {cards.map(el => {
                         return <Card
                             card={el}
-                            key={el.url}
+                            key={el.id}
                         />
                     })}
                     <Card

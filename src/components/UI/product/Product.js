@@ -29,7 +29,7 @@ const Product = () => {
     return (
         <div style={{padding: "2rem"}}>
             {productError &&
-                <h1 className={"product-container"} >Error: ${productError}</h1>
+                <h1 className={"product-container"} >Error: {productError}</h1>
             }
             {isProductLoading && <div className={"product-container"}><Loader/></div>}
             {!isProductLoading && !productError && product === null &&

@@ -10,7 +10,7 @@ import Select from "../select/Select";
 import {useSelector} from "react-redux";
 
 const Search = () => {
-    const limit = 21;
+    const limit = 20;
 
     const navbarInput = useSelector(state => state.navbarInput);
     const selectedCity = useSelector(state => state.city);

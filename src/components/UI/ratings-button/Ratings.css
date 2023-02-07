@@ -27,6 +27,13 @@
     border: 2px solid #4CAF50;
 }
 
+.load-more-button {
+    background-color: #e7e7e7;
+    color: black;
+    border: 2px solid #e7e7e7;
+    padding: 10px 40px;
+}
+
 .button-container {
     display: flex;
     justify-content: center;

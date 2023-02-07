@@ -1,10 +1,10 @@
 import React from 'react';
 import './CartBuyBottom.css';
 
-const CartBuyBottom = () => {
+const CartBuyBottom = ({money}) => {
     return (
         <div className={"cart-buy-bottom"}>
-            <h2>2500 tg</h2>
+            <h2>{money} tg</h2>
             <h2>But Now</h2>
         </div>
     );

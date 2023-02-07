@@ -11,7 +11,7 @@ import {useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
 
 const Category = () => {
-    const limit = 21;
+    const limit = 20;
     const { state } = useLocation();
     const category = state === null ? "all" : state.category;
     const navbarInput = useSelector(state => state.navbarInput);

@@ -39,8 +39,8 @@ const Cart = () => {
                         </div>
                         {currentUser ?
                             <>
-                                <CartBuyButton/>
-                                <CartBuyBottom/>
+                                <CartBuyButton money={totalMoney}/>
+                                <CartBuyBottom money={totalMoney}/>
                             </>
                             :
                             <LoginToProceed text={"Login to Buy"}/>

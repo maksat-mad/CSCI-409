@@ -1,6 +1,8 @@
 import React from 'react';
 import './Review.css';
 import Select from "../select/Select";
+import ReviewCard from "../card/ReviewCard";
+import LoadMore from "../ratings-button/LoadMore";
 
 const Review = () => {
     return (
@@ -16,6 +18,16 @@ const Review = () => {
                         {value: 'lowRating', name: 'low rating'}
                     ]}
                 />
+            </div>
+            <div className={"review-container"}>
+                <div>
+                    <ReviewCard/>
+                    <ReviewCard/>
+                    <ReviewCard/>
+                    <ReviewCard/>
+                    <ReviewCard/>
+                    <LoadMore/>
+                </div>
             </div>
         </>
     );

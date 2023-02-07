@@ -20,4 +20,8 @@ export default class CardService {
     static async getItemById(id) {
         return await axios.get('https://jsonplaceholder.typicode.com/photos/' + id);
     }
+
+    static async getReviewsByProductId(id) {
+        return await axios.get('https://jsonplaceholder.typicode.com/comments/');
+    }
 };

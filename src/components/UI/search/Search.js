@@ -102,7 +102,7 @@ const Search = () => {
                     <div className={"cards-wrap"}>
                         {!cardsError && !isCardsLoading && cards.length !== 0 &&
                             cards.map(el => {
-                                return <Card key={el.url} card={el}/>
+                                return <Card key={el.id} card={el}/>
                             })
                         }
                     </div>

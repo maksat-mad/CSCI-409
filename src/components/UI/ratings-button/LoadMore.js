@@ -1,10 +1,10 @@
 import React from 'react';
 import './Ratings.css';
 
-const LoadMore = () => {
+const LoadMore = ({num, limit, shownComments}) => {
     return (
         <div className={"button-container"}>
-            <span>
+            <span onClick={() => shownComments(num + limit)}>
                 <div className={"ratings-button load-more-button"}>
                     Load More
                 </div>

@@ -45,11 +45,12 @@ const Product = () => {
                             <div className={"individual-info"}>
                                 <h2 className={"product-container"}>{product.title.split(" ")[0]}</h2>
                                 <div className={"container-ratings"}>
-                                    <span className="fa fa-star checked"></span>
-                                    <span className="fa fa-star checked"></span>
-                                    <span className="fa fa-star checked"></span>
-                                    <span className="fa fa-star"></span>
-                                    <span className="fa fa-star"></span>
+                                    {[...Array(3)].map(() =>
+                                        <span className="fa fa-star checked"></span>
+                                    )}
+                                    {[...Array(5 - 3)].map(() =>
+                                        <span className="fa fa-star"></span>
+                                    )}
                                 </div>
                                 <p className={"product-container individual-text"}>{"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry."}</p>
                                 {currentUser ?
@@ -60,7 +61,7 @@ const Product = () => {
                             </div>
                         </div>
                     </div>
-                    <Review/>
+                    <Review productId={productId}/>
                 </>
             }
             {isPictureModalOpen &&

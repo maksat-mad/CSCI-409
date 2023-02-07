@@ -36,12 +36,14 @@ const Card = ({card, category}) => {
     }
 
     const handleTrashButtonClick = () => {
-        dispatch({type: 'CART_ITEMS_IDS',
+        dispatch({
+            type: 'CART_ITEMS_IDS',
             payload: cartItemsIds.map(id => {
                 if (id !== card.id) {
                     return id;
                 }
-            }) });
+            })
+        });
         if (cartItemsNumber === 1) {
             dispatch({type: 'CART_BUTTON_CLICK', payload: false});
         }
@@ -65,7 +67,8 @@ const Card = ({card, category}) => {
                 alt={card !== undefined ? card.title.split(' ').slice(0, 1).join('') : category}
                 style={{width: "100%"}}
             />
-            <Link to={card !== undefined ? `/products/${card.id}` : '/'} style={{textDecoration: "none", color:"black"}}>
+            <Link to={card !== undefined ? `/products/${card.id}` : '/'}
+                  style={{textDecoration: "none", color: "black"}}>
                 <div className={"container-left"}>
                     <h4>
                         <b>{card !== undefined ? card.title.split(' ').slice(0, 1).join('') : "Check out other " + category}</b>
@@ -73,11 +76,14 @@ const Card = ({card, category}) => {
                     <p>{card !== undefined ? "320 tg/kg" : ""}</p>
                 </div>
                 <div className={category !== undefined ? "hidden" : "container-ratings"}>
-                    <span className="fa fa-star checked"></span>
-                    <span className="fa fa-star checked"></span>
-                    <span className="fa fa-star checked"></span>
-                    <span className="fa fa-star"></span>
-                    <span className="fa fa-star"></span>
+                    <div className={"container-ratings"}>
+                        {[...Array(3)].map(() =>
+                            <span className="fa fa-star checked"></span>
+                        )}
+                        {[...Array(5 - 3)].map(() =>
+                            <span className="fa fa-star"></span>
+                        )}
+                    </div>
                 </div>
             </Link>
             <div className={"container"}>

@@ -44,7 +44,7 @@ const Product = () => {
                             </div>
                             <div className={"individual-info"}>
                                 <h2 className={"product-container"}>{product.title.split(" ")[0]}</h2>
-                                <div className={"container-ratings"}>
+                                <div className={"container-ratings big-font-size"}>
                                     {[...Array(3)].map(() =>
                                         <span className="fa fa-star checked"></span>
                                     )}

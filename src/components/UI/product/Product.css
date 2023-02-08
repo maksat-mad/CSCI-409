@@ -12,6 +12,14 @@
     display: none;
 }
 
+.big-font-size {
+    font-size: 25px;
+}
+
+.medium-font-size {
+    font-size: 15px;
+}
+
 .product-container {
     display: flex;
     justify-content: center;

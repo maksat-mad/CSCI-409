@@ -1,19 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Ratings.css';
+import LeaveReviewModal from "../modal/LeaveReviewModal";
 
 const LeaveReview = () => {
+    const [modalOpen, setModalOpen] = useState(false);
+
     const openModal = () => {
-        console.log("open modal");
+        setModalOpen(true);
     }
 
     return (
-        <div className={"button-container"}>
+        <>
+            <div className={"button-container"}>
             <span onClick={openModal}>
                 <div className={"ratings-button leave-review-button"}>
                     Leave review
                 </div>
             </span>
-        </div>
+            </div>
+            {modalOpen && <LeaveReviewModal setIsOpen={setModalOpen}/>}
+        </>
     );
 };
 

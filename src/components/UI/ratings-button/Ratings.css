@@ -34,6 +34,14 @@
     padding: 10px 40px;
 }
 
+.submit-review-button {
+    background-color: #4CAF50;
+    color: white;
+    border: 2px solid #4CAF50;
+    padding: 10px 30px;
+    margin-top: 1rem;
+}
+
 .button-container {
     display: flex;
     justify-content: center;

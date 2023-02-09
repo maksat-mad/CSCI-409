@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './Ratings.css';
 import LeaveReviewModal from "../modal/LeaveReviewModal";
 
-const LeaveReview = () => {
+const LeaveReview = ({productId}) => {
     const [modalOpen, setModalOpen] = useState(false);
 
     const openModal = () => {
@@ -18,7 +18,7 @@ const LeaveReview = () => {
                 </div>
             </span>
             </div>
-            {modalOpen && <LeaveReviewModal setIsOpen={setModalOpen}/>}
+            {modalOpen && <LeaveReviewModal productId={productId} setIsOpen={setModalOpen}/>}
         </>
     );
 };

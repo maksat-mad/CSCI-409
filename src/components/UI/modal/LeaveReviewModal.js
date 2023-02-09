@@ -1,9 +1,17 @@
 import React, {useEffect, useRef, useState} from 'react';
 import './Modal.css';
 import './LeaveReviewModal.css';
+import SubmitReview from "../ratings-button/SubmitReview";
+import Loader from "../loader/Loader";
 
-const LeaveReviewModal = ({setIsOpen}) => {
-    const [rating, setRating] = useState(1);
+const LeaveReviewModal = ({setIsOpen, productId}) => {
+    const [isError, setIsError] = useState(false);
+    const [error, setError] = useState(false);
+    const [comment, setComment] = useState('');
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+
+    const [rating, setRating] = useState(5);
     const [hover, setHover] = useState(null);
     const modalRef = useRef();
 
@@ -19,6 +27,11 @@ const LeaveReviewModal = ({setIsOpen}) => {
         };
     });
 
+    const handleCommentChange = (event) => {
+        setComment(event.target.value);
+        setIsError(false);
+    }
+
     return (
         <div className="modal">
             <div ref={modalRef} className="modal-content">
@@ -28,17 +41,53 @@ const LeaveReviewModal = ({setIsOpen}) => {
                 </div>
                 <div className="modal-body">
                     <div>
-                        <div className={"container-ratings big-font-size"}>
-                            {[...Array(5)].map((star, i) => {
-                                const ratingValue = i + 1;
-                                return <span
-                                    onClick={() => setRating(ratingValue)}
-                                    onMouseOver={() => setHover(ratingValue)}
-                                    onMouseOut={() => setHover(null)}
-                                    className={"fa fa-star " + ((ratingValue <= (hover || rating)) ? "checked" : "")}></span>;
-                            })}
+                        <div className={"container-review"}>
+                            {isLoading ?
+                                <Loader/>
+                                :
+                                isSuccess ?
+                                    <div className={"input-success"}>
+                                        <h3>Successfully added the review</h3>
+                                    </div>
+                                    :
+                                    <>
+                                        <div>
+                                            <h4 className={"container-review"}>{rating} {rating === 1 ? "star" : "stars"}</h4>
+                                            <div className={"container-ratings big-font-size"}>
+                                                {[...Array(5)].map((star, i) => {
+                                                    const ratingValue = i + 1;
+                                                    return <span
+                                                        onClick={() => setRating(ratingValue)}
+                                                        onMouseOver={() => setHover(ratingValue)}
+                                                        onMouseOut={() => setHover(null)}
+                                                        className={"fa fa-star " + ((ratingValue <= (hover || rating)) ? "checked" : "")}></span>;
+                                                })}
+                                            </div>
+                                        </div>
+                                        <textarea className={"medium-font-size"}
+                                                  placeholder={"leave comments"}
+                                                  onChange={handleCommentChange}
+                                        ></textarea>
+                                    </>
+                            }
                         </div>
-                        <textarea className={"medium-font-size"} rows={"10"} cols={"50"}></textarea>
+                        {!isSuccess && !isLoading &&
+                            <>
+                                <SubmitReview productId={productId}
+                                              rating={rating}
+                                              comment={comment}
+                                              setIsError={setIsError}
+                                              setError={setError}
+                                              setIsSuccess={setIsSuccess}
+                                              setIsLoading={setIsLoading}
+                                />
+                                {isError &&
+                                    <div className={"container input-error"}>
+                                        (!) {error}
+                                    </div>
+                                }
+                            </>
+                        }
                     </div>
                 </div>
             </div>

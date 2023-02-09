@@ -54,7 +54,7 @@ const Product = () => {
                                 </div>
                                 <p className={"product-container individual-text"}>{"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry."}</p>
                                 {currentUser ?
-                                    <LeaveReview/>
+                                    <LeaveReview productId={productId}/>
                                     :
                                     <SignInToContinue productId={productId}/>
                                 }

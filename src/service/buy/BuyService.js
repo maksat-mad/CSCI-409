@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export default class ReviewService {
-    static async postReview(body) {
+export default class BuyService {
+    static async postBuy(body) {
         return await axios.post('https://jsonplaceholder.typicode.com/posts', {
             body: body,
             headers: {

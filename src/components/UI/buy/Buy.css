@@ -1,0 +1,31 @@
+.container-buy-items {
+    margin-bottom: 2rem;
+}
+
+.buy-items-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+@media only screen and (min-width: 800px) {
+    .buy-items-content {
+        gap: 2rem;
+    }
+}
+
+.buy-items-phone-input {
+    width: 100%;
+    height: 2.5rem;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: .375rem;
+    transition: border-color .2s ease-in-out, box-shadow .2s ease-in-out;
+}
+
+.buy-items-phone-input:focus {
+    border-color: #1ee63a;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgb(199, 255, 207);
+}

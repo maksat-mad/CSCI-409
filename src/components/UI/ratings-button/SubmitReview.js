@@ -1,10 +1,8 @@
 import React from 'react';
 import './Ratings.css';
-import {useAuth} from "../../../context/AuthContext";
 import ReviewService from "../../../service/review/ReviewService";
 
 const SubmitReview = ({productId, rating, comment, setIsError, setError, setIsSuccess, setIsLoading}) => {
-    const {currentUser} = useAuth();
     const handleSubmit = async () => {
         setIsLoading(true);
         if (comment.length === 0) {
@@ -14,7 +12,6 @@ const SubmitReview = ({productId, rating, comment, setIsError, setError, setIsSu
         } else {
             const body = {
                 productId: productId,
-                currentUser: currentUser,
                 rating: rating,
                 comment: comment
             };

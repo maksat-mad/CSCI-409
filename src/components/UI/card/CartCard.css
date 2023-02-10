@@ -26,6 +26,23 @@
     text-align: center;
 }
 
+.mob-close {
+    display: block;
+}
+
+.web-close {
+    display: none;
+}
+
+.close-outer {
+    position: relative;
+}
+
+.close-inner {
+    position: absolute;
+    right: 10px;
+}
+
 @media only screen and (min-width: 800px) {
     .cart-card {
         width: 40rem;
@@ -41,6 +58,14 @@
     .cart-card-content {
         width: 70%;
         height: 100%;
+    }
+
+    .mob-close {
+        display: none;
+    }
+
+    .web-close {
+        display: block;
     }
 }
 
@@ -58,5 +83,13 @@
     .cart-card-content {
         width: 70%;
         height: 100%;
+    }
+
+    .mob-close {
+        display: none;
+    }
+
+    .web-close {
+        display: block;
     }
 }

@@ -3,20 +3,30 @@ import './Modal.css';
 import './LeaveReviewModal.css';
 import Error from '../error/Error';
 import Loader from "../loader/Loader";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import BuyService from "../../../service/buy/BuyService";
 
 const BuyModal = ({setIsOpen, tel}) => {
     const modalRef = useRef();
+    const dispatch = useDispatch();
 
     const cartItemsIdsAndQuantity = useSelector(state => state.cartItemsIdsAndQuantity);
 
     const [isError, setIsError] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const [isClearCart, setIsClearCart] = useState(false);
 
     const [error, setError] = useState('');
+
+    const clearCart = () => {
+        dispatch({type: 'CART_BUTTON_CLICK', payload: false});
+        dispatch({type: 'CART_ITEMS_NUMBER', payload: 0});
+        dispatch({type: 'CART_ITEMS_IDS', payload: []});
+        dispatch({type: 'CART_ITEMS', payload: new Map()});
+        dispatch({type: 'CART_ITEMS_QUANTITY', payload: 0});
+        dispatch({type: 'CART_ITEMS_IDS_AND_QUANTITY', payload: new Map()});
+        dispatch({type: 'TOTAL_MONEY', payload: 0});
+    };
 
     useEffect(() => {
         let closeModal = (event) => {
@@ -49,7 +59,7 @@ const BuyModal = ({setIsOpen, tel}) => {
             await BuyService.postBuy(body)
                 .then(() => {
                     setIsSuccess(true);
-                    // clearCart();
+                    clearCart();
                 })
                 .catch(error => {
                     setIsError(true);

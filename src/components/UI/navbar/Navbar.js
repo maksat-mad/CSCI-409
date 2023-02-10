@@ -28,7 +28,20 @@ const Navbar = () => {
     const [inputValue, setInputValue] = useState('');
     const dispatch = useDispatch();
 
+    const clearCart = () => {
+        dispatch({type: 'CART_BUTTON_CLICK', payload: false});
+        dispatch({type: 'CART_ITEMS_NUMBER', payload: 0});
+        dispatch({type: 'CART_ITEMS_IDS', payload: []});
+        dispatch({type: 'CART_ITEMS', payload: new Map()});
+        dispatch({type: 'CART_ITEMS_QUANTITY', payload: 0});
+        dispatch({type: 'CART_ITEMS_IDS_AND_QUANTITY', payload: new Map()});
+        dispatch({type: 'TOTAL_MONEY', payload: 0});
+    };
+
     useEffect(() => {
+        if (selectedCity !== city) {
+            clearCart();
+        }
         setCity(selectedCity);
     }, [selectedCity]);
 

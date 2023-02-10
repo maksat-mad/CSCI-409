@@ -48,6 +48,14 @@
     cursor: pointer;
 }
 
+.black {
+    color: #000;
+}
+
+.black:hover {
+    color: crimson;
+}
+
 .modal-header {
     padding: 2px 16px;
     background-color: #5cb85c;

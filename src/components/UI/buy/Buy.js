@@ -20,10 +20,6 @@ const Buy = () => {
     const [error, setError] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
 
-    const openModal = () => {
-        setModalOpen(true);
-    }
-
     const handleInputChange = (event) => {
         setError(false);
         if (event.target.value.length > 16) {
@@ -99,7 +95,6 @@ const Buy = () => {
                             }
                         </div>
                     </div>
-                    {modalOpen && <BuyModal setIsOpen={setModalOpen} tel={tel}/>}
                 </>
                 :
                 <>
@@ -116,6 +111,7 @@ const Buy = () => {
                     </div>
                 </>
             }
+            {modalOpen && <BuyModal setIsOpen={setModalOpen} tel={tel}/>}
         </div>
     );
 };

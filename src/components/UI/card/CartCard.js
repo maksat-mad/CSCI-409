@@ -2,8 +2,11 @@ import React from 'react';
 import './CartCard.css';
 import {Link} from "react-router-dom";
 import CartCardButtonsAndInput from "../cart-parts/CartCardButtonsAndInput";
+import {useSelector} from "react-redux";
 
 const CartCard = ({card}) => {
+    const cartItemsIdsAndQuantity = useSelector(state => state.cartItemsIdsAndQuantity);
+
     return (
         <div className={"cart-card"}>
             <div className={"cart-card-img"}>
@@ -13,10 +16,14 @@ const CartCard = ({card}) => {
                 <div>
                     <h3 style={{margin: "0", padding: "0"}}>Item</h3><br/>
                     <Link to={`/products/${card.id}`} style={{textDecoration: "none"}}>
-                        <h4 style={{margin: "0", padding: "0"}}>More info...</h4><br/>
+                        <p style={{margin: "0", padding: "0"}}>More info...</p><br/>
                     </Link><br/>
-                    <CartCardButtonsAndInput cardId={card.id} maxValue={5}/>
-                    <h4 style={{margin: "0", padding: "10px"}}>1000 tg</h4><br/>
+                    <CartCardButtonsAndInput cardId={card.id} maxValue={10}/>
+                    <p style={{margin: "0", padding: "10px"}}>
+                        One item = 1000 tg
+                        <br/>
+                        Total = {cartItemsIdsAndQuantity.get(card.id) * 1000} tg
+                    </p>
                 </div>
             </div>
         </div>

@@ -15,6 +15,7 @@ import store from './components/utils/redux/store';
 import Category from "./components/UI/category/Category";
 import Cart from "./components/UI/cart/Cart";
 import Product from "./components/UI/product/Product";
+import Buy from "./components/UI/buy/Buy";
 
 function App() {
     return (
@@ -35,6 +36,13 @@ function App() {
                                    element={
                                        <PrivateRoute>
                                            <UpdateProfile/>
+                                       </PrivateRoute>
+                                   }
+                            ></Route>
+                            <Route path="/buy"
+                                   element={
+                                       <PrivateRoute>
+                                           <Buy/>
                                        </PrivateRoute>
                                    }
                             ></Route>

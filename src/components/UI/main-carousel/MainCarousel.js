@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import Carousel from "react-elastic-carousel";
 import Card from '../card/Card';
 import Loader from "../loader/Loader";
+import Error from '../error/Error';
 
 const breakPoints = [
     {width: 1, itemsToShow: 1},
@@ -21,22 +22,22 @@ const MainCarousel = ({error, loading, cards, name}) => {
                 </Link>
             </div>
             <div className={"container"}>
-                {error &&
-                    <h1>Error: {error}</h1>
-                }
-                {loading && <Loader/>}
-                <Carousel style={{width: "1200px"}} breakPoints={breakPoints} pagination={false}
-                          itemPadding={[20, 20, 20, 20]}>
-                    {cards.map(el => {
-                        return <Card
-                            card={el}
-                            key={el.id}
+                {error && <Error message={error}/>}
+                {!error && loading && <Loader/>}
+                {!error && !loading &&
+                    <Carousel style={{width: "1200px"}} breakPoints={breakPoints} pagination={false}
+                              itemPadding={[20, 20, 20, 20]}>
+                        {cards.map(el => {
+                            return <Card
+                                card={el}
+                                key={el.id}
+                            />
+                        })}
+                        <Card
+                            category={name.toLowerCase()}
                         />
-                    })}
-                    <Card
-                        category={name.toLowerCase()}
-                    />
-                </Carousel>
+                    </Carousel>
+                }
             </div>
         </>
     );

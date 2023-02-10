@@ -6,6 +6,8 @@ import LoadMore from "../ratings-button/LoadMore";
 import {useFetching} from "../../../hook/useFetching";
 import CardService from "../../../service/main/CardService";
 import Loader from "../loader/Loader";
+import NotFound from "../not-found/NotFound";
+import Error from '../error/Error';
 
 const Review = ({productId}) => {
     const limit = 5;
@@ -65,12 +67,10 @@ const Review = ({productId}) => {
             </div>
             <div className={"review-container"}>
                 <div>
-                    {reviewsError &&
-                        <h1>Error: {reviewsError}</h1>
-                    }
+                    {reviewsError && <Error message={reviewsError}/>}
                     {isReviewsLoading && <div><Loader/></div>}
                     {!isReviewsLoading && !reviewsError && reviewsToShow.length === 0 &&
-                        <h1>No such product</h1>
+                        <NotFound message={'No such product'}/>
                     }
                     {reviewsToShow.map(review => {
                         return <ReviewCard key={review.id} name={"Maksat"} rating={3} comment={review.body}/>

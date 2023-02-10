@@ -9,6 +9,8 @@ import {useAuth} from "../../../context/AuthContext";
 import LeaveReview from "../ratings-button/LeaveReview";
 import IndividualPhotoModal from "../modal/IndividualPhotoModal";
 import Review from "../review/Review";
+import NotFound from "../not-found/NotFound";
+import Error from '../error/Error';
 
 const Product = () => {
     const {currentUser} = useAuth();
@@ -29,11 +31,15 @@ const Product = () => {
     return (
         <div style={{padding: "2rem"}}>
             {productError &&
-                <h1 className={"product-container"} >Error: {productError}</h1>
+                <div className={"product-container"} >
+                    <Error message={productError}/>
+                </div>
             }
             {isProductLoading && <div className={"product-container"}><Loader/></div>}
             {!isProductLoading && !productError && product === null &&
-                <h1 className={"product-container"} >No such product</h1>
+                <div className={"product-container"} >
+                    <NotFound message={'No such product'}/>
+                </div>
             }
             {!productError && !isProductLoading && product !== null &&
                 <>

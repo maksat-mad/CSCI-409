@@ -8,6 +8,8 @@ import {getPageCount} from "../../utils/pages";
 import Pagination from "../pagination/Pagination";
 import Select from "../select/Select";
 import {useSelector} from "react-redux";
+import NotFound from "../not-found/NotFound";
+import Error from '../error/Error';
 
 const Search = () => {
     const limit = 20;
@@ -89,12 +91,10 @@ const Search = () => {
                 </div>
             </div>
             <div className={"container"}>
-                {cardsError &&
-                    <h1>Error: {cardsError}</h1>
-                }
+                {cardsError && <Error message={cardsError}/>}
                 {isCardsLoading && <Loader/>}
                 {!isCardsLoading && !cardsError && cards.length === 0 &&
-                    <h1>No items found</h1>
+                    <NotFound message={'No items found'}/>
                 }
             </div>
             <div className={"container"}>

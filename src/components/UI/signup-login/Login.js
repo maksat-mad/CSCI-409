@@ -12,7 +12,7 @@ const Login = () => {
     const navigate = useNavigate();
     const { state } = useLocation();
     const prevPath = state === null ? "/" : state.prevPath;
-
+    console.log("hello");
     async function handleSubmit(e) {
         e.preventDefault();
 

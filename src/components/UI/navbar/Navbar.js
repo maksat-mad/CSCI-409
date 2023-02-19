@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import './Navbar.css';
 import logo from '../../../assets/logo.png';
 import menu from '../../../assets/UI/options.png';
@@ -7,47 +7,35 @@ import DropDown from "../drop-down/DropDown";
 import Modal from "../modal/Modal";
 import languages from "../../utils/languages";
 import cities from "../../utils/cities";
-import { useAuth } from "../../../context/AuthContext";
+import {useAuth} from "../../../context/AuthContext";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 import CartButton from "../cart-button/CartButton";
+import {useTranslation} from "react-i18next";
+import cookies from "js-cookie";
 
 const Navbar = () => {
+    const {t} = useTranslation();
+    const currentLanguageCode = cookies.get('i18next') || 'en';
+    const currentLanguage = languages.find((l) => l.code === currentLanguageCode);
+
     const [isMenuOpened, setIsMenuOpened] = useState(false);
     const [isCategoryOpened, setIsCategoryOpened] = useState(false);
     const [isModalLangOpen, setIsModalLangOpen] = useState(false);
     const [isModalCityOpen, setIsModalCityOpen] = useState(false);
-    const [city, setCity] = useState('Astana');
 
     const selectedCity = useSelector(state => state.city);
     const cartButton = useSelector(state => state.cartButtonClick);
 
-    const { currentUser, logout } = useAuth();
+    const {currentUser, logout} = useAuth();
     const navigate = useNavigate();
 
     const [inputValue, setInputValue] = useState('');
     const dispatch = useDispatch();
 
-    const clearCart = () => {
-        dispatch({type: 'CART_BUTTON_CLICK', payload: false});
-        dispatch({type: 'CART_ITEMS_NUMBER', payload: 0});
-        dispatch({type: 'CART_ITEMS_IDS', payload: []});
-        dispatch({type: 'CART_ITEMS', payload: new Map()});
-        dispatch({type: 'CART_ITEMS_QUANTITY', payload: 0});
-        dispatch({type: 'CART_ITEMS_IDS_AND_QUANTITY', payload: new Map()});
-        dispatch({type: 'TOTAL_MONEY', payload: 0});
-    };
-
-    useEffect(() => {
-        if (selectedCity !== city) {
-            clearCart();
-        }
-        setCity(selectedCity);
-    }, [selectedCity]);
-
     const handleInputChange = (event) => {
         setInputValue(event.target.value);
-        dispatch({ type: 'UPDATE_NAVBAR_INPUT', payload: event.target.value });
+        dispatch({type: 'UPDATE_NAVBAR_INPUT', payload: event.target.value});
     }
 
     const menuClick = () => {
@@ -91,39 +79,44 @@ const Navbar = () => {
                 <input
                     onChange={handleInputChange} value={inputValue}
                     type="text" id="search" name="search"
-                    placeholder={"Search"} autoComplete={"off"}
+                    placeholder={t('search')} autoComplete={"off"}
                 />
-                <button className={"nav-button"} onClick={() => setIsModalCityOpen(true)}>{city}</button>
-                <button className={"nav-button"} onClick={() => setIsModalLangOpen(true)}>English</button>
+                <img
+                    onClick={() => setIsModalLangOpen(true)}
+                    className={"country country-flag"}
+                    src={currentLanguage.src}
+                    alt={currentLanguage.name}
+                />
+                <button className={"nav-button"} onClick={() => setIsModalCityOpen(true)}>{t(selectedCity)}</button>
                 {currentUser ?
                     <>
-                        <button className={"nav-button"} onClick={goToProfile}>My Profile</button>
-                        <button className={"nav-button"} onClick={handleLogout}>Log Out</button>
+                        <button className={"nav-button"} onClick={goToProfile}>{t('profile')}</button>
+                        <button className={"nav-button"} onClick={handleLogout}>{t('logout')}</button>
                     </>
                     :
-                    <button className={"nav-button"} onClick={goToLogin}>Log In</button>
+                    <button className={"nav-button"} onClick={goToLogin}>{t('login')}</button>
                 }
                 <button className={"mob-button"} onClick={categoryClick}>
-                    <img src={category} alt={"category"} style={{width:"35px", height:"35px"}}/>
+                    <img src={category} alt={"category"} style={{width: "35px", height: "35px"}}/>
                 </button>
                 <button className={"mob-button"} onClick={menuClick}>
-                    <img src={menu} alt={"menu"} style={{width:"35px", height:"35px"}}/>
+                    <img src={menu} alt={"menu"} style={{width: "35px", height: "35px"}}/>
                 </button>
             </nav>
             {isCategoryOpened &&
                 <div className={"menu"}>
                     <div className={"menu-buttons"}>
-                        <Link to={"/category"} state={{ category: "fruits" }}>
-                            Fruits
+                        <Link to={"/category"} state={{category: "fruits"}}>
+                            {t('fruits')}
                         </Link>
-                        <Link to={"/category"} state={{ category: "vegetables" }}>
-                            Vegetables
+                        <Link to={"/category"} state={{category: "vegetables"}}>
+                            {t('vegetables')}
                         </Link>
-                        <Link to={"/category"} state={{ category: "drinks" }}>
-                            Drinks
+                        <Link to={"/category"} state={{category: "drinks"}}>
+                            {t('drinks')}
                         </Link>
-                        <Link to={"/category"} state={{ category: "meats" }}>
-                            Meats
+                        <Link to={"/category"} state={{category: "meats"}}>
+                            {t('meats')}
                         </Link>
                     </div>
                 </div>
@@ -133,18 +126,24 @@ const Navbar = () => {
                     <input
                         onChange={handleInputChange} value={inputValue}
                         type="text" id="search2" name="search"
-                        placeholder={"Search"} autoComplete={"off"}
+                        placeholder={t('search')} autoComplete={"off"}
                     />
                     <div className={"menu-buttons"}>
-                        <button className={"nav-button"} onClick={() => setIsModalCityOpen(true)}>{city}</button>
-                        <button className={"nav-button"} onClick={() => setIsModalLangOpen(true)}>English</button>
+                        <button className={"nav-button"}
+                                onClick={() => setIsModalCityOpen(true)}>{t(selectedCity)}</button>
+                        <img
+                            onClick={() => setIsModalLangOpen(true)}
+                            className={"country-flag"}
+                            src={currentLanguage.src}
+                            alt={currentLanguage.name}
+                        />
                         {currentUser ?
                             <>
-                                <button className={"nav-button"} onClick={goToProfile}>My Profile</button>
-                                <button className={"nav-button"} onClick={handleLogout}>Log Out</button>
+                                <button className={"nav-button"} onClick={goToProfile}>{t('profile')}</button>
+                                <button className={"nav-button"} onClick={handleLogout}>{t('logout')}</button>
                             </>
                             :
-                            <button className={"nav-button"} onClick={goToLogin}>Log In</button>
+                            <button className={"nav-button"} onClick={goToLogin}>{t('login')}</button>
                         }
                     </div>
                 </div>

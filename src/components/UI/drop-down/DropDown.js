@@ -2,8 +2,10 @@ import React from 'react';
 import drop from '../../../assets/UI/menu.png';
 import './DropDown.css';
 import {Link} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 const DropDown = () => {
+    const {t} = useTranslation();
     return (
         <div className={"dropdown"}>
             <div className={"dropdown-btn"}>
@@ -11,16 +13,16 @@ const DropDown = () => {
             </div>
             <div className={"dropdown-content"}>
                 <Link to={"/category"} state={{ category: "fruits" }}>
-                    Fruits
+                    {t('fruits')}
                 </Link>
                 <Link to={"/category"} state={{ category: "vegetables" }}>
-                    Vegetables
+                    {t('vegetables')}
                 </Link>
                 <Link to={"/category"} state={{ category: "drinks" }}>
-                    Drinks
+                    {t('drinks')}
                 </Link>
                 <Link to={"/category"} state={{ category: "meats" }}>
-                    Meats
+                    {t('meats')}
                 </Link>
             </div>
         </div>

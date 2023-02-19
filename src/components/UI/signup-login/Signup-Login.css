@@ -95,6 +95,11 @@ div > form > input:focus {
     padding-bottom: 1rem;
 }
 
+.loading {
+    color: blue;
+    padding-bottom: 1rem;
+}
+
 .line {
     display: inline-block;
 }

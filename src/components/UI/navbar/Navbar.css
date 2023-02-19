@@ -94,11 +94,16 @@ nav .nav-button, .menu a, .menu .nav-button, .modal-body .modal-button {
     display: flex;
     gap: 1rem;
     justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
 }
 
+.country {
+    display: flex;
+}
+
 @media only screen and (max-width: 992px) {
-    nav .nav-button {
+    nav .nav-button, nav .country {
         display: none;
     }
     nav > input {
@@ -117,7 +122,15 @@ nav .nav-button, .menu a, .menu .nav-button, .modal-body .modal-button {
         border: none;
         padding: 5px;
     }
-    .menu {
+    .menu, .country-mob {
         display: flex;
     }
+}
+
+.country-flag {
+    max-width: 50px;
+    max-height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

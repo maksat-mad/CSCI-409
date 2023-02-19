@@ -5,6 +5,7 @@ import Carousel from "react-elastic-carousel";
 import Card from '../card/Card';
 import Loader from "../loader/Loader";
 import Error from '../error/Error';
+import {useTranslation} from "react-i18next";
 
 const breakPoints = [
     {width: 1, itemsToShow: 1},
@@ -14,11 +15,12 @@ const breakPoints = [
 ];
 
 const MainCarousel = ({error, loading, cards, name}) => {
+    const {t} = useTranslation();
     return (
         <>
             <div className={"main-title"}>
                 <Link to={"/category"} state={{category: name.toLowerCase()}} style={{textDecoration: "none"}}>
-                    <h2>{name}</h2>
+                    <h2>{t(name)}</h2>
                 </Link>
             </div>
             <div className={"container"}>

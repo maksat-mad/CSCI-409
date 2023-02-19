@@ -10,9 +10,11 @@ import Select from "../select/Select";
 import {useSelector} from "react-redux";
 import NotFound from "../not-found/NotFound";
 import Error from '../error/Error';
+import {useTranslation} from "react-i18next";
 
 const Search = () => {
     const limit = 20;
+    const {t} = useTranslation();
 
     const navbarInput = useSelector(state => state.navbarInput);
     const selectedCity = useSelector(state => state.city);
@@ -21,7 +23,7 @@ const Search = () => {
     const [totalPages, setTotalPages] = useState(0);
     const [page, setPage] = useState(1);
     const [filter, setFilter] = useState({category: 'all', sort: '',
-        priceFrom: '', priceTo: '', query: '', city: 'Astana'});
+        priceFrom: '', priceTo: '', query: '', city: 'astana'});
 
     const [fetchCards, isCardsLoading, cardsError] = useFetching(async (limit, page, filter) => {
         const response = await CardService.getItemsByFilter(limit, page, filter);
@@ -53,28 +55,28 @@ const Search = () => {
                 <Select
                     value={filter.category}
                     onChange={selectedCategory => setFilter({...filter, category: selectedCategory})}
-                    defaultValue={"Category"}
+                    defaultValue={t("category")}
                     options={[
-                        {value: 'all', name: 'all'},
-                        {value: 'fruit', name: 'fruit'},
-                        {value: 'vegetable', name: 'vegetable'},
-                        {value: 'drink', name: 'drink'},
-                        {value: 'meat', name: 'meat'}
+                        {value: 'all', name: t("all")},
+                        {value: 'fruit', name: t("fruit")},
+                        {value: 'vegetable', name: t("vegetable")},
+                        {value: 'drink', name: t("drink")},
+                        {value: 'meat', name: t("meat")}
                     ]}
                 />
                 <Select
                     value={filter.sort}
                     onChange={selectedSort => setFilter({...filter, sort: selectedSort})}
-                    defaultValue="Sorting"
+                    defaultValue={t("sorting")}
                     options={[
-                        {value: 'title', name: 'title'},
-                        {value: 'rating', name: 'rating'},
-                        {value: 'low price', name: 'low price'},
-                        {value: 'high price', name: 'high price'}
+                        {value: 'title', name: t('title')},
+                        {value: 'rating', name: t('rating')},
+                        {value: 'low_price', name: t('low_price')},
+                        {value: 'high_price', name: t('high_price')}
                     ]}
                 />
                 <div className={"container"}>
-                    <h4>Price range</h4>
+                    <h4>{t('price_range')}</h4>
                     <div>
                         <input
                             onChange={e => setFilter({...filter, priceFrom: e.target.value})}
@@ -94,7 +96,7 @@ const Search = () => {
                 {cardsError && <Error message={cardsError}/>}
                 {isCardsLoading && <Loader/>}
                 {!isCardsLoading && !cardsError && cards.length === 0 &&
-                    <NotFound message={'No items found'}/>
+                    <NotFound message={t('no_items_found')}/>
                 }
             </div>
             <div className={"container"}>

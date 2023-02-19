@@ -6,15 +6,17 @@ import whatsapp from '../../../assets/social-media/whatsapp.svg';
 import instagram from '../../../assets/social-media/instagram.svg';
 import youtube from '../../../assets/social-media/youtube.svg';
 import {Link} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 const Footer = () => {
+    const {t} = useTranslation();
     return (
         <footer>
             <Link to={"/"}>
                 <img src={logo} alt={"logo"}/>
             </Link>
             <div className={"footer-content"}>
-                Astana, Kazakhstan<br/>Phone: +7 705 100 10 10<br/>help@naturalgoods.com
+                {t("location")}<br/>{t("phone")}: +7 705 100 10 10<br/>help@naturalgoods.com
             </div>
             <div className={"links"}>
                 <a href={"https://telegram.org/"} target={"_blank"} rel={"noreferrer"}>

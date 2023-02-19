@@ -1,6 +1,6 @@
 const initialState = {
     navbarInput: '',
-    city: 'Astana',
+    city: 'astana',
     cartButtonClick: false,
     cartItemsNumber: 0,
     cartItemsIds: [],

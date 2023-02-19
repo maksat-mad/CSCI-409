@@ -66,25 +66,25 @@ const Main = () => {
                         error={fruitCardsError}
                         loading={isFruitCardsLoading}
                         cards={fruitCards}
-                        name={"Fruits"}
+                        name={"fruits"}
                     />
                     <MainCarousel
                         error={vegetableCardsError}
                         loading={isVegetableCardsLoading}
                         cards={vegetableCards}
-                        name={"Vegetables"}
+                        name={"vegetables"}
                     />
                     <MainCarousel
                         error={drinkCardsError}
                         loading={isDrinkCardsLoading}
                         cards={drinkCards}
-                        name={"Drinks"}
+                        name={"drinks"}
                     />
                     <MainCarousel
                         error={meatCardsError}
                         loading={isMeatCardsLoading}
                         cards={meatCards}
-                        name={"Meats"}
+                        name={"meats"}
                     />
                 </>
             }

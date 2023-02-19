@@ -1,10 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 import './Signup-Login.css';
+import {useTranslation} from "react-i18next";
 
 const ForgotPassword = () => {
-    const emailRef = useRef();
+    const {t} = useTranslation();
+    const [email, setEmail] = useState('');
     const { resetPassword } = useAuth();
     const [error, setError] = useState("");
     const [message, setMessage] = useState("");
@@ -17,24 +19,35 @@ const ForgotPassword = () => {
             setMessage("");
             setError("");
             setLoading(true);
-            await resetPassword(emailRef.current.value);
-            setMessage("Check your inbox for further instructions");
+            await resetPassword(email);
+            setMessage(t("check_inbox"));
         } catch {
-            setError("Failed to reset password");
+            setError(t("failed_reset_password"));
         }
 
         setLoading(false);
     }
 
+    const handleEmailChange = (e) => {
+        setError('');
+        setMessage('');
+        setEmail(e.target.value);
+    }
+
     return (
         <div className={"signup-login"}>
             <div className={"container"}>
-                <h1>Reset Password</h1>
+                <h1>{t("reset_password")}</h1>
             </div>
             <div className={"container"}>
                 {error &&
                     <div className={"input-error"}>
                         (!) {error}
+                    </div>
+                }
+                {loading &&
+                    <div className={"loading"}>
+                        {t("loading")}...
                     </div>
                 }
             </div>
@@ -48,17 +61,17 @@ const ForgotPassword = () => {
             <div className={"container"}>
                 <div>
                     <form onSubmit={handleSubmit}>
-                        <label htmlFor={"email"}>Email:</label><br/>
-                        <input type={"email"} id={"email"} name={"email"} ref={emailRef} required/><br/>
+                        <label htmlFor={"email"}>{t("email")}:</label><br/>
+                        <input type={"email"} id={"email"} name={"email"} onChange={handleEmailChange} required/><br/>
                         <div className={"container"}>
-                            <button disabled={loading} className={"input-button"} type="submit">reset password</button>
+                            <button disabled={loading} className={"input-button"} type="submit">{t("reset_password")}</button>
                         </div>
                     </form>
                     <div className={"my-container"}>
-                        <Link to="/login">Login</Link>
+                        <Link to="/login">{t('login')}</Link>
                     </div>
                     <div className={"my-container"}>
-                        Need an account? <Link to="/signup">Sign Up</Link>
+                        {t("need_account")} <Link to="/signup">{t("signup")}</Link>
                     </div>
                 </div>
             </div>

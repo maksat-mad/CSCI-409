@@ -6,8 +6,10 @@ import fruits from '../../../assets/fruits.jpg';
 import vegetables from '../../../assets/vegetables.jpg';
 import drinks from '../../../assets/drinks.jpg';
 import meats from '../../../assets/meats.jpg';
+import {useTranslation} from "react-i18next";
 
 const Card = ({card, category}) => {
+    const {t} = useTranslation();
     const dispatch = useDispatch();
 
     const cartItemsNumber = useSelector(state => state.cartItemsNumber);
@@ -58,22 +60,22 @@ const Card = ({card, category}) => {
 
     return (
         <div className={"card"}>
-            <img
-                className={"card-image"}
-                src={card !== undefined ? card.url :
-                    category === "fruits" ? fruits :
-                        category === "vegetables" ? vegetables :
-                            category === "drinks" ? drinks : meats}
-                alt={card !== undefined ? card.title.split(' ').slice(0, 1).join('') : category}
-                style={{width: "100%"}}
-            />
             <Link to={card !== undefined ? `/products/${card.id}` : '/'}
                   style={{textDecoration: "none", color: "black"}}>
+                <img
+                    className={"card-image"}
+                    src={card !== undefined ? card.url :
+                        category === "fruits" ? fruits :
+                            category === "vegetables" ? vegetables :
+                                category === "drinks" ? drinks : meats}
+                    alt={card !== undefined ? card.title.split(' ').slice(0, 1).join('') : category}
+                    style={{width: "100%"}}
+                />
                 <div className={"container-left"}>
                     <h4>
-                        <b>{card !== undefined ? card.title.split(' ').slice(0, 1).join('') : "Check out other " + category}</b>
+                        <b>{card !== undefined ? card.title.split(' ').slice(0, 1).join('') : t('check_out_other') + ' ' + t(category)}</b>
                     </h4>
-                    <p>{card !== undefined ? "320 tg/kg" : ""}</p>
+                    <p>{card !== undefined ? "320 " + t('tg_kg') : ""}</p>
                 </div>
                 <div className={category !== undefined ? "hidden" : "container-ratings"}>
                     <div className={"container-ratings"}>
@@ -94,7 +96,7 @@ const Card = ({card, category}) => {
                                 <button
                                     className={"button-cart cart-added"}
                                 >
-                                    {"added"}
+                                    {t("added")}
                                 </button>
                                 <span
                                     onClick={handleTrashButtonClick}
@@ -105,13 +107,13 @@ const Card = ({card, category}) => {
                                 onClick={handleButtonClick}
                                 className={"button-cart"}
                             >
-                                {"add to cart"}
+                                {t("add to cart")}
                             </button>
                         }
                     </>
                     :
                     <Link to={"/category"} state={{category: category}} style={{textDecoration: "none"}}>
-                        <button className={"button-cart"}>{"more"}</button>
+                        <button className={"button-cart"}>{t("more")}</button>
                     </Link>
                 }
             </div>

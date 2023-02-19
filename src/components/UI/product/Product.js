@@ -11,8 +11,10 @@ import IndividualPhotoModal from "../modal/IndividualPhotoModal";
 import Review from "../review/Review";
 import NotFound from "../not-found/NotFound";
 import Error from '../error/Error';
+import {useTranslation} from "react-i18next";
 
 const Product = () => {
+    const {t} = useTranslation();
     const {currentUser} = useAuth();
     const {productId} = useParams();
 
@@ -38,7 +40,7 @@ const Product = () => {
             {isProductLoading && <div className={"product-container"}><Loader/></div>}
             {!isProductLoading && !productError && product === null &&
                 <div className={"product-container"} >
-                    <NotFound message={'No such product'}/>
+                    <NotFound message={t('no_product')}/>
                 </div>
             }
             {!productError && !isProductLoading && product !== null &&

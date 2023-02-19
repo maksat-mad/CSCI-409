@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 import './Signup-Login.css';
@@ -6,8 +6,8 @@ import {useTranslation} from "react-i18next";
 
 const Login = () => {
     const {t} = useTranslation();
-    const emailRef = useRef();
-    const passwordRef = useRef();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const { login } = useAuth();
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
@@ -18,20 +18,30 @@ const Login = () => {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        if (passwordRef.current.value.length < 6) {
+        if (password.length < 6) {
             return setError(t("password_error"));
         }
 
         try {
             setError("");
             setLoading(true);
-            await login(emailRef.current.value, passwordRef.current.value);
+            await login(email, password);
             navigate(prevPath);
         } catch {
             setError(t("failed_to_log_in"));
         }
 
         setLoading(false);
+    }
+
+    const handleEmailChange = (e) => {
+        setError('');
+        setEmail(e.target.value);
+    }
+
+    const handlePasswordChange = (e) => {
+        setError('');
+        setPassword(e.target.value);
     }
 
     return (
@@ -55,9 +65,9 @@ const Login = () => {
                 <div>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor={"email"}>{t("email")}:</label><br/>
-                        <input type={"email"} id={"email"} name={"email"} ref={emailRef} required/><br/>
+                        <input type={"email"} id={"email"} name={"email"} onChange={handleEmailChange} required/><br/>
                         <label htmlFor={"password"}>{t("password")}:</label><br/>
-                        <input type={"password"} id={"password"} name={"password"} required ref={passwordRef}/><br/>
+                        <input type={"password"} id={"password"} name={"password"} required onChange={handlePasswordChange}/><br/>
                         <div className={"container"}>
                             <button disabled={loading} className={"input-button"} type="submit">{t("login")}</button>
                         </div>

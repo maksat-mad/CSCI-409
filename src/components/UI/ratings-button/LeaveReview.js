@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import './Ratings.css';
 import LeaveReviewModal from "../modal/LeaveReviewModal";
+import {useTranslation} from "react-i18next";
 
 const LeaveReview = ({productId}) => {
     const [modalOpen, setModalOpen] = useState(false);
+    const {t} = useTranslation();
 
     const openModal = () => {
         setModalOpen(true);
@@ -14,7 +16,7 @@ const LeaveReview = ({productId}) => {
             <div className={"button-container"}>
             <span onClick={openModal}>
                 <div className={"ratings-button leave-review-button"}>
-                    Leave review
+                    {t('leave_review')}
                 </div>
             </span>
             </div>

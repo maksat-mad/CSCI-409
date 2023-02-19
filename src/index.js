@@ -13,7 +13,7 @@ i18next
     .use(initReactI18next)
     .init({
         supportedLngs: ['en', 'kk', 'ru'],
-        fallbackLng: 'en',
+        fallbackLng: ['en', 'kk', 'ru'],
         debug: false,
         detection: {
             order: ['path', 'cookie', 'htmlTag'],

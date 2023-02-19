@@ -8,8 +8,10 @@ import CardService from "../../../service/main/CardService";
 import Loader from "../loader/Loader";
 import NotFound from "../not-found/NotFound";
 import Error from '../error/Error';
+import {useTranslation} from "react-i18next";
 
 const Review = ({productId}) => {
+    const {t} = useTranslation();
     const limit = 5;
 
     const [reviews, setReviews] = useState([]);
@@ -54,14 +56,14 @@ const Review = ({productId}) => {
     return (
         <>
             <div className={"review-container"}>
-                <h2>Reviews</h2>
+                <h2>{t('reviews')}</h2>
                 <Select
                     value={sort}
                     onChange={selectedSort => setSort(selectedSort)}
-                    defaultValue="Sorting"
+                    defaultValue={t('sorting')}
                     options={[
-                        {value: 'highRating', name: 'high rating'},
-                        {value: 'lowRating', name: 'low rating'}
+                        {value: 'highRating', name: t('high_rating')},
+                        {value: 'lowRating', name: t('low_rating')}
                     ]}
                 />
             </div>
@@ -70,7 +72,7 @@ const Review = ({productId}) => {
                     {reviewsError && <Error message={reviewsError}/>}
                     {isReviewsLoading && <div><Loader/></div>}
                     {!isReviewsLoading && !reviewsError && reviewsToShow.length === 0 &&
-                        <NotFound message={'No such product'}/>
+                        <NotFound message={t("no_product")}/>
                     }
                     {reviewsToShow.map(review => {
                         return <ReviewCard key={review.id} name={"Maksat"} rating={3} comment={review.body}/>

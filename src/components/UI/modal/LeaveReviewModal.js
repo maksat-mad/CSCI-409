@@ -3,8 +3,10 @@ import './Modal.css';
 import './LeaveReviewModal.css';
 import SubmitReview from "../ratings-button/SubmitReview";
 import Loader from "../loader/Loader";
+import {useTranslation} from "react-i18next";
 
 const LeaveReviewModal = ({setIsOpen, productId}) => {
+    const {t} = useTranslation();
     const [isError, setIsError] = useState(false);
     const [error, setError] = useState(false);
     const [comment, setComment] = useState('');
@@ -37,7 +39,7 @@ const LeaveReviewModal = ({setIsOpen, productId}) => {
             <div ref={modalRef} className="modal-content">
                 <div className="modal-header">
                     <span className="close" onClick={() => setIsOpen(false)}>&times;</span>
-                    <h2>Leave Review</h2>
+                    <h2>{t('leave_review')}</h2>
                 </div>
                 <div className="modal-body">
                     <div>
@@ -47,12 +49,12 @@ const LeaveReviewModal = ({setIsOpen, productId}) => {
                                 :
                                 isSuccess ?
                                     <div className={"input-success"}>
-                                        <h3>Successfully added the review</h3>
+                                        <h3>{t('successfully_added_review')}</h3>
                                     </div>
                                     :
                                     <>
                                         <div>
-                                            <h4 className={"container-review"}>{rating} {rating === 1 ? "star" : "stars"}</h4>
+                                            <h4 className={"container-review"}>{rating} {rating === 1 ? t("star") : t("stars")}</h4>
                                             <div className={"container-ratings big-font-size"}>
                                                 {[...Array(5)].map((star, i) => {
                                                     const ratingValue = i + 1;
@@ -65,7 +67,7 @@ const LeaveReviewModal = ({setIsOpen, productId}) => {
                                             </div>
                                         </div>
                                         <textarea className={"medium-font-size"}
-                                                  placeholder={"leave comments"}
+                                                  placeholder={t('leave_comment')}
                                                   onChange={handleCommentChange}
                                         ></textarea>
                                     </>

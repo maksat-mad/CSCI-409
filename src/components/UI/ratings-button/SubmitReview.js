@@ -1,13 +1,15 @@
 import React from 'react';
 import './Ratings.css';
 import ReviewService from "../../../service/review/ReviewService";
+import {useTranslation} from "react-i18next";
 
 const SubmitReview = ({productId, rating, comment, setIsError, setError, setIsSuccess, setIsLoading}) => {
+    const {t} = useTranslation();
     const handleSubmit = async () => {
         setIsLoading(true);
         if (comment.length === 0) {
             setIsError(true);
-            setError("Comment is empty");
+            setError(t('comment_empty'));
             setIsLoading(false);
         } else {
             const body = {
@@ -29,7 +31,7 @@ const SubmitReview = ({productId, rating, comment, setIsError, setError, setIsSu
         <div className={"button-container"}>
             <span onClick={handleSubmit}>
                 <div className={"ratings-button submit-review-button"}>
-                    Submit
+                    {t('submit')}
                 </div>
             </span>
         </div>

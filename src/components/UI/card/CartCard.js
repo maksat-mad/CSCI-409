@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import CartCardButtonsAndInput from "../cart-parts/CartCardButtonsAndInput";
 import {useDispatch, useSelector} from "react-redux";
 
-const CartCard = ({card}) => {
+const CartCard = ({card, more_info, one_item, total, tg}) => {
     const dispatch = useDispatch();
 
     const cartItemsQuantity = useSelector(state => state.cartItemsQuantity);
@@ -46,13 +46,13 @@ const CartCard = ({card}) => {
                 <div>
                     <h3 style={{margin: "0", padding: "0"}}>Item</h3><br/>
                     <Link to={`/products/${card.id}`} style={{textDecoration: "none"}}>
-                        <p style={{margin: "0", padding: "0"}}>More info...</p><br/>
+                        <p style={{margin: "0", padding: "0"}}>{more_info}</p><br/>
                     </Link><br/>
                     <CartCardButtonsAndInput cardId={card.id} maxValue={10}/>
                     <p style={{margin: "0", padding: "10px"}}>
-                        One item = 1000 tg
+                        {one_item} = 1000 tg
                         <br/>
-                        Total = {cartItemsIdsAndQuantity.get(card.id) * 1000} tg
+                        {total} = {cartItemsIdsAndQuantity.get(card.id) * 1000} {tg}
                     </p>
                 </div>
             </div>

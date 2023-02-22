@@ -8,8 +8,10 @@ import CartBuyButton from "../cart-parts/CartBuyButton";
 import {useAuth} from "../../../context/AuthContext";
 import LoginToProceed from "../cart-parts/LoginToProceed";
 import CartBuyBottom from "../cart-parts/CartBuyBottom";
+import {useTranslation} from "react-i18next";
 
 const Cart = () => {
+    const {t} = useTranslation();
     const {currentUser} = useAuth();
 
     const [items, setItems] = useState([]);
@@ -29,35 +31,40 @@ const Cart = () => {
             {cartButton ?
                 <div>
                     <div className={"cart-container-title"}>
-                        <h2>Number of Items = {cartItemsQuantity}</h2>
-                        <h2>Total Cost = {totalMoney} tg</h2>
+                        <h2>{t('number_of_items')} = {cartItemsQuantity}</h2>
+                        <h2>{t('total_cost')} = {totalMoney} tg</h2>
                     </div>
                     <div className={"cart-container"}>
                         <div>{items.map(item => {
-                            return <CartCard key={item.id} card={item}/>
+                            return <CartCard key={item.id} card={item}
+                                             more_info={t('more_info')}
+                                             one_item={t('one_item')}
+                                             total={t('total')}
+                                             tg={t('tg')}
+                            />
                         })}
                         </div>
                         {currentUser ?
                             <>
-                                <CartBuyButton money={totalMoney}/>
-                                <CartBuyBottom money={totalMoney}/>
+                                <CartBuyButton tg={t('tg')} money={totalMoney}/>
+                                <CartBuyBottom message={t('buy')} tg={t('tg')} money={totalMoney}/>
                             </>
                             :
-                            <LoginToProceed text={"Login to Buy"}/>
+                            <LoginToProceed text={t('login_to_buy')}/>
                         }
                     </div>
                 </div>
                 :
                 <>
                     <div className={"cart-container"}>
-                        <h2>Cart is empty</h2>
+                        <h2>{t('cart_is_empty')}</h2>
                     </div>
                     <div className={"cart-container"}>
                         <img src={shopping} alt={"shopping"} style={{height: "300px"}}/>
                     </div>
                     <div className={"cart-container"}>
                         <Link to={"/"} style={{textDecoration: "none"}}>
-                            <h2>Go to the main</h2>
+                            <h2>{t('go_main')}</h2>
                         </Link>
                     </div>
                 </>

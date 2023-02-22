@@ -78,5 +78,26 @@
   "stars": "stars",
   "leave_comment": "leave comment",
   "comment_empty": "Comment is empty",
-  "submit": "Submit"
+  "submit": "Submit",
+
+  "cart_is_empty": "Cart is empty",
+  "go_main": "Go to the main",
+  "number_of_items": "Number of Items",
+  "total_cost": "Total Cost",
+  "tg": "tg",
+  "buy": "buy",
+  "login_to_buy": "Login to Buy",
+  "no_page": "No such page",
+
+  "more_info": "More info...",
+  "one_item": "One Item",
+  "total": "Total",
+
+  "products_to_buy": "Products to buy",
+  "one_item_cost": "One item cost",
+  "invalid_phone_number": "Invalid phone number",
+  "format": "Format",
+  "buy_products": "Buy Products",
+  "thank_purchase": "Thank you for your purchase, the seller will contact you soon",
+  "no_items_to_buy": "No items to buy"
 }

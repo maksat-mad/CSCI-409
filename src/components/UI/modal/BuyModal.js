@@ -6,7 +6,7 @@ import Loader from "../loader/Loader";
 import {useDispatch, useSelector} from "react-redux";
 import BuyService from "../../../service/buy/BuyService";
 
-const BuyModal = ({setIsOpen, tel}) => {
+const BuyModal = ({setIsOpen, tel, buy_products, thank_purchase}) => {
     const modalRef = useRef();
     const dispatch = useDispatch();
 
@@ -74,7 +74,7 @@ const BuyModal = ({setIsOpen, tel}) => {
             <div ref={modalRef} className="modal-content">
                 <div className="modal-header">
                     <span className="close" onClick={() => setIsOpen(false)}>&times;</span>
-                    <h2>Buy Products</h2>
+                    <h2>{buy_products}</h2>
                 </div>
                 <div className="modal-body">
                     <div>
@@ -87,7 +87,7 @@ const BuyModal = ({setIsOpen, tel}) => {
                             }
                             {isSuccess && !isLoading && !isError &&
                                 <div className={"input-success"}>
-                                    <h3>Thank you for your purchase, our representative will contact you shortly</h3>
+                                    <h3>{thank_purchase}</h3>
                                 </div>
                             }
                         </div>

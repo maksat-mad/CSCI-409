@@ -16,6 +16,7 @@ import Category from "./components/UI/category/Category";
 import Cart from "./components/UI/cart/Cart";
 import Product from "./components/UI/product/Product";
 import Buy from "./components/UI/buy/Buy";
+import './base-styles/App.css';
 
 function App() {
     return (
@@ -23,38 +24,40 @@ function App() {
             <Router>
                 <AuthProvider>
                     <Provider store={store}>
-                        <Navbar/>
-                        <Routes>
-                            <Route path="/profile"
-                                   element={
-                                       <PrivateRoute>
-                                           <UserProfile/>
-                                       </PrivateRoute>
-                                   }
-                            ></Route>
-                            <Route path="/update-profile"
-                                   element={
-                                       <PrivateRoute>
-                                           <UpdateProfile/>
-                                       </PrivateRoute>
-                                   }
-                            ></Route>
-                            <Route path="/buy"
-                                   element={
-                                       <PrivateRoute>
-                                           <Buy/>
-                                       </PrivateRoute>
-                                   }
-                            ></Route>
-                            <Route path="/products/:productId" element={<Product/>}/>
-                            <Route path="/category" element={<Category/>}/>
-                            <Route path="/cart" element={<Cart/>}/>
-                            <Route path="/signup" element={<Signup/>}/>
-                            <Route path="/login" element={<Login/>}/>
-                            <Route path="/forgot-password" element={<ForgotPassword/>}/>
-                            <Route path="/" element={<Main/>}/>
-                            <Route path="*" element={<NoPage/>}/>
-                        </Routes>
+                        <div className={"my-body"}>
+                            <Navbar/>
+                            <Routes>
+                                <Route path="/profile"
+                                       element={
+                                           <PrivateRoute>
+                                               <UserProfile/>
+                                           </PrivateRoute>
+                                       }
+                                ></Route>
+                                <Route path="/update-profile"
+                                       element={
+                                           <PrivateRoute>
+                                               <UpdateProfile/>
+                                           </PrivateRoute>
+                                       }
+                                ></Route>
+                                <Route path="/buy"
+                                       element={
+                                           <PrivateRoute>
+                                               <Buy/>
+                                           </PrivateRoute>
+                                       }
+                                ></Route>
+                                <Route path="/products/:productId" element={<Product/>}/>
+                                <Route path="/category" element={<Category/>}/>
+                                <Route path="/cart" element={<Cart/>}/>
+                                <Route path="/signup" element={<Signup/>}/>
+                                <Route path="/login" element={<Login/>}/>
+                                <Route path="/forgot-password" element={<ForgotPassword/>}/>
+                                <Route path="/" element={<Main/>}/>
+                                <Route path="*" element={<NoPage/>}/>
+                            </Routes>
+                        </div>
                         <Footer/>
                     </Provider>
                 </AuthProvider>

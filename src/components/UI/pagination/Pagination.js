@@ -9,17 +9,50 @@ const Pagination = ({totalPages, page, changePage}) => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const paginatedItems = pagesArray.slice(startIndex, startIndex + itemsPerPage);
 
-    const handlePageChange = (newPage) => {
-        setCurrentPage(newPage);
+    const handleLeftButtonPress = () => {
+        if (page === 1) {
+            return;
+        }
+        if ((currentPage - 1) * itemsPerPage === page - 1) {
+            setCurrentPage(currentPage - 1);
+        }
+        changePage(page - 1);
+    }
+
+    const handleRightButtonPress = () => {
+        if (page === totalPages) {
+            return;
+        }
+        if (currentPage * itemsPerPage < page + 1) {
+            setCurrentPage(currentPage + 1);
+        }
+        changePage(page + 1);
+    }
+
+    const handleLeftDotPress = () => {
+        changePage((currentPage - 1) * itemsPerPage);
+        setCurrentPage(currentPage - 1);
+    }
+
+    const handleRightDotPress = () => {
+        changePage(currentPage * itemsPerPage + 1);
+        setCurrentPage(currentPage + 1);
     }
 
     return (
         <div className="page__wrapper">
             <button
-                onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}
+                onClick={handleLeftButtonPress} disabled={page === 1}
                 className={'page'}
             >	&#60;
                 </button>
+            {currentPage > 1 &&
+                <button
+                    onClick={handleLeftDotPress}
+                    className={'page'}
+                >	...
+                </button>
+            }
             {paginatedItems.map(p =>
                 <span
                     onClick={() => changePage(p)}
@@ -28,8 +61,15 @@ const Pagination = ({totalPages, page, changePage}) => {
                 >{p}
                 </span>
             )}
+            {page + itemsPerPage <= totalPages &&
+                <button
+                    onClick={handleRightDotPress}
+                    className={'page'}
+                >	...
+                </button>
+            }
             <button
-                onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}
+                onClick={handleRightButtonPress} disabled={page === totalPages}
                 className={'page'}
             >	&#62;
                 </button>

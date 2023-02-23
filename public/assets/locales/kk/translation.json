@@ -56,7 +56,7 @@
   "failed_reset_password": "Құпия сөзді өзгерту мүмкін болмады",
   "reset_password": "Құпия сөзді өзгерту",
   "passwords_not_match": "Құпия сөздер сәйкес келмейді",
-  "failed_create_account": "Тіркелгі жасау сәтсіз аяқталды",
+  "failed_create_account": "Тіркелу жасау сәтсіз аяқталды",
   "confirm_password": "Құпия сөзді растаңыз",
   "have_account": "Сізде аккаунт бар ма?",
   "tg_kg": "тг/кг",
@@ -99,5 +99,19 @@
   "format": "Формат",
   "buy_products": "Заттарды сатып алу",
   "thank_purchase": "Сатып алғаныңыз үшін рахмет, сатушы сізбен жақын арада хабарласады",
-  "no_items_to_buy": "Сатып алатын заттар жоқ"
+  "no_items_to_buy": "Сатып алатын заттар жоқ",
+
+  "firstName": "Аты-жөні",
+  "lastName": "Тегі",
+  "tel": "Телефон нөмірі",
+
+  "update_password": "Құпия сөзді жаңарту",
+  "password_update_success": "Құпия сөз сәтті жаңартылды",
+  "password_update_error": "Құпия сөзді жаңарту мүмкін болмады",
+  "go_profile": "Профилге өту",
+  "password_update": "Құпия сөзді жаңарту",
+  "cancel": "Болдырмау",
+  "update": "жаңарту",
+
+  "update_info": "Пайдаланушы ақпаратын өзгерту"
 }

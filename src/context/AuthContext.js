@@ -1,57 +1,72 @@
-import React, { useContext, useState, useEffect } from "react";
-import { auth } from "../firebase";
+import React, {useContext, useDebugValue, useState} from "react";
+import axios from "../api/axios";
+
+const LOGIN_URL = '/api/auth/login';
+const REGISTER_URL = '/api/auth/registration';
+const FORGOT_PWD_URL = '/api/auth/forgotPassword';
+const UPDATE_PWD_URL = '/api/auth/changePassword';
 
 const AuthContext = React.createContext();
 
 export function useAuth() {
+    const {auth} = useContext(AuthContext);
+    useDebugValue(auth, auth => auth?.login ? "Logged In" : "Logged Out")
     return useContext(AuthContext);
 }
 
-export function AuthProvider({ children }) {
-    const [currentUser, setCurrentUser] = useState();
-    const [loading, setLoading] = useState(true);
+export function AuthProvider({children}) {
+    const [currentUser, setCurrentUser] = useState(null);
 
-    function signup(email, password) {
-        return auth.createUserWithEmailAndPassword(email, password);
+    async function signup(firstName, lastName, email, phoneNumber) {
+        await axios.post(REGISTER_URL,
+            JSON.stringify({firstName, lastName, role:"none", email, phoneNumber}),
+            {
+                headers: {'Content-Type': 'application/json'}
+            }
+        );
     }
 
-    function login(email, password) {
-        return auth.signInWithEmailAndPassword(email, password);
+    async function login(login, password) {
+        const response = await axios.post(LOGIN_URL,
+            JSON.stringify({login, password}),
+            {
+                headers: {'Content-Type': 'application/json'}
+            }
+        );
+        const accessToken = response?.data?.accessToken;
+        setCurrentUser({login, accessToken});
     }
 
     function logout() {
-        return auth.signOut();
+        return setCurrentUser(null);
     }
 
-    function resetPassword(email) {
-        return auth.sendPasswordResetEmail(email);
+    async function resetPassword(mail) {
+        await axios.post(FORGOT_PWD_URL + '?mail=' + mail);
     }
 
-    function updatePassword(password) {
-        return currentUser.updatePassword(password);
+    async function updatePassword(password) {
+        await axios.post(UPDATE_PWD_URL + '?password=' + password, '',
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${currentUser.accessToken}`
+                }
+            });
     }
-
-    useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(user => {
-            setCurrentUser(user);
-            setLoading(false);
-        })
-
-        return unsubscribe;
-    }, [])
 
     const value = {
         currentUser,
         login,
         signup,
-        logout,
         resetPassword,
-        updatePassword
+        updatePassword,
+        logout
     }
 
     return (
         <AuthContext.Provider value={value}>
-            {!loading && children}
+            {children}
         </AuthContext.Provider>
     )
 }

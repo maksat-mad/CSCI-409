@@ -27,8 +27,8 @@ const Login = () => {
             setLoading(true);
             await login(email, password);
             navigate(prevPath);
-        } catch {
-            setError(t("failed_to_log_in"));
+        } catch (error) {
+            setError(t("failed_to_log_in") + '. ' + error.response.data.msg);
         }
 
         setLoading(false);

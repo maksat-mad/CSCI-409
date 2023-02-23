@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const BASE_URL = 'http://naturalgoods-env-1.eba-tugt88fn.eu-north-1.elasticbeanstalk.com/';
+
 export default axios.create({
-    baseURL: 'https://csci-409-testing-default-rtdb.firebaseio.com/'
+    baseURL: BASE_URL
 });

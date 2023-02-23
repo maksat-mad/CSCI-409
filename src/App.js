@@ -7,7 +7,7 @@ import {AuthProvider} from "./context/AuthContext";
 import ForgotPassword from "./components/UI/signup-login/ForgotPassword";
 import UserProfile from "./components/UI/profile/UserProfile";
 import PrivateRoute from "./components/UI/private-route/PrivateRoute";
-import UpdateProfile from "./components/UI/profile/UpdateProfile";
+import UpdatePassword from "./components/UI/profile/update/UpdatePassword";
 import Main from "./components/UI/main/Main";
 import NoPage from "./components/UI/no-page/NoPage";
 import {Provider} from 'react-redux';
@@ -17,6 +17,7 @@ import Cart from "./components/UI/cart/Cart";
 import Product from "./components/UI/product/Product";
 import Buy from "./components/UI/buy/Buy";
 import './base-styles/App.css';
+import UpdateInfo from "./components/UI/profile/update/UpdateInfo";
 
 function App() {
     return (
@@ -34,10 +35,17 @@ function App() {
                                            </PrivateRoute>
                                        }
                                 ></Route>
-                                <Route path="/update-profile"
+                                <Route path="/update-password"
                                        element={
                                            <PrivateRoute>
-                                               <UpdateProfile/>
+                                               <UpdatePassword/>
+                                           </PrivateRoute>
+                                       }
+                                ></Route>
+                                <Route path="/update-info"
+                                       element={
+                                           <PrivateRoute>
+                                               <UpdateInfo/>
                                            </PrivateRoute>
                                        }
                                 ></Route>

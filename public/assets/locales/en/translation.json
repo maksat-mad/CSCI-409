@@ -99,5 +99,19 @@
   "format": "Format",
   "buy_products": "Buy Products",
   "thank_purchase": "Thank you for your purchase, the seller will contact you soon",
-  "no_items_to_buy": "No items to buy"
+  "no_items_to_buy": "No items to buy",
+
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "tel": "Phone Number",
+
+  "update_password": "Update Password",
+  "password_update_success": "Password updated successfully",
+  "password_update_error": "Failed to update password",
+  "go_profile": "Go to profile",
+  "password_update": "Update Password",
+  "cancel": "Cancel",
+  "update": "update",
+
+  "update_info": "Update user info"
 }

@@ -5,6 +5,7 @@ const LOGIN_URL = '/api/auth/login';
 const REGISTER_URL = '/api/auth/registration';
 const FORGOT_PWD_URL = '/api/auth/forgotPassword';
 const UPDATE_PWD_URL = '/api/auth/changePassword';
+const UPDATE_INFO_URL = '/api/auth/changeUserInfo';
 
 const AuthContext = React.createContext();
 
@@ -55,13 +56,26 @@ export function AuthProvider({children}) {
             });
     }
 
+    async function updateInfo(firstName, lastName, phoneNumber) {
+        await axios.post(UPDATE_INFO_URL,
+            JSON.stringify({firstName, lastName, "email": currentUser.login, phoneNumber}),
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${currentUser.accessToken}`
+                }
+            }
+        );
+    }
+
     const value = {
         currentUser,
         login,
         signup,
+        logout,
         resetPassword,
         updatePassword,
-        logout
+        updateInfo,
     }
 
     return (

@@ -113,5 +113,14 @@
   "cancel": "Cancel",
   "update": "update",
 
-  "update_info": "Update user info"
+  "update_info": "Update user information",
+  "update_info_success": "User information updated successfully",
+  "failed_update_info": "Failed to update user information",
+
+  "add_product": "Add product",
+  "products_sale": "My products for sale",
+  "products_not_sale": "My products NOT for sale",
+  "in_progress": "In progress",
+  "bought_history": "Bought history",
+  "sold_history": "Sold history"
 }

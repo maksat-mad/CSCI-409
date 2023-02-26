@@ -18,6 +18,12 @@ import Product from "./components/UI/product/Product";
 import Buy from "./components/UI/buy/Buy";
 import './base-styles/App.css';
 import UpdateInfo from "./components/UI/profile/update/UpdateInfo";
+import AddProduct from "./components/UI/add-product/AddProduct";
+import ProductsSale from "./components/UI/products-sale/ProductsSale";
+import ProductsNotSale from "./components/UI/products-not-sale/ProductsNotSale";
+import InProgress from "./components/UI/in-progress/InProgress";
+import BoughtHistory from "./components/UI/bought-history/BoughtHistory";
+import SoldHistory from "./components/UI/sold-history/SoldHistory";
 
 function App() {
     return (
@@ -64,6 +70,48 @@ function App() {
                                 <Route path="/forgot-password" element={<ForgotPassword/>}/>
                                 <Route path="/" element={<Main/>}/>
                                 <Route path="*" element={<NoPage/>}/>
+                                <Route path="/add-product"
+                                       element={
+                                           <PrivateRoute>
+                                               <AddProduct/>
+                                           </PrivateRoute>
+                                       }
+                                ></Route>
+                                <Route path="/products-sale"
+                                       element={
+                                           <PrivateRoute>
+                                               <ProductsSale/>
+                                           </PrivateRoute>
+                                       }
+                                ></Route>
+                                <Route path="/products-not-sale"
+                                       element={
+                                           <PrivateRoute>
+                                               <ProductsNotSale/>
+                                           </PrivateRoute>
+                                       }
+                                ></Route>
+                                <Route path="/in-progress"
+                                       element={
+                                           <PrivateRoute>
+                                               <InProgress/>
+                                           </PrivateRoute>
+                                       }
+                                ></Route>
+                                <Route path="/bought-history"
+                                       element={
+                                           <PrivateRoute>
+                                               <BoughtHistory/>
+                                           </PrivateRoute>
+                                       }
+                                ></Route>
+                                <Route path="/sold-history"
+                                       element={
+                                           <PrivateRoute>
+                                               <SoldHistory/>
+                                           </PrivateRoute>
+                                       }
+                                ></Route>
                             </Routes>
                         </div>
                         <Footer/>

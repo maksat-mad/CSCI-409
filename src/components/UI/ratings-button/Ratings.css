@@ -27,6 +27,18 @@
     border: 2px solid #4CAF50;
 }
 
+.red-button {
+    background-color: crimson;
+    color: white;
+    border: 2px solid crimson;
+}
+
+.grey-button {
+    background-color: darkgrey;
+    color: white;
+    border: 2px solid darkgrey;
+}
+
 .buy-button {
     padding: 10px 40px;
     background-color: #4CAF50;

@@ -22,7 +22,7 @@ const ForgotPassword = () => {
             await resetPassword(email);
             setMessage(t("check_inbox"));
         } catch (error) {
-            setError(t("failed_reset_password") + '. ' + error.response.data.msg);
+            setError(t("failed_reset_password") + '. ' + error.response?.data?.msg);
         }
 
         setLoading(false);

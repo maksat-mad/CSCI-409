@@ -40,7 +40,7 @@ const Signup = () => {
             setSuccess(true);
         } catch (error) {
             setError(true);
-            setErrorMsg(t('failed_create_account') + '. ' + error.response.data.msg);
+            setErrorMsg(t('failed_create_account') + '. ' + error.response?.data?.msg);
         }
 
         setLoading(false);

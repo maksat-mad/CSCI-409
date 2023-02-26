@@ -33,7 +33,7 @@ const UpdatePassword = () => {
             await updatePassword(passwordRef.current.value);
             setSuccess(t('password_update_success'))
         } catch (error) {
-            setError(t('password_update_error') + '. ' + error.response.data.msg);
+            setError(t('password_update_error') + '. ' + error.response?.data?.msg);
         }
 
         setLoading(false);

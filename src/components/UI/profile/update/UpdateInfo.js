@@ -63,7 +63,7 @@ const UpdateInfo = () => {
             await updateInfo(firstName, lastName, tel);
             setSuccess(t('update_info_success'));
         } catch (error) {
-            setError(t('failed_update_info') + '. ' + error.response.data.msg);
+            setError(t('failed_update_info') + '. ' + error.response?.data?.msg);
         }
 
         setLoading(false);

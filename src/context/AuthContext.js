@@ -1,5 +1,6 @@
 import React, {useContext, useDebugValue, useState} from "react";
 import axios from "../api/axios";
+import cookies from "js-cookie";
 
 const LOGIN_URL = '/api/auth/login';
 const REGISTER_URL = '/api/auth/registration';
@@ -19,7 +20,7 @@ export function AuthProvider({children}) {
     const [currentUser, setCurrentUser] = useState(null);
 
     async function signup(firstName, lastName, email, phoneNumber) {
-        await axios.post(REGISTER_URL,
+        await axios.post(REGISTER_URL + '?lang=' + (cookies.get('i18next') || 'en').toUpperCase(),
             JSON.stringify({firstName, lastName, role:"none", email, phoneNumber}),
             {
                 headers: {'Content-Type': 'application/json'}
@@ -28,7 +29,7 @@ export function AuthProvider({children}) {
     }
 
     async function login(login, password) {
-        const response = await axios.post(LOGIN_URL,
+        const response = await axios.post(LOGIN_URL + '?lang=' + (cookies.get('i18next') || 'en').toUpperCase(),
             JSON.stringify({login, password}),
             {
                 headers: {'Content-Type': 'application/json'}
@@ -43,11 +44,11 @@ export function AuthProvider({children}) {
     }
 
     async function resetPassword(mail) {
-        await axios.post(FORGOT_PWD_URL + '?mail=' + mail);
+        await axios.post(FORGOT_PWD_URL + '?mail=' + mail + '&lang=' + (cookies.get('i18next') || 'en').toUpperCase());
     }
 
     async function updatePassword(password) {
-        await axios.post(UPDATE_PWD_URL + '?password=' + password, '',
+        await axios.post(UPDATE_PWD_URL + '?password=' + password + '&lang=' + (cookies.get('i18next') || 'en').toUpperCase(), '',
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -57,7 +58,7 @@ export function AuthProvider({children}) {
     }
 
     async function updateInfo(firstName, lastName, phoneNumber) {
-        await axios.post(UPDATE_INFO_URL,
+        await axios.post(UPDATE_INFO_URL + '?lang=' + (cookies.get('i18next') || 'en').toUpperCase(),
             JSON.stringify({firstName, lastName, "email": currentUser.login, phoneNumber}),
             {
                 headers: {

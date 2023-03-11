@@ -50,7 +50,7 @@ const CartCard = ({card, more_info, one_item, total, tg}) => {
                     </Link><br/>
                     <CartCardButtonsAndInput cardId={card.id} maxValue={10}/>
                     <p style={{margin: "0", padding: "10px"}}>
-                        {one_item} = 1000 tg
+                        {one_item} = 1000 {tg}
                         <br/>
                         {total} = {cartItemsIdsAndQuantity.get(card.id) * 1000} {tg}
                     </p>

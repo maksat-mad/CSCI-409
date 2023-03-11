@@ -122,5 +122,26 @@
   "products_not_sale": "My products NOT for sale",
   "in_progress": "In progress",
   "bought_history": "Bought history",
-  "sold_history": "Sold history"
+  "sold_history": "Sold history",
+
+  "product_name": "Product name",
+  "choose_product_category": "Choose product category",
+  "write_product_description": "Write product description",
+  "max_num_buy": "Maximum number of products that user can buy",
+  "num_stock": "Number of products in stock",
+  "product_price": "Product price",
+  "product_picture": "Upload product picture",
+  "choose_product_type": "Choose product type",
+  "choose_product": "Choose product",
+  "select_product_type": "Type",
+  "select_product": "Product",
+
+  "product_name_error": "Please choose product",
+  "description_error": "Description length no more than 50 characters",
+  "max_num_error": "Maximum number of products a user can buy is not equal to or less than zero",
+  "num_stock_error": "Number of products in stock is not equal to or less than zero",
+  "product_price_error": "Product price is not equal to or less than zero",
+  "no_picture_error": "Do not forget to upload product picture",
+  "add_product_success": "Product added successfully",
+  "add_product_error": "Failed to add product, something went wrong, please try again"
 }

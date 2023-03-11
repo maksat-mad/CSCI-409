@@ -45,7 +45,7 @@
   "high_price": "high price",
   "price_range": "Price range",
   "no_items_found": "No items found",
-  "failed_to_log_in": "Failed to log in, check email and password",
+  "failed_to_log_in": "Failed to log in",
   "password_error": "Password must be at least 6 symbols",
   "email": "Email",
   "password": "Password",
@@ -143,5 +143,9 @@
   "product_price_error": "Product price is not equal to or less than zero",
   "no_picture_error": "Do not forget to upload product picture",
   "add_product_success": "Product added successfully",
-  "add_product_error": "Failed to add product, something went wrong, please try again"
+  "add_product_error": "Failed to add product, something went wrong, please try again",
+
+  "no_my_products_for_sale": "No products for sale",
+  "my_products_for_sale": "My products for sale",
+  "update_product_info": "Update details"
 }

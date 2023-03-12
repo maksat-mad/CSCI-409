@@ -24,6 +24,7 @@ import ProductsNotSale from "./components/UI/products-not-sale/ProductsNotSale";
 import InProgress from "./components/UI/in-progress/InProgress";
 import BoughtHistory from "./components/UI/bought-history/BoughtHistory";
 import SoldHistory from "./components/UI/sold-history/SoldHistory";
+import UpdateProduct from "./components/UI/update-product/UpdateProduct";
 
 function App() {
     return (
@@ -109,6 +110,13 @@ function App() {
                                        element={
                                            <PrivateRoute>
                                                <SoldHistory/>
+                                           </PrivateRoute>
+                                       }
+                                ></Route>
+                                <Route path="/update-product"
+                                       element={
+                                           <PrivateRoute>
+                                               <UpdateProduct/>
                                            </PrivateRoute>
                                        }
                                 ></Route>

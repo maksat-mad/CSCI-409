@@ -19,7 +19,7 @@ const ProductCard = ({card, product_name, one_item, tg, update_product_info, max
             </div>
             <div className={"cart-card-content"}>
                 <div>
-                    <Link to={`/update-product/${card.id}`} style={{textDecoration: "none"}}>
+                    <Link to={`/update-product`} state={{ product: card }} style={{textDecoration: "none"}}>
                         <p style={{margin: "0", padding: "10px"}}>{update_product_info}</p><br/>
                     </Link><br/>
                     <p style={{marginTop: "-50px", padding: "10px"}}>

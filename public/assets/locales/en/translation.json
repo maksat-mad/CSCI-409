@@ -151,5 +151,13 @@
 
   "yes": "YES",
   "no": "NO",
-  "areYouSure": "Are You Sure?"
+  "areYouSure": "Are You Sure?",
+
+  "update_product": "Update product details",
+  "update_product_success": "Product updated successfully",
+  "update_product_error": "Failed to update the product",
+
+  "no_my_products_not_for_sale": "No products NOT for sale",
+  "my_products_not_for_sale": "My products NOT for sale",
+  "my_products_not_for_sale_reason": "Because the number of items in stock must be greater than the maximum number of items a user can purchase"
 }

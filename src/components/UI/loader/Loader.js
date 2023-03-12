@@ -5,7 +5,7 @@ const Loader = () => {
     const {t} = useTranslation();
     return (
         <div>
-            <h2>{t('loading')}...</h2>
+            <h2 style={{color: "blueviolet"}}>{t('loading')}...</h2>
         </div>
     );
 };

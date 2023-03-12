@@ -147,5 +147,9 @@
 
   "no_my_products_for_sale": "No products for sale",
   "my_products_for_sale": "My products for sale",
-  "update_product_info": "Update details"
+  "update_product_info": "Update details",
+
+  "yes": "YES",
+  "no": "NO",
+  "areYouSure": "Are You Sure?"
 }

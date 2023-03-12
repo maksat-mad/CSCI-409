@@ -147,5 +147,9 @@
 
   "no_my_products_for_sale": "Нет товаров для продажи",
   "my_products_for_sale": "Мои товары на продажу",
-  "update_product_info": "Обновить сведения"
+  "update_product_info": "Обновить сведения",
+
+  "yes": "ДА",
+  "no":  "НЕТ",
+  "areYouSure": "Вы уверены?"
 }

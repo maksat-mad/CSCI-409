@@ -3,9 +3,10 @@ import '../modal/Modal.css';
 import './CartCard.css';
 import {Link} from "react-router-dom";
 
-const ProductCard = ({card, product_name, one_item, tg, update_product_info, max_num_buy, num_stock}) => {
+const ProductCard = ({card, product_name, one_item, tg, update_product_info, max_num_buy, num_stock, setModalOpen, setDeleteId}) => {
     const handleDelete = () => {
-
+        setDeleteId(card.id);
+        setModalOpen(true);
     }
 
     return (

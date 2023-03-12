@@ -37,7 +37,7 @@
     text-decoration: none;
     display: inline-block;
     font-size: 1rem;
-    transition-duration: 0.4s;
+    transition: all 0.4s ease-in-out;
     cursor: pointer;
     border-radius: 5%;
 }
@@ -75,10 +75,10 @@
     color: crimson;
     font-size: 2rem;
     margin-left: 20px;
+    transition: all 0.4s ease-in-out;
 }
 
 .trash-icon-cart:hover {
     transform: scale(1.2);
     font-weight: bold;
-    transition-duration: 0.4s;
 }

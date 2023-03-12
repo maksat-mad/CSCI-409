@@ -147,5 +147,9 @@
 
   "no_my_products_for_sale": "Сатылатын өнім жоқ",
   "my_products_for_sale": "Менің сатылатын өнімдерім",
-  "update_product_info": "Ақпаратты жаңарту"
+  "update_product_info": "Ақпаратты жаңарту",
+
+  "yes": "ИӘ",
+  "no":  "ЖОҚ",
+  "areYouSure": "Сенімдісіз бе?"
 }

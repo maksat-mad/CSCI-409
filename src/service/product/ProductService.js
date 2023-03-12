@@ -70,4 +70,12 @@ export default class ProductService {
             ]
         }
     }
+
+    static async removeProduct(id) {
+        return await axios.post('https://jsonplaceholder.typicode.com/posts', {
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        });
+    }
 }

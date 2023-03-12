@@ -3,10 +3,10 @@
     bottom: 30%;
     right: 20px;
     cursor: pointer;
+    transition: all 0.4s ease-in-out;
 }
 
 .cart-buy-button:hover {
-    transition-duration: 0.4s;
     transform: scale(1.2);
     font-weight: bold;
 }

@@ -159,5 +159,9 @@
 
   "no_my_products_not_for_sale": "No products NOT for sale",
   "my_products_not_for_sale": "My products NOT for sale",
-  "my_products_not_for_sale_reason": "Because the number of items in stock must be greater than the maximum number of items a user can purchase"
+  "my_products_not_for_sale_reason": "Because the number of items in stock must be greater than the maximum number of items a user can purchase",
+
+  "no_requests_to_buy": "No, requests to buy your products",
+  "requests_to_buy": "Purchase requests for your products",
+  "accepted": "Accepted"
 }

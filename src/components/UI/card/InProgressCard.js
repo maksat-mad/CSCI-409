@@ -1,0 +1,56 @@
+import React from 'react';
+import './ReviewCard.css';
+import '../ratings-button/Ratings.css';
+import UserService from "../../../service/user/UserService";
+
+const InProgressCard = ({userRequest, accepted, cancel, lang, tg, setCancelId, setModalOpen, isAcceptChange, setIsAcceptChange, setIsLoading, total, tel}) => {
+    const handleAcceptClick = async () => {
+        setIsLoading(true);
+        await UserService.acceptRequest(userRequest.id)
+            .then(() => console.log('accepted successfully'))
+            .catch(() => console.log('failed to accepted'));
+        setIsAcceptChange(!isAcceptChange);
+    }
+
+    const handleCancelClick = () => {
+        setCancelId(userRequest.id)
+        setModalOpen(true);
+    }
+
+    return (
+        <div className={"review-card"}>
+            <div style={{overflowWrap:"anywhere"}}>
+                <div className={"review-name-rating"}>
+                    <h3>{userRequest.email}</h3>
+                </div>
+                {lang === 'en' ? userRequest.detailsEn.map((detail, index) => {
+                    return <p>{index + 1}) {detail}</p>
+                }) : lang === 'kk' ? userRequest.detailsKk.map((detail, index) => {
+                    return <p>{index + 1}) {detail}</p>
+                }) : userRequest.detailsRu.map((detail, index) => {
+                    return <p>{index + 1}) {detail}</p>
+                })}
+                <p>{total}: {userRequest.totalMoney} {tg}</p>
+                <p>{tel}: {userRequest.phoneNumber}</p>
+                <div className={"container-ratings"} style={{flexWrap: "wrap"}}>
+                    <div className={"button-container"}>
+                        <span onClick={handleAcceptClick}>
+                            <div className={"ratings-button leave-review-button"}>
+                                {accepted}
+                            </div>
+                        </span>
+                    </div>
+                    <div className={"button-container"}>
+                        <span onClick={handleCancelClick}>
+                            <div className={"ratings-button grey-button"}>
+                                {cancel}
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default InProgressCard;

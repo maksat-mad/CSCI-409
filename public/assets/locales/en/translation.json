@@ -163,5 +163,12 @@
 
   "no_requests_to_buy": "No, requests to buy your products",
   "requests_to_buy": "Purchase requests for your products",
-  "accepted": "Accepted"
+  "accepted": "Accepted",
+
+  "no_bought_history": "No bought history",
+  "no_sold_history": "No sold history",
+
+  "user_management": "User Management",
+  "create_admin": "Create Admin",
+  "admin_management": "Admin Management"
 }

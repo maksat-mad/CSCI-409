@@ -25,6 +25,7 @@ const Signup = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        localStorage.setItem('path', '/signup');
     }, []);
 
     async function handleSubmit(e) {

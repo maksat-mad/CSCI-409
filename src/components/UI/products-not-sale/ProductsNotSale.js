@@ -26,6 +26,7 @@ const ProductsNotSale = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        localStorage.setItem('path', '/products-not-sale');
         fetchMyProducts();
     }, []);
 

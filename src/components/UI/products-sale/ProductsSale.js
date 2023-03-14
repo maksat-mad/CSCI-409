@@ -26,6 +26,7 @@ const ProductsSale = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        localStorage.setItem('path', '/products-sale');
         fetchMyProducts();
     }, []);
 

@@ -36,6 +36,7 @@ const Category = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        localStorage.setItem('path', '/category');
         setFilter({...filter, category: category});
     }, []);
 

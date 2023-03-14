@@ -29,6 +29,7 @@ const Modal = ({setIsOpen, values, from}) => {
     };
 
     const handleCityChange = (city) => {
+        localStorage.setItem('city', city);
         if (selectedCity !== city) {
             dispatch({type: 'UPDATE_CITY', payload: city});
             clearCart();

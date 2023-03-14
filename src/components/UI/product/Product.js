@@ -28,6 +28,7 @@ const Product = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        localStorage.setItem('path', '/products/' + productId);
         fetchProduct(productId);
     }, []);
 
@@ -63,7 +64,11 @@ const Product = () => {
                                 </div>
                                 <p className={"product-container individual-text"}>{"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry."}</p>
                                 {currentUser ?
-                                    <LeaveReview productId={productId}/>
+                                    <>
+                                        {currentUser.role === 'user' &&
+                                            <LeaveReview productId={productId}/>
+                                        }
+                                    </>
                                     :
                                     <SignInToContinue productId={productId}/>
                                 }

@@ -24,6 +24,7 @@ const Cart = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        localStorage.setItem('path', '/cart');
     }, []);
 
     useEffect(() => {
@@ -50,8 +51,12 @@ const Cart = () => {
                         </div>
                         {currentUser ?
                             <>
-                                <CartBuyButton tg={t('tg')} money={totalMoney}/>
-                                <CartBuyBottom message={t('buy')} tg={t('tg')} money={totalMoney}/>
+                                {currentUser.role === 'user' &&
+                                    <>
+                                        <CartBuyButton tg={t('tg')} money={totalMoney}/>
+                                        <CartBuyBottom message={t('buy')} tg={t('tg')} money={totalMoney}/>
+                                    </>
+                                }
                             </>
                             :
                             <LoginToProceed text={t('login_to_buy')}/>

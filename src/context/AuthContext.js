@@ -1,6 +1,7 @@
-import React, {useContext, useDebugValue, useState} from "react";
+import React, {useContext, useDebugValue, useEffect, useState} from "react";
 import axios from "../api/axios";
 import cookies from "js-cookie";
+import {useNavigate} from "react-router-dom";
 
 const LOGIN_URL = '/api/auth/login';
 const REGISTER_URL = '/api/auth/registration';
@@ -18,6 +19,20 @@ export function useAuth() {
 
 export function AuthProvider({children}) {
     const [currentUser, setCurrentUser] = useState(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (localStorage.getItem('login') !== '' &&
+            localStorage.getItem('accessToken') !== '' &&
+            localStorage.getItem('role') !== '') {
+            setCurrentUser({
+                login: localStorage.getItem('login'),
+                accessToken: localStorage.getItem('accessToken'),
+                role: localStorage.getItem('role')
+            });
+            navigate(localStorage.getItem('path'));
+        }
+    }, []);
 
     async function signup(firstName, lastName, email, phoneNumber) {
         await axios.post(REGISTER_URL + '?lang=' + (cookies.get('i18next') || 'en').toUpperCase(),
@@ -36,10 +51,17 @@ export function AuthProvider({children}) {
             }
         );
         const accessToken = response?.data?.accessToken;
-        setCurrentUser({login, accessToken});
+        const role = response?.data?.role;
+        setCurrentUser({login, accessToken, role});
+        localStorage.setItem('login', login);
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('role', role);
     }
 
     function logout() {
+        localStorage.setItem('login', '');
+        localStorage.setItem('accessToken', '');
+        localStorage.setItem('role', '');
         return setCurrentUser(null);
     }
 

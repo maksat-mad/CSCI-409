@@ -8,12 +8,14 @@ import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import BuyModal from "../modal/BuyModal";
 import {useTranslation} from "react-i18next";
+import {useAuth} from "../../../context/AuthContext";
 
 const digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 const prohibitedIndexes = [6, 10, 13];
 
 const Buy = () => {
     const {t} = useTranslation();
+    const {currentUser} = useAuth();
     const cartItemsIdsAndQuantity = useSelector(state => state.cartItemsIdsAndQuantity);
     const totalMoney = useSelector(state => state.totalMoney);
     const cartItems = useSelector(state => state.cartItems);
@@ -24,6 +26,7 @@ const Buy = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        localStorage.setItem('path', '/buy');
     }, []);
 
     const handleInputChange = (event) => {
@@ -88,11 +91,13 @@ const Buy = () => {
                                 type={"tel"}
                             />
                             <div className={"button-container"}>
-                            <span onClick={handleSubmit}>
-                                <div className={"ratings-button buy-button"}>
-                                    {t('buy')}
-                                </div>
-                            </span>
+                                {currentUser.role === 'user' &&
+                                    <span onClick={handleSubmit}>
+                                        <div className={"ratings-button buy-button"}>
+                                            {t('buy')}
+                                        </div>
+                                    </span>
+                                }
                             </div>
                             {error &&
                                 <div className={"input-error"}>

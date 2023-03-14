@@ -25,6 +25,11 @@ import InProgress from "./components/UI/in-progress/InProgress";
 import BoughtHistory from "./components/UI/bought-history/BoughtHistory";
 import SoldHistory from "./components/UI/sold-history/SoldHistory";
 import UpdateProduct from "./components/UI/update-product/UpdateProduct";
+import UserManagement from "./components/UI/admin/user-management/UserManagement";
+import CreateAdmin from "./components/UI/admin/admin-management/CreateAdmin";
+import AdminManagement from "./components/UI/admin/admin-management/AdminManagement";
+import AdminRoute from "./components/UI/private-route/AdminRoute";
+import SuperAdminRoute from "./components/UI/private-route/SuperAdminRoute";
 
 function App() {
     return (
@@ -117,6 +122,33 @@ function App() {
                                        element={
                                            <PrivateRoute>
                                                <UpdateProduct/>
+                                           </PrivateRoute>
+                                       }
+                                ></Route>
+                                <Route path="/user-management"
+                                       element={
+                                           <PrivateRoute>
+                                               <AdminRoute>
+                                                   <UserManagement/>
+                                               </AdminRoute>
+                                           </PrivateRoute>
+                                       }
+                                ></Route>
+                                <Route path="/create-admin"
+                                       element={
+                                           <PrivateRoute>
+                                               <SuperAdminRoute>
+                                                   <CreateAdmin/>
+                                               </SuperAdminRoute>
+                                           </PrivateRoute>
+                                       }
+                                ></Route>
+                                <Route path="/admin-management"
+                                       element={
+                                           <PrivateRoute>
+                                               <SuperAdminRoute>
+                                                   <AdminManagement/>
+                                               </SuperAdminRoute>
                                            </PrivateRoute>
                                        }
                                 ></Route>

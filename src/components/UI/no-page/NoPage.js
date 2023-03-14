@@ -5,6 +5,7 @@ import {useTranslation} from "react-i18next";
 
 const NoPage = () => {
     const {t} = useTranslation();
+    localStorage.setItem('path', '/');
     return (
         <div className={"no-page"}>
             <div className={"container"}>

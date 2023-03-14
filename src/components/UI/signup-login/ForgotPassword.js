@@ -14,6 +14,7 @@ const ForgotPassword = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        localStorage.setItem('path', '/forgot-password');
     }, []);
 
     async function handleSubmit(e) {

@@ -1,6 +1,6 @@
 const initialState = {
     navbarInput: '',
-    city: 'astana',
+    city: localStorage.getItem('city') !== null ? localStorage.getItem('city') : 'astana',
     cartButtonClick: false,
     cartItemsNumber: 0,
     cartItemsIds: [],

@@ -27,6 +27,7 @@ const AddProduct = () => {
 
     useEffect( () => {
         window.scrollTo(0, 0);
+        localStorage.setItem('path', '/add-product');
         async function initialFetch() {
             await ProductService.getProductTypes(1)
                 .then(response => setProductType([...response.data]));

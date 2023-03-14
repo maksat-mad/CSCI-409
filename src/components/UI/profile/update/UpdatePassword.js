@@ -15,6 +15,7 @@ const UpdatePassword = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        localStorage.setItem('path', '/update-password');
     }, []);
 
     async function handleSubmit(e) {

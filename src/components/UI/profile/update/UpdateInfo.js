@@ -21,6 +21,7 @@ const UpdateInfo = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        localStorage.setItem('path', '/update-info');
     }, []);
 
     const handleFirstNameChange = (e) => {

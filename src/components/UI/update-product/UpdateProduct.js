@@ -23,6 +23,7 @@ const UpdateProduct = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        localStorage.setItem('path', '/update-product');
     }, []);
 
     const handleDescriptionChange = (e) => {
@@ -139,7 +140,7 @@ const UpdateProduct = () => {
                                         <label htmlFor={"product_picture"}>{t('product_picture')}:</label><br/>
                                         <input type={'file'} id={"product_picture"} name={t("product_picture")} onChange={handleProductPictureChange}/><br/>
                                         <div className={"container"}>
-                                            <button disabled={loading} className={"input-button"} type="submit">{t('add_product')}</button>
+                                            <button disabled={loading} className={"input-button"} type="submit">{t('update')}</button>
                                         </div>
                                     </form>
                                     <div className={"my-container"}>

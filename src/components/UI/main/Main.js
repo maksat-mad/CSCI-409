@@ -38,6 +38,7 @@ const Main = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        localStorage.setItem('path', '/');
         fetchFruitCards();
         fetchVegetableCards();
         fetchDrinkCards();

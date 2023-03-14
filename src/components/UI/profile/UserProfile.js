@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useAuth } from "../../../context/AuthContext";
 import './UserProfile.css';
 import BlueButton from "./buttons/BlueButton";
@@ -10,6 +10,10 @@ import GreyButton from "./buttons/GreyButton";
 const UserProfile = () => {
     const {t} = useTranslation();
     const { currentUser } = useAuth();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
         <div className={"profile"}>

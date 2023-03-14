@@ -33,6 +33,10 @@ const Search = () => {
     });
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    useEffect(() => {
         fetchCards(limit, page, filter);
     }, [filter]);
 

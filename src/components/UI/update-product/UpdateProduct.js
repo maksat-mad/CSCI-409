@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, useLocation} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import cookies from "js-cookie";
@@ -20,6 +20,10 @@ const UpdateProduct = () => {
     const [numStock, setNumStock] = useState(product.id);
     const [productPrice, setProductPrice] = useState(product.id);
     const [productPicture, setProductPicture] = useState(null);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const handleDescriptionChange = (e) => {
         setError('');

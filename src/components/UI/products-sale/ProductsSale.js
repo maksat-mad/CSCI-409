@@ -7,6 +7,7 @@ import Error from "../error/Error";
 import Loader from "../loader/Loader";
 import {Link} from "react-router-dom";
 import AreYouSureModal from "../modal/AreYouSureModal";
+import ExitButton from "../exit-button/ExitButton";
 
 const ProductsSale = () => {
     const {t} = useTranslation();
@@ -24,6 +25,7 @@ const ProductsSale = () => {
     });
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         fetchMyProducts();
     }, []);
 
@@ -81,6 +83,7 @@ const ProductsSale = () => {
                             <div className={"my-container"}>
                                 <Link to="/profile">{t('cancel')}</Link>
                             </div>
+                            <ExitButton link={"/profile"}/>
                             {modalOpen &&
                                 <AreYouSureModal
                                     yes={t('yes')}

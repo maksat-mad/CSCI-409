@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
 import '../../signup-login/Signup-Login.css';
@@ -18,6 +18,10 @@ const UpdateInfo = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const handleFirstNameChange = (e) => {
         setError('');

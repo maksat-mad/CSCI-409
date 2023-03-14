@@ -1,0 +1,16 @@
+.exit-button {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    transition: all 0.4s ease-in-out;
+}
+
+.exit-button:hover {
+    transform: scale(1.1);
+    font-weight: bold;
+}
+
+.exit-icon {
+    width: 50px;
+    height: 50px;
+}

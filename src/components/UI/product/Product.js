@@ -27,6 +27,7 @@ const Product = () => {
     });
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         fetchProduct(productId);
     }, []);
 

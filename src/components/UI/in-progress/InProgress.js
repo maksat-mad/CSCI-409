@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 import AreYouSureModal from "../modal/AreYouSureModal";
 import InProgressCard from "../card/InProgressCard";
 import cookies from "js-cookie";
+import ExitButton from "../exit-button/ExitButton";
 
 const InProgress = () => {
     const {t} = useTranslation();
@@ -27,6 +28,7 @@ const InProgress = () => {
     });
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         fetchRequests();
     }, []);
 
@@ -91,6 +93,7 @@ const InProgress = () => {
                             <div className={"my-container"}>
                                 <Link to="/profile">{t('cancel')}</Link>
                             </div>
+                            <ExitButton link={"/profile"}/>
                             {modalOpen &&
                                 <AreYouSureModal
                                     yes={t('yes')}

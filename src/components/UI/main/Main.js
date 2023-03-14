@@ -37,6 +37,7 @@ const Main = () => {
     });
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         fetchFruitCards();
         fetchVegetableCards();
         fetchDrinkCards();

@@ -13,6 +13,7 @@ export default class UserService {
                 {
                     id: 1,
                     email: 'maksat111@gmail.com',
+                    time: '14/03/23',
                     detailsEn: ["3 kg apple", "3 kg apple", "3 kg apple", "3 kg apple"],
                     detailsRu: ["3 kg yabloko", "3 kg yabloko", "3 kg yabloko", "3 kg yabloko"],
                     detailsKk: ["3 kg alma", "3 kg alma", "3 kg alma", "3 kg alma"],
@@ -22,6 +23,7 @@ export default class UserService {
                 {
                     id: 2,
                     email: 'maksat222@gmail.com',
+                    time: '14/03/23',
                     detailsEn: ["3 kg apple", "3 kg apple", "3 kg apple", "3 kg apple"],
                     detailsRu: ["3 kg yabloko", "3 kg yabloko", "3 kg yabloko", "3 kg yabloko"],
                     detailsKk: ["3 kg alma", "3 kg alma", "3 kg alma", "3 kg alma"],
@@ -31,6 +33,7 @@ export default class UserService {
                 {
                     id: 3,
                     email: 'maksat333@gmail.com',
+                    time: '14/03/23',
                     detailsEn: ["3 kg apple", "3 kg apple", "3 kg apple", "3 kg apple"],
                     detailsRu: ["3 kg yabloko", "3 kg yabloko", "3 kg yabloko", "3 kg yabloko"],
                     detailsKk: ["3 kg alma", "3 kg alma", "3 kg alma", "3 kg alma"],
@@ -40,6 +43,7 @@ export default class UserService {
                 {
                     id: 4,
                     email: 'maksat444@gmail.com',
+                    time: '14/03/23',
                     detailsEn: ["3 kg apple", "3 kg apple", "3 kg apple", "3 kg apple"],
                     detailsRu: ["3 kg yabloko", "3 kg yabloko", "3 kg yabloko", "3 kg yabloko"],
                     detailsKk: ["3 kg alma", "3 kg alma", "3 kg alma", "3 kg alma"],
@@ -49,6 +53,7 @@ export default class UserService {
                 {
                     id: 5,
                     email: 'maksat555@gmail.com',
+                    time: '14/03/23',
                     detailsEn: ["3 kg apple", "3 kg apple", "3 kg apple", "3 kg apple"],
                     detailsRu: ["3 kg yabloko", "3 kg yabloko", "3 kg yabloko", "3 kg yabloko"],
                     detailsKk: ["3 kg alma", "3 kg alma", "3 kg alma", "3 kg alma"],

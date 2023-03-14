@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 import './Signup-Login.css';
@@ -14,6 +14,10 @@ const Login = () => {
     const navigate = useNavigate();
     const { state } = useLocation();
     const prevPath = state === null ? "/" : state.prevPath;
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     async function handleSubmit(e) {
         e.preventDefault();

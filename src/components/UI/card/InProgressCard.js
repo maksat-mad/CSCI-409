@@ -21,17 +21,24 @@ const InProgressCard = ({userRequest, accepted, cancel, lang, tg, setCancelId, s
         <div className={"review-card"}>
             <div style={{overflowWrap:"anywhere"}}>
                 <div className={"review-name-rating"}>
-                    <h3>{userRequest.email}</h3>
+                    <h4>{userRequest.email}</h4>
+                    <h4>{userRequest.time}</h4>
                 </div>
-                {lang === 'en' ? userRequest.detailsEn.map((detail, index) => {
-                    return <p>{index + 1}) {detail}</p>
-                }) : lang === 'kk' ? userRequest.detailsKk.map((detail, index) => {
-                    return <p>{index + 1}) {detail}</p>
-                }) : userRequest.detailsRu.map((detail, index) => {
-                    return <p>{index + 1}) {detail}</p>
-                })}
-                <p>{total}: {userRequest.totalMoney} {tg}</p>
-                <p>{tel}: {userRequest.phoneNumber}</p>
+                <div className={"container-ratings"} style={{flexWrap: "wrap"}}>
+                    <div>
+                        {lang === 'en' ? userRequest.detailsEn.map((detail, index) => {
+                            return <p>{index + 1}) {detail}</p>
+                        }) : lang === 'kk' ? userRequest.detailsKk.map((detail, index) => {
+                            return <p>{index + 1}) {detail}</p>
+                        }) : userRequest.detailsRu.map((detail, index) => {
+                            return <p>{index + 1}) {detail}</p>
+                        })}
+                    </div>
+                </div>
+                <div className={"review-name-rating"}>
+                    <p>{total}: {userRequest.totalMoney} {tg}</p>
+                    <p>{tel}: {userRequest.phoneNumber}</p>
+                </div>
                 <div className={"container-ratings"} style={{flexWrap: "wrap"}}>
                     <div className={"button-container"}>
                         <span onClick={handleAcceptClick}>

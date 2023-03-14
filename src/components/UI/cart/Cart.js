@@ -23,6 +23,10 @@ const Cart = () => {
     const totalMoney = useSelector(state => state.totalMoney);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    useEffect(() => {
         setItems(Array.from(cartItems.values()));
     }, [cartItemsNumber]);
 

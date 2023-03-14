@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../../context/AuthContext";
 import '../../signup-login/Signup-Login.css';
@@ -12,6 +12,10 @@ const UpdatePassword = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     async function handleSubmit(e) {
         e.preventDefault();

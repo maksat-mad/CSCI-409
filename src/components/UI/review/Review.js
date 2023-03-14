@@ -31,6 +31,7 @@ const Review = ({productId}) => {
     });
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         fetchReviews();
     }, []);
 

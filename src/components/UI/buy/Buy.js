@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../card/Card.css';
 import '../card/ReviewCard.css';
 import '../ratings-button/Ratings.css';
@@ -21,6 +21,10 @@ const Buy = () => {
     const [tel, setTel] = useState('+7(7');
     const [error, setError] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const handleInputChange = (event) => {
         setError(false);

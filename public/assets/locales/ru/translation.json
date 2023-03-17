@@ -170,5 +170,13 @@
 
   "user_management": "Управление пользователями",
   "create_admin": "Создать администратора",
-  "admin_management": "Управление администратором"
+  "admin_management": "Управление администратором",
+
+  "not_found": "Не найдено",
+  "block": "Блокировать",
+  "unblock": "Разблокировать",
+  "make_admin": "Сделать админом",
+  "remove_from_admin": "Удалить из админки",
+  "admin_profile": "Профиль Админа",
+  "super_admin_profile": "Профиль Супер Админа"
 }

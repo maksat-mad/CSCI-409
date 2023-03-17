@@ -19,7 +19,7 @@ const UserProfile = () => {
     return (
         <div className={"profile"}>
             <div className={"container"}>
-                <h1>{t('profile')}</h1>
+                <h1>{currentUser.role === 'user' ? t('profile') : currentUser.role === 'admin' ? t('admin_profile') : t('super_admin_profile')}</h1>
             </div>
             <div className={"my-container"}>
                 <strong>{t('email')}:</strong> {currentUser.login}

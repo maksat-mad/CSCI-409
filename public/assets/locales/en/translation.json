@@ -170,5 +170,13 @@
 
   "user_management": "User Management",
   "create_admin": "Create Admin",
-  "admin_management": "Admin Management"
+  "admin_management": "Admin Management",
+
+  "not_found": "Not found",
+  "block": "Block",
+  "unblock": "Unblock",
+  "make_admin": "Make admin",
+  "remove_from_admin": "Remove from admin",
+  "admin_profile": "Admin Profile",
+  "super_admin_profile": "Super Admin Profile"
 }

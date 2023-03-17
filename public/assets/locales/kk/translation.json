@@ -170,5 +170,13 @@
 
   "user_management": "Пайдаланушыны басқару",
   "create_admin": "Админді қосу",
-  "admin_management": "Админді басқару"
+  "admin_management": "Админді басқару",
+
+  "not_found": "Ешнәрсе табылмады",
+  "block": "Блоктау",
+  "unblock": "Блоктан шығару",
+  "make_admin": "Админ қылу",
+  "remove_from_admin": "Админнен жою",
+  "admin_profile": "Админ Профилі",
+  "super_admin_profile": "Супер Админ Профилі"
 }

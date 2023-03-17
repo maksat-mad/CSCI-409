@@ -127,29 +127,23 @@ function App() {
                                 ></Route>
                                 <Route path="/user-management"
                                        element={
-                                           <PrivateRoute>
-                                               <AdminRoute>
-                                                   <UserManagement/>
-                                               </AdminRoute>
-                                           </PrivateRoute>
+                                           <AdminRoute>
+                                               <UserManagement/>
+                                           </AdminRoute>
                                        }
                                 ></Route>
                                 <Route path="/create-admin"
                                        element={
-                                           <PrivateRoute>
-                                               <SuperAdminRoute>
-                                                   <CreateAdmin/>
-                                               </SuperAdminRoute>
-                                           </PrivateRoute>
+                                           <SuperAdminRoute>
+                                               <CreateAdmin/>
+                                           </SuperAdminRoute>
                                        }
                                 ></Route>
                                 <Route path="/admin-management"
                                        element={
-                                           <PrivateRoute>
-                                               <SuperAdminRoute>
-                                                   <AdminManagement/>
-                                               </SuperAdminRoute>
-                                           </PrivateRoute>
+                                           <SuperAdminRoute>
+                                               <AdminManagement/>
+                                           </SuperAdminRoute>
                                        }
                                 ></Route>
                             </Routes>

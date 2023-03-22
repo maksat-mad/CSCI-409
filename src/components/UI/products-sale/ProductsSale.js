@@ -77,6 +77,7 @@ const ProductsSale = () => {
                                             product_name={t('product_name')}
                                             setDeleteId={setDeleteId}
                                             setModalOpen={setModalOpen}
+                                            exitPath={"/products-sale"}
                                         />
                                     })}
                                 </div>

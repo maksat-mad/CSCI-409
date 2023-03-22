@@ -14,7 +14,7 @@ const Login = () => {
     const navigate = useNavigate();
     const { state } = useLocation();
     const prevPath = state === null ? "/" : state.prevPath;
-    console.log('...');
+
     useEffect(() => {
         window.scrollTo(0, 0);
         localStorage.setItem('path', '/login');

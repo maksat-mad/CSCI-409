@@ -9,7 +9,7 @@ const UpdateProduct = () => {
     const {t} = useTranslation();
     const currentLanguageCode = cookies.get('i18next') || 'en';
     const location = useLocation();
-    const { product } = location.state;
+    const { product, exitPath } = location.state;
 
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
@@ -144,7 +144,7 @@ const UpdateProduct = () => {
                                         </div>
                                     </form>
                                     <div className={"my-container"}>
-                                        <Link to="/profile">{t('cancel')}</Link>
+                                        <Link to={exitPath}>{t('cancel')}</Link>
                                     </div>
                                 </div>
                             </div>

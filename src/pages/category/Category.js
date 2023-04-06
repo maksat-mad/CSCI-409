@@ -14,17 +14,17 @@ import Error from "../../components/error/Error";
 import {useTranslation} from "react-i18next";
 
 const Category = () => {
-    const limit = 20;
+    const limit = 15;
     const {t} = useTranslation();
     const { state } = useLocation();
-    const category = state === null ? "all" : state.category;
+    const category = state === null ? "" : state.category;
     const navbarInput = useSelector(state => state.navbarInput);
     const selectedCity = useSelector(state => state.city);
 
     const [cards, setCards] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [page, setPage] = useState(1);
-    const [filter, setFilter] = useState({category: 'all', sort: '',
+    const [filter, setFilter] = useState({category: 'all', sort: 'NAME',
         priceFrom: '', priceTo: '', query: '', city: 'astana'});
 
     const [fetchCards, isCardsLoading, cardsError] = useFetching(async (limit, page, filter) => {
@@ -66,10 +66,10 @@ const Category = () => {
                     onChange={selectedSort => setFilter({...filter, sort: selectedSort})}
                     defaultValue={t("sorting")}
                     options={[
-                        {value: 'title', name: t('title')},
-                        {value: 'rating', name: t('rating')},
-                        {value: 'low_price', name: t('low_price')},
-                        {value: 'high_price', name: t('high_price')}
+                        {value: 'NAME', name: t('title')},
+                        {value: 'RATING', name: t('rating')},
+                        {value: 'LOW_PRICE', name: t('low_price')},
+                        {value: 'HIGH_PRICE', name: t('high_price')}
                     ]}
                 />
                 <div className={"container"}>

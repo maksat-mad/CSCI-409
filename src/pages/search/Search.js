@@ -13,7 +13,7 @@ import Error from '../../components/error/Error';
 import {useTranslation} from "react-i18next";
 
 const Search = () => {
-    const limit = 20;
+    const limit = 15;
     const {t} = useTranslation();
 
     const navbarInput = useSelector(state => state.navbarInput);
@@ -22,7 +22,7 @@ const Search = () => {
     const [cards, setCards] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [page, setPage] = useState(1);
-    const [filter, setFilter] = useState({category: 'all', sort: '',
+    const [filter, setFilter] = useState({category: '', sort: 'NAME',
         priceFrom: '', priceTo: '', query: '', city: 'astana'});
 
     const [fetchCards, isCardsLoading, cardsError] = useFetching(async (limit, page, filter) => {
@@ -61,11 +61,11 @@ const Search = () => {
                     onChange={selectedCategory => setFilter({...filter, category: selectedCategory})}
                     defaultValue={t("category")}
                     options={[
-                        {value: 'all', name: t("all")},
-                        {value: 'fruit', name: t("fruit")},
-                        {value: 'vegetable', name: t("vegetable")},
-                        {value: 'drink', name: t("drink")},
-                        {value: 'meat', name: t("meat")}
+                        {value: '', name: t("all")},
+                        {value: '1', name: t("fruit")},
+                        {value: '2', name: t("vegetable")},
+                        {value: '3', name: t("drink")},
+                        {value: '4', name: t("meat")}
                     ]}
                 />
                 <Select
@@ -73,10 +73,10 @@ const Search = () => {
                     onChange={selectedSort => setFilter({...filter, sort: selectedSort})}
                     defaultValue={t("sorting")}
                     options={[
-                        {value: 'title', name: t('title')},
-                        {value: 'rating', name: t('rating')},
-                        {value: 'low_price', name: t('low_price')},
-                        {value: 'high_price', name: t('high_price')}
+                        {value: 'NAME', name: t('title')},
+                        {value: 'RATING', name: t('rating')},
+                        {value: 'LOW_PRICE', name: t('low_price')},
+                        {value: 'HIGH_PRICE', name: t('high_price')}
                     ]}
                 />
                 <div className={"container"}>

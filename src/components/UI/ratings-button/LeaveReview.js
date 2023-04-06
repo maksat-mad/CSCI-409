@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './Ratings.css';
-import LeaveReviewModal from "../modal/LeaveReviewModal";
+import LeaveReviewModal from "../../modal/LeaveReviewModal";
 import {useTranslation} from "react-i18next";
 
 const LeaveReview = ({productId}) => {

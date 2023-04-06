@@ -1,5 +1,5 @@
 import React from 'react';
-import '../modal/Modal.css';
+import '../../modal/Modal.css';
 import './CartCard.css';
 import {Link} from "react-router-dom";
 import CartCardButtonsAndInput from "../cart-parts/CartCardButtonsAndInput";

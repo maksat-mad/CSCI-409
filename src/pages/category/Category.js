@@ -25,12 +25,12 @@ const Category = () => {
     const [totalPages, setTotalPages] = useState(0);
     const [page, setPage] = useState(1);
     const [filter, setFilter] = useState({category: '0', sort: 'DEFAULT',
-        priceFrom: '0', priceTo: '0', query: '', city: selectedCity});
+        priceFrom: '0', priceTo: '0', query: navbarInput, city: selectedCity});
 
     const [fetchCards, isCardsLoading, cardsError] = useFetching(async (limit, page, filter) => {
         const response = await CardService.getItemsByFilter(limit, page, filter);
         setCards([...response.data.data.content]);
-        const totalCount = response.data.data.content.length;
+        const totalCount = response.data.data.totalElements;
         setTotalPages(getPageCount(totalCount, limit));
     });
 

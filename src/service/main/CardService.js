@@ -29,13 +29,15 @@ export default class CardService {
         });
     }
     static async getItemsByFilter(limit = 10, page = 1, filter) {
+        let maxPrice = makeNumber(filter.priceTo), minPrice = makeNumber(filter.priceFrom);
+
         return axios({
             method: 'post',
             url: FILTER_URL,
             data: {
                 "categoryId": [filter.category],
-                "maxPrice": filter.priceFrom,
-                "minPrice": filter.priceTo,
+                "maxPrice": maxPrice,
+                "minPrice": minPrice,
                 "name": filter.query,
                 "productId": ["0"],
                 "productTypeId": ["0"],
@@ -79,3 +81,15 @@ export default class CardService {
             .then(records => records.filter(record => record.id === id));
     }
 };
+
+function makeNumber(price) {
+    if (price === '') {
+        return '0';
+    }
+    for (let i = 0; i < price.length; i++) {
+        if (48 > price.charCodeAt(i) || price.charCodeAt(i) > 57) {
+            return '0';
+        }
+    }
+    return price;
+}

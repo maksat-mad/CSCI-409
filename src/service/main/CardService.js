@@ -74,8 +74,6 @@ export default class CardService {
             headers: {
                 'Content-Type': 'application/json'
             }
-        })
-            .then(response => response.data.data.content)
-            .then(records => records.filter(record => record.id === id));
+        }).then(response => response.data.data.content.filter(obj => +obj.id === +id));
     }
 };

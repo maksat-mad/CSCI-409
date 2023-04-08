@@ -44,11 +44,11 @@ const Review = ({productId}) => {
 
     useEffect(() => {
         switch (sort) {
-            case 'highRating':
+            case 'lowRating':
                 setReviews([...reviews.sort((a, b) => b.id - a.id)]);
                 setReviewsToShow([...reviews.sort((a, b) => b.id - a.id).slice(0, numberOfShownComments)]);
                 break;
-            case 'lowRating':
+            case 'highRating':
                 setReviews([...reviews.sort((a, b) => a.id - b.id)]);
                 setReviewsToShow([...reviews.sort((a, b) => a.id - b.id).slice(0, numberOfShownComments)]);
         }

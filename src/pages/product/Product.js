@@ -27,7 +27,7 @@ const Product = () => {
     const [fetchProduct, isProductLoading, productError] = useFetching(async (productId) => {
         const response = await CardService.getItemById(productId, selectedCity);
         if (response !== undefined && response.length > 0) {
-            setProduct([...response][0]);
+            setProduct(...response);
         }
     });
 
@@ -70,7 +70,7 @@ const Product = () => {
                                 <p className={"product-container individual-text"}>{product.description}</p>
                                 {currentUser ?
                                     <>
-                                        {currentUser.role === 'user' &&
+                                        {currentUser.role === 'USER' &&
                                             <LeaveReview productId={productId}/>
                                         }
                                     </>

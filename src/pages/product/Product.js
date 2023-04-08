@@ -12,18 +12,23 @@ import Review from "../../components/review/Review";
 import NotFound from "../../components/not-found/NotFound";
 import Error from '../../components/error/Error';
 import {useTranslation} from "react-i18next";
+import {useSelector} from "react-redux";
 
 const Product = () => {
     const {t} = useTranslation();
     const {currentUser} = useAuth();
     const {productId} = useParams();
 
+    const selectedCity = useSelector(state => state.city);
+
     const [product, setProduct] = useState(null);
     const [isPictureModalOpen, setIsPictureModalOpen] = useState(false);
 
     const [fetchProduct, isProductLoading, productError] = useFetching(async (productId) => {
-        const response = await CardService.getItemById(productId);
-        setProduct(response.data);
+        const response = await CardService.getItemById(productId, selectedCity);
+        if (response !== undefined && response.length > 0) {
+            setProduct([...response][0]);
+        }
     });
 
     useEffect(() => {
@@ -50,19 +55,19 @@ const Product = () => {
                     <div className={"product-container"}>
                         <div className={"individual-photo-info"}>
                             <div className={"individual-photo"} onClick={() => setIsPictureModalOpen(true)}>
-                                <img style={{width: "100%", height: "100%"}} src={product.url} alt={"product"}/>
+                                <img style={{width: "100%", height: "100%"}} src={product.photo} alt={"product"}/>
                             </div>
                             <div className={"individual-info"}>
-                                <h2 className={"product-container"}>{product.title.split(" ")[0]}</h2>
+                                <h2 className={"product-container"}>{product.name}</h2>
                                 <div className={"container-ratings big-font-size"}>
-                                    {[...Array(3)].map(() =>
+                                    {[...Array(product !== undefined ? Math.ceil(product.rating) : 1)].map(() =>
                                         <span className="fa fa-star checked"></span>
                                     )}
-                                    {[...Array(5 - 3)].map(() =>
+                                    {[...Array(5 - (product !== undefined ? Math.ceil(product.rating) : 1))].map(() =>
                                         <span className="fa fa-star"></span>
                                     )}
                                 </div>
-                                <p className={"product-container individual-text"}>{"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry."}</p>
+                                <p className={"product-container individual-text"}>{product.description}</p>
                                 {currentUser ?
                                     <>
                                         {currentUser.role === 'user' &&
@@ -79,7 +84,7 @@ const Product = () => {
                 </>
             }
             {isPictureModalOpen &&
-                <IndividualPhotoModal setIsOpen={setIsPictureModalOpen} picture={product.url} />
+                <IndividualPhotoModal setIsOpen={setIsPictureModalOpen} picture={product.photo} />
             }
         </div>
     );

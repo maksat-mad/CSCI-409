@@ -12,7 +12,7 @@ export default class CardService {
                 "categoryId": [category],
                 "maxPrice": 0,
                 "minPrice": 0,
-                "name": "ap",
+                "name": "",
                 "productId": ["0"],
                 "productTypeId": ["0"],
                 "region": selectedCity,
@@ -52,8 +52,31 @@ export default class CardService {
             }
         });
     }
-    static async getItemById(id) {
-        return await axios.get('https://jsonplaceholder.typicode.com/photos/' + id);
+    static async getItemById(id, selectedCity) {
+        return axios({
+            method: 'post',
+            url: FILTER_URL,
+            data: {
+                "categoryId": ["0"],
+                "maxPrice": 0,
+                "minPrice": 0,
+                "name": "",
+                "productId": ["0"],
+                "productTypeId": ["0"],
+                "region": selectedCity,
+                "sortingType": "DEFAULT"
+            },
+            params: {
+                page: 1,
+                pageSize: 1000,
+                lang: (cookies.get('i18next') || 'en').toUpperCase()
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.data.data.content)
+            .then(records => records.filter(record => record.id === id));
     }
 
     static async getReviewsByProductId(id) {

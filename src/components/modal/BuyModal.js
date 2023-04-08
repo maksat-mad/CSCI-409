@@ -44,19 +44,15 @@ const BuyModal = ({setIsOpen, tel, buy_products, thank_purchase}) => {
         const products = [];
         Array.from(cartItemsIdsAndQuantity).forEach(([productId, quantity]) => {
             const productToBuy = {
-                productId: productId,
-                quantity: quantity
+                recordId: productId,
+                quantity: quantity,
+                phoneNumber: tel
             }
             products.push(productToBuy);
         });
 
-        const body = {
-            products: products,
-            tel: tel
-        };
-
         (async function postBuy() {
-            await BuyService.postBuy(body)
+            await BuyService.postBuy(products)
                 .then(() => {
                     setIsSuccess(true);
                     clearCart();

@@ -1,12 +1,15 @@
-import axios from "axios";
+import axios from "../../api/axios";
 
+const BUY_URL = '/api/purchase/request';
 export default class BuyService {
     static async postBuy(body) {
-        return await axios.post('https://jsonplaceholder.typicode.com/posts', {
-            body: body,
+        return axios({
+            method: 'post',
+            url: BUY_URL,
+            data: body,
             headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
+                'Content-Type': 'application/json'
+            }
         });
     }
 }

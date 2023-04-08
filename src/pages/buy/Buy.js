@@ -69,11 +69,11 @@ const Buy = () => {
                             <div>
                                 {[...cartItems].map(([id, card], index) => {
                                     return <div className={"container-buy-items"}>
-                                        <p style={{fontWeight: 'bold'}}>{index + 1}) Item</p>
+                                        <p style={{fontWeight: 'bold'}}>{index + 1}) {card.name}</p>
                                         <div className={"buy-items-content"}>
-                                            <div> {t('one_item_cost')}: {1000} {t('tg')}</div>
+                                            <div> {t('one_item_cost')}: {card.price} {t('tg')}</div>
                                             <div> {t('number_of_items')}: {cartItemsIdsAndQuantity.get(id)}</div>
-                                            <div>{t('total_cost')}: {cartItemsIdsAndQuantity.get(id) * 1000} {t('tg')}</div>
+                                            <div>{t('total_cost')}: {cartItemsIdsAndQuantity.get(id) * card.price} {t('tg')}</div>
                                         </div>
                                     </div>
                                 })}
@@ -91,7 +91,7 @@ const Buy = () => {
                                 type={"tel"}
                             />
                             <div className={"button-container"}>
-                                {currentUser.role === 'user' &&
+                                {currentUser.role === 'USER' &&
                                     <span onClick={handleSubmit}>
                                         <div className={"ratings-button buy-button"}>
                                             {t('buy')}

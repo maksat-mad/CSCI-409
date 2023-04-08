@@ -61,3 +61,9 @@
     justify-content: center;
     flex-wrap: wrap;
 }
+
+.filter-button {
+    background-color: aliceblue;
+    height: 30px;
+    border-color: aliceblue;
+}

@@ -180,5 +180,6 @@
   "admin_profile": "Админ Профилі",
   "super_admin_profile": "Супер Админ Профилі",
 
-  "default": "дефолт"
+  "default": "дефолт",
+  "apply_filter": "Филтрді қолдану"
 }

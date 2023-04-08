@@ -38,22 +38,25 @@ const Category = () => {
         window.scrollTo(0, 0);
         localStorage.setItem('path', '/category');
         setFilter({...filter, category: category});
+        fetchCards(limit, page, filter);
     }, []);
 
     useEffect(() => {
-        fetchCards(limit, page, filter);
-    }, [filter]);
-
-    useEffect(() => {
         setFilter({...filter, query: navbarInput});
+        fetchCards(limit, page, filter);
     }, [navbarInput]);
 
     useEffect(() => {
         setFilter({...filter, city: selectedCity});
+        fetchCards(limit, page, filter);
     }, [selectedCity]);
 
     const changePage = (page) => {
         setPage(page);
+        fetchCards(limit, page, filter);
+    }
+
+    const handleFilterApply = () => {
         fetchCards(limit, page, filter);
     }
 
@@ -87,6 +90,7 @@ const Category = () => {
                             type="number"
                             className={"sort-inputs"}
                         />
+                        <button onClick={handleFilterApply} className={"filter-button"}>{t('apply_filter')}</button>
                     </div>
                 </div>
             </div>

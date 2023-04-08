@@ -180,5 +180,6 @@
   "admin_profile": "Профиль Админа",
   "super_admin_profile": "Профиль Супер Админа",
 
-  "default": "по умолчанию"
+  "default": "по умолчанию",
+  "apply_filter": "Применить фильтр"
 }

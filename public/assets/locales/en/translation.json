@@ -180,5 +180,6 @@
   "admin_profile": "Admin Profile",
   "super_admin_profile": "Super Admin Profile",
 
-  "default": "default"
+  "default": "default",
+  "apply_filter": "Apply filter"
 }

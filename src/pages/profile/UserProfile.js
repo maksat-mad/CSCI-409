@@ -19,7 +19,7 @@ const UserProfile = () => {
     return (
         <div className={"profile"}>
             <div className={"container"}>
-                <h1>{currentUser.role === 'user' ? t('profile') : currentUser.role === 'admin' ? t('admin_profile') : t('super_admin_profile')}</h1>
+                <h1>{currentUser.role === 'USER' ? t('profile') : currentUser.role === 'ADMIN' ? t('admin_profile') : t('super_admin_profile')}</h1>
             </div>
             <div className={"my-container"}>
                 <strong>{t('email')}:</strong> {currentUser.login}
@@ -32,7 +32,7 @@ const UserProfile = () => {
                 <BlueButton url={"/update-info"} text={t('update_info')}/>
             </div>
 
-            {currentUser.role === 'user' &&
+            {currentUser.role === 'USER' &&
                 <>
                     <div className={"my-container"}>
                         <GreenButton url={"/add-product"} text={t('add_product')}/>
@@ -56,14 +56,14 @@ const UserProfile = () => {
                     </div>
                 </>
             }
-            {((currentUser.role === 'admin') || (currentUser.role === 'superAdmin')) &&
+            {((currentUser.role === 'ADMIN') || (currentUser.role === 'superAdmin')) &&
                 <>
                     <div className={"my-container"}>
                         <GreenButton url={"/user-management"} text={t('user_management')}/>
                     </div>
                 </>
             }
-            {currentUser.role === 'superAdmin' &&
+            {currentUser.role === 'SUPER_ADMIN' &&
                 <>
                     <div className={"my-container"}>
                         <RedButton url={"/create-admin"} text={t('create_admin')}/>

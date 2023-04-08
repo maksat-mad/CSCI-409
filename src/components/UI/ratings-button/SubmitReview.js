@@ -13,9 +13,9 @@ const SubmitReview = ({productId, rating, comment, setIsError, setError, setIsSu
             setIsLoading(false);
         } else {
             const body = {
-                productId: productId,
+                recordId: productId,
                 rating: rating,
-                comment: comment
+                description: comment
             };
             await ReviewService.postReview(body)
                 .then(() => setIsSuccess(true))

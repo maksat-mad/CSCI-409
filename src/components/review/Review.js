@@ -4,11 +4,11 @@ import Select from "../UI/select/Select";
 import ReviewCard from "../UI/card/ReviewCard";
 import LoadMore from "../UI/ratings-button/LoadMore";
 import {useFetching} from "../../hook/useFetching";
-import CardService from "../../service/main/CardService";
 import Loader from "../loader/Loader";
 import NotFound from "../not-found/NotFound";
 import Error from '../error/Error';
 import {useTranslation} from "react-i18next";
+import ReviewService from "../../service/review/ReviewService";
 
 const Review = ({productId}) => {
     const {t} = useTranslation();
@@ -23,7 +23,7 @@ const Review = ({productId}) => {
     const [numberOfShownComments, setNumberOfShownComments] = useState(5);
 
     const [fetchReviews, isReviewsLoading, reviewsError] = useFetching(async () => {
-        const response = await CardService.getReviewsByProductId(productId);
+        const response = await ReviewService.getReviewsByProductId(productId);
         setReviews([...response.data.list]);
         setTotalReviews([...response.data.list].length);
         setReviewsToShow([...[...response.data.list].slice(0, limit)]);
@@ -76,7 +76,8 @@ const Review = ({productId}) => {
                         <NotFound message={t("no_product")}/>
                     }
                     {reviewsToShow.map(review => {
-                        return <ReviewCard key={review.id} name={review.name} rating={review.rating} comment={review.description}/>
+                        return <ReviewCard key={review.id} name={review.name} rating={review.rating}
+                                           comment={review.description}/>
                     })}
                     {showLoadMore &&
                         <LoadMore limit={limit} num={numberOfShownComments} shownComments={setNumberOfShownComments}/>

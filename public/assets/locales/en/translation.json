@@ -178,5 +178,7 @@
   "make_admin": "Make admin",
   "remove_from_admin": "Remove from admin",
   "admin_profile": "Admin Profile",
-  "super_admin_profile": "Super Admin Profile"
+  "super_admin_profile": "Super Admin Profile",
+
+  "default": "default"
 }

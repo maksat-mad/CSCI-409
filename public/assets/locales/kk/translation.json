@@ -178,5 +178,7 @@
   "make_admin": "Админ қылу",
   "remove_from_admin": "Админнен жою",
   "admin_profile": "Админ Профилі",
-  "super_admin_profile": "Супер Админ Профилі"
+  "super_admin_profile": "Супер Админ Профилі",
+
+  "default": "дефолт"
 }

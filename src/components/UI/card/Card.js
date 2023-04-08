@@ -64,25 +64,25 @@ const Card = ({card, category}) => {
                   style={{textDecoration: "none", color: "black"}}>
                 <img
                     className={"card-image"}
-                    src={card !== undefined ? card.url :
+                    src={card !== undefined ? card.photo :
                         category === "fruits" ? fruits :
                             category === "vegetables" ? vegetables :
                                 category === "drinks" ? drinks : meats}
-                    alt={card !== undefined ? card.title.split(' ').slice(0, 1).join('') : category}
+                    alt={card !== undefined ? card.name : category}
                     style={{width: "100%"}}
                 />
                 <div className={"container-left"}>
                     <h4>
-                        <b>{card !== undefined ? card.title.split(' ').slice(0, 1).join('') : t('check_out_other') + ' ' + t(category)}</b>
+                        <b>{card !== undefined ? card.name : t('check_out_other') + ' ' + t(category)}</b>
                     </h4>
-                    <p>{card !== undefined ? "320 " + t('tg_kg') : ""}</p>
+                    <p>{card !== undefined ? card.price + ' ' + t('tg_kg') : ""}</p>
                 </div>
                 <div className={category !== undefined ? "hidden" : "container-ratings"}>
                     <div className={"container-ratings"}>
-                        {[...Array(3)].map(() =>
+                        {[...Array(card !== undefined ? Math.ceil(card.rating) : 1)].map(() =>
                             <span className="fa fa-star checked"></span>
                         )}
-                        {[...Array(5 - 3)].map(() =>
+                        {[...Array(5 - (card !== undefined ? Math.ceil(card.rating) : 1))].map(() =>
                             <span className="fa fa-star"></span>
                         )}
                     </div>

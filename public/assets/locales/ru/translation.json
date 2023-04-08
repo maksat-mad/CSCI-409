@@ -178,5 +178,7 @@
   "make_admin": "Сделать админом",
   "remove_from_admin": "Удалить из админки",
   "admin_profile": "Профиль Админа",
-  "super_admin_profile": "Профиль Супер Админа"
+  "super_admin_profile": "Профиль Супер Админа",
+
+  "default": "по умолчанию"
 }

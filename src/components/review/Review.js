@@ -24,10 +24,10 @@ const Review = ({productId}) => {
 
     const [fetchReviews, isReviewsLoading, reviewsError] = useFetching(async () => {
         const response = await CardService.getReviewsByProductId(productId);
-        setReviews([...response.data]);
-        setTotalReviews([...response.data].length);
-        setReviewsToShow([...[...response.data].slice(0, limit)]);
-        setShowLoadMore([...response.data].length > limit);
+        setReviews([...response.data.list]);
+        setTotalReviews([...response.data.list].length);
+        setReviewsToShow([...[...response.data.list].slice(0, limit)]);
+        setShowLoadMore([...response.data.list].length > limit);
     });
 
     useEffect(() => {
@@ -76,7 +76,7 @@ const Review = ({productId}) => {
                         <NotFound message={t("no_product")}/>
                     }
                     {reviewsToShow.map(review => {
-                        return <ReviewCard key={review.id} name={"Maksat"} rating={3} comment={review.body}/>
+                        return <ReviewCard key={review.id} name={review.name} rating={review.rating} comment={review.description}/>
                     })}
                     {showLoadMore &&
                         <LoadMore limit={limit} num={numberOfShownComments} shownComments={setNumberOfShownComments}/>

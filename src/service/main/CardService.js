@@ -2,6 +2,7 @@ import axios from "../../api/axios";
 import cookies from "js-cookie";
 
 const FILTER_URL = '/api/record/filter';
+const GET_REVIEWS_URL = '/api/rating/get';
 
 export default class CardService {
     static async getItems(limit = 10, page = 1, category = "0", selectedCity = "astana") {
@@ -80,6 +81,14 @@ export default class CardService {
     }
 
     static async getReviewsByProductId(id) {
-        return await axios.get('https://jsonplaceholder.typicode.com/comments/');
+        return axios({
+            method: 'get',
+            params: {
+                recordId: id
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
     }
 };

@@ -24,13 +24,13 @@ const Category = () => {
     const [cards, setCards] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [page, setPage] = useState(1);
-    const [filter, setFilter] = useState({category: 'all', sort: 'NAME',
-        priceFrom: '', priceTo: '', query: '', city: 'astana'});
+    const [filter, setFilter] = useState({category: '0', sort: 'DEFAULT',
+        priceFrom: '0', priceTo: '0', query: '', city: selectedCity});
 
     const [fetchCards, isCardsLoading, cardsError] = useFetching(async (limit, page, filter) => {
         const response = await CardService.getItemsByFilter(limit, page, filter);
-        setCards([...response.data]);
-        const totalCount = response.headers['x-total-count'];
+        setCards([...response.data.data.content]);
+        const totalCount = response.data.data.content.length;
         setTotalPages(getPageCount(totalCount, limit));
     });
 
@@ -66,6 +66,7 @@ const Category = () => {
                     onChange={selectedSort => setFilter({...filter, sort: selectedSort})}
                     defaultValue={t("sorting")}
                     options={[
+                        {value: 'DEFAULT', name: t('default')},
                         {value: 'NAME', name: t('title')},
                         {value: 'RATING', name: t('rating')},
                         {value: 'LOW_PRICE', name: t('low_price')},

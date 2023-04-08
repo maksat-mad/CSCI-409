@@ -4,28 +4,22 @@ import cookies from "js-cookie";
 const FILTER_URL = '/api/record/filter';
 
 export default class CardService {
-    static async getItems(limit = 10, page = 1, category = "all") {
-        // return await axios.get('https://jsonplaceholder.typicode.com/photos', {
-        //     params: {
-        //         _limit: limit,
-        //         _page: page
-        //     }
-        // });
+    static async getItems(limit = 10, page = 1, category = "0", selectedCity = "astana") {
         return axios({
             method: 'post',
             url: FILTER_URL,
             data: {
-                "categoryId": ["0"],
+                "categoryId": [category],
                 "maxPrice": 0,
                 "minPrice": 0,
                 "name": "ap",
                 "productId": ["0"],
                 "productTypeId": ["0"],
-                "region": "astana",
+                "region": selectedCity,
                 "sortingType": "DEFAULT"
             },
             params: {
-                page: 1,
+                page: page,
                 pageSize: limit,
                 lang: (cookies.get('i18next') || 'en').toUpperCase()
             },
@@ -35,43 +29,21 @@ export default class CardService {
         });
     }
     static async getItemsByFilter(limit = 10, page = 1, filter) {
-        // await axios.post(FILTER_URL + '?lang=' + (cookies.get('i18next') || 'en').toUpperCase() + `&page=${1}` + `&pageSize=${limit}`,
-        //     JSON.stringify({
-        //         "categoryId": [
-        //             0
-        //         ],
-        //         "maxPrice": 0,
-        //         "minPrice": 0,
-        //         "name": "ap",
-        //         "productId": [
-        //             0
-        //         ],
-        //         "productTypeId": [
-        //             0
-        //         ],
-        //         "region": "astana",
-        //         "sortingType": "DEFAULT"
-        //     }),
-        //     {
-        //         headers: {'Content-Type': 'application/json'}
-        //     }
-        // );
-
         return axios({
             method: 'post',
             url: FILTER_URL,
             data: {
-                "categoryId": ["0"],
-                "maxPrice": 0,
-                "minPrice": 0,
-                "name": "ap",
+                "categoryId": [filter.category],
+                "maxPrice": filter.priceFrom,
+                "minPrice": filter.priceTo,
+                "name": filter.query,
                 "productId": ["0"],
                 "productTypeId": ["0"],
-                "region": "astana",
-                "sortingType": "DEFAULT"
+                "region": filter.city,
+                "sortingType": filter.sort
             },
             params: {
-                page: 1,
+                page: page,
                 pageSize: limit,
                 lang: (cookies.get('i18next') || 'en').toUpperCase()
             },

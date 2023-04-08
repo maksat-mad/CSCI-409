@@ -23,7 +23,7 @@ const Search = () => {
     const [totalPages, setTotalPages] = useState(0);
     const [page, setPage] = useState(1);
     const [filter, setFilter] = useState({category: '0', sort: 'DEFAULT',
-        priceFrom: '', priceTo: '', query: '', city: 'astana'});
+        priceFrom: '0', priceTo: '0', query: '', city: selectedCity});
 
     const [fetchCards, isCardsLoading, cardsError] = useFetching(async (limit, page, filter) => {
         const response = await CardService.getItemsByFilter(limit, page, filter);

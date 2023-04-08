@@ -15,24 +15,25 @@ const Main = () => {
     const [search, setSearch] = useState(false);
 
     const navbarInput = useSelector(state => state.navbarInput);
+    const selectedCity = useSelector(state => state.city);
 
     const [fetchFruitCards, isFruitCardsLoading, fruitCardsError] = useFetching(async (limit = 10, page = 1) => {
-        const response = await CardService.getItemsByFilter(limit, page, {lala: "fruits"});
+        const response = await CardService.getItems(limit, page, "1", selectedCity);
         setFruitCards([...response.data.data.content]);
     });
 
     const [fetchVegetableCards, isVegetableCardsLoading, vegetableCardsError] = useFetching(async (limit = 10, page = 1) => {
-        const response = await CardService.getItemsByFilter(limit, page, {lala: "vegetables"});
+        const response = await CardService.getItems(limit, page, "2", selectedCity);
         setVegetableCards([...response.data.data.content]);
     });
 
     const [fetchDrinkCards, isDrinkCardsLoading, drinkCardsError] = useFetching(async (limit = 10, page = 1) => {
-        const response = await CardService.getItemsByFilter(limit, page, {lala: "drinks"});
+        const response = await CardService.getItems(limit, page, "3", selectedCity);
         setDrinkCards([...response.data.data.content]);
     });
 
     const [fetchMeatCards, isMeatCardsLoading, meatCardsError] = useFetching(async (limit = 10, page = 1) => {
-        const response = await CardService.getItemsByFilter(limit, page, {lala: "meats"});
+        const response = await CardService.getItems(limit, page, "4", selectedCity);
         setMeatCards([...response.data.data.content]);
     });
 

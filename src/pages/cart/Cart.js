@@ -51,7 +51,7 @@ const Cart = () => {
                         </div>
                         {currentUser ?
                             <>
-                                {currentUser.role === 'user' &&
+                                {currentUser.role === 'USER' &&
                                     <>
                                         <CartBuyButton tg={t('tg')} money={totalMoney}/>
                                         <CartBuyBottom message={t('buy')} tg={t('tg')} money={totalMoney}/>

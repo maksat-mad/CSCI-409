@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './CartCardButtonsAndInput.css';
 import {useDispatch, useSelector} from "react-redux";
 
-const CartCardButtonsAndInput = ({cardId, maxValue}) => {
+const CartCardButtonsAndInput = ({cardId, maxValue, price}) => {
     const dispatch = useDispatch();
 
     const cartItemsNumber = useSelector(state => state.cartItemsNumber);
@@ -34,20 +34,20 @@ const CartCardButtonsAndInput = ({cardId, maxValue}) => {
             dispatch({type: 'CART_ITEMS_QUANTITY', payload: cartItemsQuantity - value});
             cartItemsIdsAndQuantity.delete(cardId);
             dispatch({type: 'CART_ITEMS_IDS_AND_QUANTITY', payload: cartItemsIdsAndQuantity});
-            dispatch({type: 'TOTAL_MONEY', payload: totalMoney - value * 1000});
+            dispatch({type: 'TOTAL_MONEY', payload: totalMoney - value * price});
             setValue(0);
             deleteItem();
         } else if (event.target.value >= maxValue) {
             dispatch({type: 'CART_ITEMS_QUANTITY', payload: cartItemsQuantity - value + maxValue});
             cartItemsIdsAndQuantity.set(cardId, maxValue);
             dispatch({type: 'CART_ITEMS_IDS_AND_QUANTITY', payload: cartItemsIdsAndQuantity});
-            dispatch({type: 'TOTAL_MONEY', payload: totalMoney + (maxValue - value) * 1000});
+            dispatch({type: 'TOTAL_MONEY', payload: totalMoney + (maxValue - value) * price});
             setValue(maxValue);
         } else {
             dispatch({type: 'CART_ITEMS_QUANTITY', payload: cartItemsQuantity - value + +event.target.value});
             cartItemsIdsAndQuantity.set(cardId, +event.target.value);
             dispatch({type: 'CART_ITEMS_IDS_AND_QUANTITY', payload: cartItemsIdsAndQuantity});
-            dispatch({type: 'TOTAL_MONEY', payload: totalMoney + (+event.target.value - value) * 1000});
+            dispatch({type: 'TOTAL_MONEY', payload: totalMoney + (+event.target.value - value) * price});
             setValue(+event.target.value);
         }
     }
@@ -65,7 +65,7 @@ const CartCardButtonsAndInput = ({cardId, maxValue}) => {
             dispatch({type: 'CART_ITEMS_IDS_AND_QUANTITY', payload: cartItemsIdsAndQuantity});
             setValue(value - 1);
         }
-        dispatch({type: 'TOTAL_MONEY', payload: totalMoney - 1000});
+        dispatch({type: 'TOTAL_MONEY', payload: totalMoney - price});
     }
 
     const handlePlusClick = () => {
@@ -75,7 +75,7 @@ const CartCardButtonsAndInput = ({cardId, maxValue}) => {
             dispatch({type: 'CART_ITEMS_QUANTITY', payload: cartItemsQuantity + 1});
             cartItemsIdsAndQuantity.set(cardId, cartItemsIdsAndQuantity.get(cardId) + 1);
             dispatch({type: 'CART_ITEMS_IDS_AND_QUANTITY', payload: cartItemsIdsAndQuantity});
-            dispatch({type: 'TOTAL_MONEY', payload: totalMoney + 1000});
+            dispatch({type: 'TOTAL_MONEY', payload: totalMoney + price});
             setValue(value + 1);
         }
     }

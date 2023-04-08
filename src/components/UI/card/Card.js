@@ -33,7 +33,7 @@ const Card = ({card, category}) => {
             cartItemsIdsAndQuantity.set(card.id, 1);
             dispatch({type: 'CART_ITEMS_IDS_AND_QUANTITY', payload: cartItemsIdsAndQuantity});
 
-            dispatch({type: 'TOTAL_MONEY', payload: totalMoney + 1000});
+            dispatch({type: 'TOTAL_MONEY', payload: totalMoney + card.price});
         }
     }
 
@@ -51,7 +51,7 @@ const Card = ({card, category}) => {
         }
         dispatch({type: 'CART_ITEMS_NUMBER', payload: cartItemsNumber - 1});
         dispatch({type: 'CART_ITEMS_QUANTITY', payload: cartItemsQuantity - cartItemsIdsAndQuantity.get(card.id)});
-        dispatch({type: 'TOTAL_MONEY', payload: totalMoney - cartItemsIdsAndQuantity.get(card.id) * 1000});
+        dispatch({type: 'TOTAL_MONEY', payload: totalMoney - cartItemsIdsAndQuantity.get(card.id) * card.price});
         cartItemsIdsAndQuantity.delete(card.id);
         cartItems.delete(card.id);
         dispatch({type: 'CART_ITEMS', payload: cartItems});

@@ -16,7 +16,7 @@ const CartCard = ({card, more_info, one_item, total, tg}) => {
     const totalMoney = useSelector(state => state.totalMoney);
 
     const handleDelete = () => {
-        dispatch({type: 'TOTAL_MONEY', payload: totalMoney - cartItemsIdsAndQuantity.get(card.id) * 1000});
+        dispatch({type: 'TOTAL_MONEY', payload: totalMoney - cartItemsIdsAndQuantity.get(card.id) * card.price});
         dispatch({type: 'CART_ITEMS_QUANTITY', payload: cartItemsQuantity - cartItemsIdsAndQuantity.get(card.id)});
         cartItemsIdsAndQuantity.delete(card.id);
         dispatch({type: 'CART_ITEMS_IDS_AND_QUANTITY', payload: cartItemsIdsAndQuantity});
@@ -40,19 +40,19 @@ const CartCard = ({card, more_info, one_item, total, tg}) => {
                 <span onClick={handleDelete} className="close close-inner black">&times;</span>
             </div>
             <div className={"cart-card-img"}>
-                <img style={{width: "100%", height: "100%"}} src={card.url} alt={"cart"}/>
+                <img style={{width: "100%", height: "100%"}} src={card.photo} alt={"cart"}/>
             </div>
             <div className={"cart-card-content"}>
                 <div>
-                    <h3 style={{margin: "0", padding: "0"}}>Item</h3><br/>
+                    <h3 style={{margin: "0", padding: "0"}}>{card.name}</h3><br/>
                     <Link to={`/products/${card.id}`} style={{textDecoration: "none"}}>
                         <p style={{margin: "0", padding: "0"}}>{more_info}</p><br/>
                     </Link><br/>
-                    <CartCardButtonsAndInput cardId={card.id} maxValue={10}/>
+                    <CartCardButtonsAndInput cardId={card.id} maxValue={10} price={card.price}/>
                     <p style={{margin: "0", padding: "10px"}}>
-                        {one_item} = 1000 {tg}
+                        {one_item} = {card.price} {tg}
                         <br/>
-                        {total} = {cartItemsIdsAndQuantity.get(card.id) * 1000} {tg}
+                        {total} = {cartItemsIdsAndQuantity.get(card.id) * card.price} {tg}
                     </p>
                 </div>
             </div>

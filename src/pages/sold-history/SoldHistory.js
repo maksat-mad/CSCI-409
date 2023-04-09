@@ -16,7 +16,7 @@ const SoldHistory = () => {
 
     const [fetchRequests, isRequestsLoading, requestsError] = useFetching(async () => {
         const response = await UserService.getSoldHistory();
-        setRequests([...response.data]);
+        setRequests([...response]);
     });
 
     useEffect(() => {

@@ -16,7 +16,7 @@ const BoughtHistory = () => {
 
     const [fetchRequests, isRequestsLoading, requestsError] = useFetching(async () => {
         const response = await UserService.getBoughtHistory();
-        setRequests([...response.data]);
+        setRequests([...response]);
     });
 
     useEffect(() => {

@@ -6,8 +6,8 @@ import {useNavigate} from "react-router-dom";
 const LOGIN_URL = '/api/auth/login';
 const REGISTER_URL = '/api/auth/registration';
 const FORGOT_PWD_URL = '/api/auth/forgotPassword';
-const UPDATE_PWD_URL = '/api/auth/changePassword';
-const UPDATE_INFO_URL = '/api/auth/changeUserInfo';
+const UPDATE_PWD_URL = '/api/user/changePassword';
+const UPDATE_INFO_URL = '/api/user/changeUserInfo';
 
 const AuthContext = React.createContext();
 

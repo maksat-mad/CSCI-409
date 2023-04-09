@@ -121,8 +121,8 @@
   "products_sale": "My products for sale",
   "products_not_sale": "My products NOT for sale",
   "in_progress": "In progress",
-  "bought_history": "Bought history",
-  "sold_history": "Sold history",
+  "bought_history": "Purchase history",
+  "sold_history": "Sale history",
 
   "product_name": "Product name",
   "choose_product_category": "Choose product category",
@@ -165,8 +165,8 @@
   "requests_to_buy": "Purchase requests for your products",
   "accepted": "Accepted",
 
-  "no_bought_history": "No bought history",
-  "no_sold_history": "No sold history",
+  "no_bought_history": "No purchase history",
+  "no_sold_history": "No sale history",
 
   "user_management": "User Management",
   "create_admin": "Create Admin",

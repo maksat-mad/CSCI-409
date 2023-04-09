@@ -1,6 +1,6 @@
 .exit-button {
     position: fixed;
-    top: 25px;
+    top: 100px;
     right: 25px;
     transition: all 0.4s ease-in-out;
 }

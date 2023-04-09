@@ -1,6 +1,7 @@
 import axios from "../../api/axios";
 
 const IN_PROGRESS_URL = '/api/purchase/purchaseList';
+const PURCHASE_STATUS = '/api/purchase/changeStatus';
 
 export default class UserService {
     static async getRequests() {
@@ -17,17 +18,29 @@ export default class UserService {
     }
 
     static async cancelRequest(id) {
-        return await axios.post('https://jsonplaceholder.typicode.com/posts', {
+        return axios({
+            method: 'post',
+            url: PURCHASE_STATUS,
+            params: {
+                purchaseId: id,
+                purchaseStatus: 'REJECTED'
+            },
             headers: {
-                'Content-type': 'application/json; charset=UTF-8',
+                'Content-Type': 'application/json'
             }
         });
     }
 
     static async acceptRequest(id) {
-        return await axios.post('https://jsonplaceholder.typicode.com/posts', {
+        return axios({
+            method: 'post',
+            url: PURCHASE_STATUS,
+            params: {
+                purchaseId: id,
+                purchaseStatus: 'CONFIRMED'
+            },
             headers: {
-                'Content-type': 'application/json; charset=UTF-8',
+                'Content-Type': 'application/json'
             }
         });
     }

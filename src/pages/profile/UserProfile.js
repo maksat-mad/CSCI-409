@@ -56,7 +56,7 @@ const UserProfile = () => {
                     </div>
                 </>
             }
-            {((currentUser.role === 'ADMIN') || (currentUser.role === 'superAdmin')) &&
+            {((currentUser.role === 'ADMIN') || (currentUser.role === 'SUPER_ADMIN')) &&
                 <>
                     <div className={"my-container"}>
                         <GreenButton url={"/user-management"} text={t('user_management')}/>

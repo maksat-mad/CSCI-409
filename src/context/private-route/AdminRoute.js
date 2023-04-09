@@ -5,7 +5,7 @@ import { useAuth } from "../AuthContext";
 export default function AdminRoute({ children }) {
     const { currentUser } = useAuth();
     if (currentUser) {
-        return ((currentUser.role === 'admin') || (currentUser.role === 'superAdmin')) ? children : <Navigate to="/no-page" />;
+        return ((currentUser.role === 'ADMIN') || (currentUser.role === 'SUPER_ADMIN')) ? children : <Navigate to="/no-page" />;
     }
     return <Navigate to="/login" />;
 }

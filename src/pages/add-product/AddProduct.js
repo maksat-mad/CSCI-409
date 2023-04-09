@@ -30,9 +30,9 @@ const AddProduct = () => {
         localStorage.setItem('path', '/add-product');
         async function initialFetch() {
             await ProductService.getProductTypes(1)
-                .then(response => setProductType([...response.data]));
+                .then(response => setProductType([...response]));
             await ProductService.getProducts(1)
-                .then(response => setProducts([...response.data]));
+                .then(response => setProducts([...response]));
         }
         initialFetch();
     }, []);
@@ -47,13 +47,13 @@ const AddProduct = () => {
         setProductId('');
 
         await ProductService.getProductTypes(id)
-            .then(response => setProductType([...response.data]));
+            .then(response => setProductType([...response]));
     }
 
     const handleProductTypeChange = async (id) => {
         setError('');
         await ProductService.getProducts(id)
-            .then(response => setProducts([...response.data]));
+            .then(response => setProducts([...response]));
     }
 
     const handleDescriptionChange = (e) => {

@@ -1,4 +1,8 @@
-import axios from "axios";
+import axios from "../../api/axios";
+import cookies from "js-cookie";
+
+const PRODUCT_LIST_URL = '/api/product/list';
+const PRODUCTS_URL = '/api/productType/list';
 
 export default class ProductService {
     static async addProduct(body) {
@@ -20,37 +24,31 @@ export default class ProductService {
     }
 
     static async getProductTypes(id) {
-        // return await axios.post('https://jsonplaceholder.typicode.com/posts', {
-        //     body: body,
-        //     headers: {
-        //         'Content-type': 'application/json; charset=UTF-8',
-        //     }
-        // });
-        return {
-            data: [
-                {value: '1', name: "alma"},
-                {value: '2', name: "almurt"},
-                {value: '3', name: "banan"},
-                {value: '4', name: "shabdaly"}
-            ]
-        };
+        return axios({
+            method: 'get',
+            url: PRODUCT_LIST_URL,
+            params: {
+                categoryId: id,
+                lang: (cookies.get('i18next') || 'en').toUpperCase()
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => response.data.list);
     }
 
     static async getProducts(id) {
-        // return await axios.post('https://jsonplaceholder.typicode.com/posts', {
-        //     body: body,
-        //     headers: {
-        //         'Content-type': 'application/json; charset=UTF-8',
-        //     }
-        // });
-        return {
-            data: [
-                {value: '1', name: "kyzyl alma"},
-                {value: '2', name: "sary alma"},
-                {value: '3', name: "zhasyl alma"},
-                {value: '4', name: "alma"}
-            ]
-        };
+        return axios({
+            method: 'get',
+            url: PRODUCTS_URL,
+            params: {
+                productId: id,
+                lang: (cookies.get('i18next') || 'en').toUpperCase()
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => response.data.list);
     }
 
     static async getProductsSale() {

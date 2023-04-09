@@ -22,22 +22,22 @@ const InProgressCard = ({userRequest, accepted, cancel, lang, tg, setCancelId, s
             <div style={{overflowWrap:"anywhere"}}>
                 <div className={"review-name-rating"}>
                     <h4>{userRequest.email}</h4>
-                    <h4>{userRequest.time}</h4>
+                    <h4>{userRequest.purchaseDate}</h4>
                 </div>
                 <div className={"container-ratings"} style={{flexWrap: "wrap"}}>
                     <div>
-                        {lang === 'en' ? userRequest.detailsEn.map((detail, index) => {
+                        {lang === 'en' ? userRequest.purchaseName.additionalProp1.map((detail, index) => {
                             return <p>{index + 1}) {detail}</p>
-                        }) : lang === 'kk' ? userRequest.detailsKk.map((detail, index) => {
+                        }) : lang === 'kk' ? userRequest.purchaseName.additionalProp2.map((detail, index) => {
                             return <p>{index + 1}) {detail}</p>
-                        }) : userRequest.detailsRu.map((detail, index) => {
+                        }) : userRequest.purchaseName.additionalProp3.map((detail, index) => {
                             return <p>{index + 1}) {detail}</p>
                         })}
                     </div>
                 </div>
                 <div className={"review-name-rating"}>
-                    <p>{total}: {userRequest.totalMoney} {tg}</p>
-                    <p>{tel}: {userRequest.phoneNumber}</p>
+                    <p>{total}: {userRequest.price} {tg}</p>
+                    <p>{tel}: {userRequest.costumerPhone}</p>
                 </div>
                 <div className={"container-ratings"} style={{flexWrap: "wrap"}}>
                     <div className={"button-container"}>

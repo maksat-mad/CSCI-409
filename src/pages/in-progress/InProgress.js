@@ -23,7 +23,7 @@ const InProgress = () => {
     const [fetchRequests, isRequestsLoading, requestsError] = useFetching(async () => {
         setIsLoading(true);
         const response = await UserService.getRequests();
-        setRequests([...response.data]);
+        setRequests([...response]);
         setIsLoading(false);
     });
 

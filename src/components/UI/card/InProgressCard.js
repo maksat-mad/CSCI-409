@@ -26,13 +26,10 @@ const InProgressCard = ({userRequest, accepted, cancel, lang, tg, setCancelId, s
                 </div>
                 <div className={"container-ratings"} style={{flexWrap: "wrap"}}>
                     <div>
-                        {lang === 'en' ? userRequest.purchaseName.additionalProp1.map((detail, index) => {
-                            return <p>{index + 1}) {detail}</p>
-                        }) : lang === 'kk' ? userRequest.purchaseName.additionalProp2.map((detail, index) => {
-                            return <p>{index + 1}) {detail}</p>
-                        }) : userRequest.purchaseName.additionalProp3.map((detail, index) => {
-                            return <p>{index + 1}) {detail}</p>
-                        })}
+                        {lang === 'en' ? <p>{userRequest.purchaseName.EN}</p>
+                            : lang === 'kk' ? <p>{userRequest.purchaseName.KK}</p>
+                         : <p>{userRequest.purchaseName.RU}</p>
+                        }
                     </div>
                 </div>
                 <div className={"review-name-rating"}>

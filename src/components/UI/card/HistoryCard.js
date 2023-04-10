@@ -12,13 +12,10 @@ const HistoryCard = ({userRequest, tg, tel, lang, total}) => {
                 </div>
                 <div className={"container-ratings"} style={{flexWrap: "wrap"}}>
                     <div>
-                        {lang === 'en' ? userRequest.purchaseName.EN.map((detail, index) => {
-                            return <p>{index + 1}) {detail}</p>
-                        }) : lang === 'kk' ? userRequest.detailsKk.purchaseName.KK.map((detail, index) => {
-                            return <p>{index + 1}) {detail}</p>
-                        }) : userRequest.detailsRu.purchaseName.RU.map((detail, index) => {
-                            return <p>{index + 1}) {detail}</p>
-                        })}
+                        {lang === 'en' ? <p>{userRequest.purchaseName.EN}</p>
+                            : lang === 'kk' ? <p>{userRequest.purchaseName.KK}</p>
+                                : <p>{userRequest.purchaseName.RU}</p>
+                        }
                     </div>
                 </div>
                 <div className={"review-name-rating"}>

@@ -29,7 +29,6 @@ const UserManagement = () => {
     }, []);
 
     useEffect(() => {
-        console.log("changed");
         fetchUsers();
     }, [query, isChange]);
 

@@ -7,16 +7,16 @@ const UserCard = ({card, block, unblock, isChange, setIsChange, setIsLoading}) =
     const handleBlockClick = async () => {
         setIsLoading(true);
         await UserService.blockUser(card.email)
-            .then(() => console.log('blocked successfully'))
-            .catch(() => console.log('failed to block'));
+            .then(() => alert(card.email + ' blocked successfully'))
+            .catch(() => alert(card.email + ' failed to block'));
         setIsChange(!isChange);
     }
 
     const handleUnBlockClick = async () => {
         setIsLoading(true);
         await UserService.unblockUser(card.email)
-            .then(() => console.log('unblocked successfully'))
-            .catch(() => console.log('failed to unblock'));
+            .then(() => alert(card.email + ' unblocked successfully'))
+            .catch(() => alert(card.email + ' failed to unblock'));
         setIsChange(!isChange);
     }
 

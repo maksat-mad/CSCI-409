@@ -22,7 +22,7 @@ const CreateAdmin = () => {
     const [fetchUsers, isUsersLoading, usersError] = useFetching(async () => {
         setIsLoading(true);
         const response = await UserService.getUserForCreateAdmin(query);
-        setUsers([...response.data]);
+        setUsers([...response]);
         setIsLoading(false);
     });
 
@@ -41,14 +41,14 @@ const CreateAdmin = () => {
         }
         setIsLoading(true);
         await UserService.makeAdmin(id)
-            .then(() => console.log('admin created successfully'))
-            .catch(() => console.log('failed to create admin'));
+            .then(() => alert(id + ' made admin successfully'))
+            .catch(() => alert(id + ' failed to make admin'));
         fetchUsers();
         setIsLoading(false);
     }, [isChange]);
 
-    const handleInputChange = () => {
-        setQuery(query);
+    const handleInputChange = (event) => {
+        setQuery(event.target.value);
     }
 
     return (

@@ -10,6 +10,9 @@ const SOLD_HISTORY_URL = '/api/purchase/customerList';
 const GET_USERS_URL = '/api/admin/getUserList';
 const BAN_USER_URL = '/api/admin/blackListUser';
 
+const GET_ADMINS_URL = '/api/superAdmin/getAdminList';
+const MAKE_ADMIN_URL = '/api/superAdmin/addOrRemoveAdmin';
+
 export default class UserService {
     static async getRequests() {
         return axios({
@@ -127,10 +130,16 @@ export default class UserService {
         });
     }
 
-    static async makeAdmin(id) {
-        return await axios.post('https://jsonplaceholder.typicode.com/posts', {
+    static async makeAdmin(email) {
+        return axios({
+            method: 'post',
+            url: MAKE_ADMIN_URL,
+            params: {
+                email: email
+            },
             headers: {
-                'Content-type': 'application/json; charset=UTF-8',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         });
     }
@@ -144,35 +153,19 @@ export default class UserService {
     }
 
     static async getUserForCreateAdmin(query) {
-        return {
-            data: [
-                {
-                    id: 1,
-                    email: 'maksat111@gmail.com',
-                    phoneNumber: "+7(705)100-10-10"
-                },
-                {
-                    id: 2,
-                    email: 'maksat222@gmail.com',
-                    phoneNumber: "+7(705)100-10-10"
-                },
-                {
-                    id: 3,
-                    email: 'maksat333@gmail.com',
-                    phoneNumber: "+7(705)100-10-10"
-                },
-                {
-                    id: 4,
-                    email: 'maksat444@gmail.com',
-                    phoneNumber: "+7(705)100-10-10"
-                },
-                {
-                    id: 5,
-                    email: 'maksat555@gmail.com',
-                    phoneNumber: "+7(705)100-10-10"
-                },
-            ]
-        };
+        return axios({
+            method: 'get',
+            url: GET_USERS_URL,
+            params: {
+                email: query
+            },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(response => response.data.list)
+            .then(response => response.filter(user => user.isBlackList === false));
     }
 
     static async getUserForAdminManagement(query) {

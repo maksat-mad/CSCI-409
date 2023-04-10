@@ -20,6 +20,7 @@ const UpdateProduct = () => {
     const [numStock, setNumStock] = useState(product.id);
     const [productPrice, setProductPrice] = useState(product.id);
     const [productPicture, setProductPicture] = useState(null);
+    const imageMimeType = /image\/(png|jpg|jpeg)/i;
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -48,9 +49,12 @@ const UpdateProduct = () => {
 
     const handleProductPictureChange = (e) => {
         setError('');
-        let formData = new FormData();
-        formData.append('image', e.target.file);
-        setProductPicture(formData);
+        if (!e.target.files[0].type.match(imageMimeType)) {
+            setError(t('Invalid image format must be .png, .jpg, .jpeg'));
+            setProductPicture(null);
+            return;
+        }
+        setProductPicture(e.target.files[0]);
     }
 
     const handleSubmit = async (e) => {
@@ -77,15 +81,27 @@ const UpdateProduct = () => {
         }
 
         setLoading(true);
-        const body = {
+
+        const formData = new FormData();
+
+        formData.append('file', productPicture);
+
+        const recordAddDto = {
+            id: product.id,
+            productTypeId: product.productTypeId,
             description: description,
-            maxNumBuy: maxNumBuy,
-            numStock: numStock,
-            productPrice: productPrice,
-            productPicture: productPicture
+            price: productPrice,
+            quantity: numStock,
+            limit: maxNumBuy,
+            region: localStorage.getItem('city')
         }
 
-        await ProductService.updateProduct(body)
+        formData.append('recordAddDto', new Blob(
+            [JSON.stringify(recordAddDto)],
+            { type: "application/json" }
+        ));
+
+        await ProductService.updateProduct(formData)
             .then(() => setSuccess(t('update_product_success')))
             .catch(error => setError(t('update_product_error')))
             .finally(() => setLoading(false));
@@ -122,23 +138,23 @@ const UpdateProduct = () => {
                             </div>
                             <div className={"container"}>
                                 <div>
-                                    <h2>{t('product_name')}: {product.id}</h2>
+                                    <h2>{t('product_name')}: {product.name}</h2>
                                     <form onSubmit={handleSubmit}>
                                         <label>{t('write_product_description')}:</label><br/>
                                         <textarea
                                             className={"description"}
-                                            placeholder={product.url}
+                                            placeholder={product.description}
                                             onChange={handleDescriptionChange}
                                             required
-                                        >{product.url}</textarea><br/>
+                                        >{product.description}</textarea><br/>
                                         <label htmlFor={"max_num_buy"}>{t('max_num_buy')}:</label><br/>
-                                        <input type={'number'} id={"max_num_buy"} name={t("max_num_buy")} placeholder={product.id} onChange={handleMaxNumBuyChange}/><br/>
+                                        <input type={'number'} id={"max_num_buy"} name={t("max_num_buy")} placeholder={product.limit} onChange={handleMaxNumBuyChange}/><br/>
                                         <label htmlFor={"num_stock"}>{t('num_stock')}:</label><br/>
-                                        <input type={'number'} id={"num_stock"} name={t("num_stock")} placeholder={product.id} onChange={handleNumStockChange}/><br/>
+                                        <input type={'number'} id={"num_stock"} name={t("num_stock")} placeholder={product.quantity} onChange={handleNumStockChange}/><br/>
                                         <label htmlFor={"product_price"}>{t('product_price')}:</label><br/>
-                                        <input type={'number'} id={"product_price"} name={t("product_price")} placeholder={product.id} onChange={handleProductPriceChange}/><br/>
+                                        <input type={'number'} id={"product_price"} name={t("product_price")} placeholder={product.price} onChange={handleProductPriceChange}/><br/>
                                         <label htmlFor={"product_picture"}>{t('product_picture')}:</label><br/>
-                                        <input type={'file'} id={"product_picture"} name={t("product_picture")} onChange={handleProductPictureChange}/><br/>
+                                        <input type={'file'} accept={"image/*"} id={"product_picture"} name={t("product_picture")} onChange={handleProductPictureChange}/><br/>
                                         <div className={"container"}>
                                             <button disabled={loading} className={"input-button"} type="submit">{t('update')}</button>
                                         </div>

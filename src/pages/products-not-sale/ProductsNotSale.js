@@ -20,7 +20,7 @@ const ProductsNotSale = () => {
     const [fetchMyProducts, isMyProductsLoading, myProductsError] = useFetching(async () => {
         setIsLoading(true);
         const response = await ProductService.getProductsNotSale();
-        setMyProducts([...response.data]);
+        setMyProducts([...response.data.list]);
         setIsLoading(false);
     });
 

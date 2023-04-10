@@ -56,6 +56,8 @@ const AddProduct = () => {
 
         await ProductService.getProducts(firstId)
             .then(response => setProducts([...response]));
+
+        setProductId(firstId);
     }
 
     const handleProductTypeChange = async (id) => {
@@ -91,9 +93,7 @@ const AddProduct = () => {
             setProductPicture(null);
             return;
         }
-        let formData = new FormData();
-        formData.append('image', e.target.files[0]);
-        setProductPicture(formData);
+        setProductPicture(e.target.files[0]);
     }
 
     const handleSubmit = async (e) => {
@@ -129,16 +129,26 @@ const AddProduct = () => {
             return;
         }
         setLoading(true);
-        const body = {
-            productId: productId,
+
+        const formData = new FormData();
+
+        formData.append('file', productPicture);
+
+        const recordAddDto = {
+            productTypeId: productId,
             description: description,
-            maxNumBuy: maxNumBuy,
-            numStock: numStock,
-            productPrice: productPrice,
-            productPicture: productPicture
+            price: productPrice,
+            quantity: numStock,
+            limit: maxNumBuy,
+            region: localStorage.getItem('city')
         }
 
-        await ProductService.addProduct(body)
+        formData.append('recordAddDto', new Blob(
+            [JSON.stringify(recordAddDto)],
+            { type: "application/json" }
+        ));
+
+        await ProductService.addProduct(formData)
             .then(() => setSuccess(t('add_product_success')))
             .catch(error => setError(t('add_product_error')))
             .finally(() => setLoading(false));

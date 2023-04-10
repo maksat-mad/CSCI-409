@@ -4,12 +4,17 @@ import cookies from "js-cookie";
 const PRODUCT_LIST_URL = '/api/product/list';
 const PRODUCTS_URL = '/api/productType/list';
 
+const ADD_PRODUCT_URL = '/api/record/add';
+
 export default class ProductService {
     static async addProduct(body) {
-        return await axios.post('https://jsonplaceholder.typicode.com/posts', {
-            body: body,
+        return axios({
+            method: 'post',
+            url: ADD_PRODUCT_URL,
+            data: body,
             headers: {
-                'Content-type': 'application/json; charset=UTF-8',
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         });
     }

@@ -1,10 +1,14 @@
 import axios from "../../api/axios";
+import cookies from "js-cookie";
 
 const IN_PROGRESS_URL = '/api/purchase/purchaseList';
 const PURCHASE_STATUS = '/api/purchase/changeStatus';
 
 const BOUGHT_HISTORY_URL = '/api/purchase/purchaseList';
 const SOLD_HISTORY_URL = '/api/purchase/customerList';
+
+const GET_USERS_URL = '/api/admin/getUserList';
+const BAN_USER_URL = '/api/admin/blackListUser';
 
 export default class UserService {
     static async getRequests() {
@@ -80,54 +84,45 @@ export default class UserService {
     }
 
     static async getUser(query) {
-        return {
-            data: [
-                {
-                    id: 1,
-                    email: 'maksat111@gmail.com',
-                    blocked: false,
-                    phoneNumber: "+7(705)100-10-10"
-                },
-                {
-                    id: 2,
-                    email: 'maksat222@gmail.com',
-                    blocked: false,
-                    phoneNumber: "+7(705)100-10-10"
-                },
-                {
-                    id: 3,
-                    email: 'maksat333@gmail.com',
-                    blocked: false,
-                    phoneNumber: "+7(705)100-10-10"
-                },
-                {
-                    id: 4,
-                    email: 'maksat444@gmail.com',
-                    blocked: true,
-                    phoneNumber: "+7(705)100-10-10"
-                },
-                {
-                    id: 5,
-                    email: 'maksat555@gmail.com',
-                    blocked: true,
-                    phoneNumber: "+7(705)100-10-10"
-                },
-            ]
-        };
+        return axios({
+            method: 'get',
+            url: GET_USERS_URL,
+            params: {
+                email: query
+            },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        }).then(response => response.data.list);
     }
 
-    static async blockUser(id) {
-        return await axios.post('https://jsonplaceholder.typicode.com/posts', {
+    static async blockUser(email) {
+        return axios({
+            method: 'post',
+            url: BAN_USER_URL,
+            params: {
+                email: email,
+                lang: cookies.get('i18next') || 'en'
+            },
             headers: {
-                'Content-type': 'application/json; charset=UTF-8',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         });
     }
 
-    static async unblockUser(id) {
-        return await axios.post('https://jsonplaceholder.typicode.com/posts', {
+    static async unblockUser(email) {
+        return axios({
+            method: 'post',
+            url: BAN_USER_URL,
+            params: {
+                email: email,
+                lang: cookies.get('i18next') || 'en'
+            },
             headers: {
-                'Content-type': 'application/json; charset=UTF-8',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         });
     }

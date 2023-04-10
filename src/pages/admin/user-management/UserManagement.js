@@ -19,7 +19,7 @@ const UserManagement = () => {
     const [fetchUsers, isUsersLoading, usersError] = useFetching(async () => {
         setIsLoading(true);
         const response = await UserService.getUser(query);
-        setUsers([...response.data]);
+        setUsers([...response]);
         setIsLoading(false);
     });
 
@@ -29,11 +29,12 @@ const UserManagement = () => {
     }, []);
 
     useEffect(() => {
+        console.log("changed");
         fetchUsers();
     }, [query, isChange]);
 
-    const handleInputChange = () => {
-        setQuery(query);
+    const handleInputChange = (event) => {
+        setQuery(event.target.value);
     }
 
     return (

@@ -12,11 +12,11 @@ const HistoryCard = ({userRequest, tg, tel, lang, total}) => {
                 </div>
                 <div className={"container-ratings"} style={{flexWrap: "wrap"}}>
                     <div>
-                        {lang === 'en' ? userRequest.purchaseName.additionalProp1.map((detail, index) => {
+                        {lang === 'en' ? userRequest.purchaseName.EN.map((detail, index) => {
                             return <p>{index + 1}) {detail}</p>
-                        }) : lang === 'kk' ? userRequest.detailsKk.purchaseName.additionalProp2.map((detail, index) => {
+                        }) : lang === 'kk' ? userRequest.detailsKk.purchaseName.KK.map((detail, index) => {
                             return <p>{index + 1}) {detail}</p>
-                        }) : userRequest.detailsRu.purchaseName.additionalProp3.map((detail, index) => {
+                        }) : userRequest.detailsRu.purchaseName.RU.map((detail, index) => {
                             return <p>{index + 1}) {detail}</p>
                         })}
                     </div>

@@ -24,7 +24,8 @@ export default class ReviewService {
             url: SUBMIT_REVIEW,
             data: body,
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         });
     }

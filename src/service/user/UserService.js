@@ -15,7 +15,8 @@ export default class UserService {
                 status: 'PROCESSING'
             },
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         }).then(response => response.data.list);
     }
@@ -29,7 +30,8 @@ export default class UserService {
                 purchaseStatus: 'REJECTED'
             },
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         });
     }
@@ -43,7 +45,8 @@ export default class UserService {
                 purchaseStatus: 'CONFIRMED'
             },
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         });
     }
@@ -56,7 +59,8 @@ export default class UserService {
                 status: 'CONFIRMED'
             },
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         }).then(response => response.data.list);
     }
@@ -69,7 +73,8 @@ export default class UserService {
                 status: 'CONFIRMED'
             },
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         }).then(response => response.data.list);
     }

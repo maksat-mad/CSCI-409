@@ -181,5 +181,6 @@
   "super_admin_profile": "Супер Админ Профилі",
 
   "default": "дефолт",
-  "apply_filter": "Филтрді қолдану"
+  "apply_filter": "Филтрді қолдану",
+  "Invalid image format must be .png, .jpg, .jpeg": "Сурет форматы жарамсыз .png, .jpg, .jpeg болуы керек"
 }

@@ -181,5 +181,6 @@
   "super_admin_profile": "Профиль Супер Админа",
 
   "default": "по умолчанию",
-  "apply_filter": "Применить фильтр"
+  "apply_filter": "Применить фильтр",
+  "Invalid image format must be .png, .jpg, .jpeg": "Недопустимый формат изображения должен быть .png, .jpg, .jpeg"
 }

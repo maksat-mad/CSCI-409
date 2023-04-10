@@ -23,6 +23,7 @@ const AddProduct = () => {
     const [numStock, setNumStock] = useState(0);
     const [productPrice, setProductPrice] = useState(0);
     const [productPicture, setProductPicture] = useState(null);
+    const imageMimeType = /image\/(png|jpg|jpeg)/i;
 
 
     useEffect( () => {
@@ -85,8 +86,13 @@ const AddProduct = () => {
 
     const handleProductPictureChange = (e) => {
         setError('');
+        if (!e.target.files[0].type.match(imageMimeType)) {
+            setError(t('Invalid image format must be .png, .jpg, .jpeg'));
+            setProductPicture(null);
+            return;
+        }
         let formData = new FormData();
-        formData.append('image', e.target.file);
+        formData.append('image', e.target.files[0]);
         setProductPicture(formData);
     }
 
@@ -213,7 +219,7 @@ const AddProduct = () => {
                                         <label htmlFor={"product_price"}>{t('product_price')}:</label><br/>
                                         <input type={'number'} id={"product_price"} name={t("product_price")} onChange={handleProductPriceChange} required/><br/>
                                         <label htmlFor={"product_picture"}>{t('product_picture')}:</label><br/>
-                                        <input type={'file'} id={"product_picture"} name={t("product_picture")} onChange={handleProductPictureChange} required/><br/>
+                                        <input type={'file'} accept={"image/*"} id={"product_picture"} name={t("product_picture")} onChange={handleProductPictureChange} required/><br/>
                                         <div className={"container"}>
                                             <button disabled={loading} className={"input-button"} type="submit">{t('add_product')}</button>
                                         </div>

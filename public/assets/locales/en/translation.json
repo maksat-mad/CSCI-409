@@ -181,5 +181,6 @@
   "super_admin_profile": "Super Admin Profile",
 
   "default": "default",
-  "apply_filter": "Apply filter"
+  "apply_filter": "Apply filter",
+  "Invalid image format must be .png, .jpg, .jpeg": "Invalid image format must be .png, .jpg, .jpeg"
 }

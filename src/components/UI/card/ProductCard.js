@@ -15,7 +15,7 @@ const ProductCard = ({card, product_name, one_item, tg, update_product_info, max
                 <span onClick={handleDelete} className="close close-inner black">&times;</span>
             </div>
             <div className={"cart-card-img"}>
-                <img style={{width: "100%", height: "100%"}} src={card.url} alt={"cart"}/>
+                <img style={{width: "100%", height: "100%"}} src={card.photo} alt={"cart"}/>
             </div>
             <div className={"cart-card-content"}>
                 <div>
@@ -23,10 +23,10 @@ const ProductCard = ({card, product_name, one_item, tg, update_product_info, max
                         <p style={{margin: "0", padding: "10px"}}>{update_product_info}</p><br/>
                     </Link><br/>
                     <p style={{marginTop: "-50px", padding: "10px"}}>
-                        {product_name}: {card.id}<br/>
-                        {one_item} = 1000 {tg}<br/>
-                        {max_num_buy} = 10<br/>
-                        {num_stock} = 100<br/>
+                        {product_name}: {card.name}<br/>
+                        {one_item} = {card.price} {tg}<br/>
+                        {max_num_buy} = {card.limit}<br/>
+                        {num_stock} = {card.quantity}<br/>
                     </p>
                 </div>
             </div>

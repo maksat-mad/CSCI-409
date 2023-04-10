@@ -6,6 +6,8 @@ const PRODUCTS_URL = '/api/productType/list';
 
 const ADD_PRODUCT_URL = '/api/record/add';
 
+const GET_SALE_NOT_SALE_URL = '/api/record/getByStatus';
+
 export default class ProductService {
     static async addProduct(body) {
         return axios({
@@ -57,57 +59,31 @@ export default class ProductService {
     }
 
     static async getProductsSale() {
-        return {
-            data: [
-                {
-                    "id": 1,
-                    "url": "https://via.placeholder.com/600/92c952"
-                },
-                {
-                    "id": 2,
-                    "url": "https://via.placeholder.com/600/771796"
-                },
-                {
-                    "id": 3,
-                    "url": "https://via.placeholder.com/600/24f355"
-                },
-                {
-                    "id": 4,
-                    "url": "https://via.placeholder.com/600/d32776"
-                },
-                {
-                    "id": 5,
-                    "url": "https://via.placeholder.com/600/f66b97"
-                }
-            ]
-        }
+        return axios({
+            method: 'get',
+            url: GET_SALE_NOT_SALE_URL,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            params: {
+                status: 'FOR_SALES'
+            }
+        });
     }
 
     static async getProductsNotSale() {
-        return {
-            data: [
-                {
-                    "id": 1,
-                    "url": "https://via.placeholder.com/600/92c952"
-                },
-                {
-                    "id": 2,
-                    "url": "https://via.placeholder.com/600/771796"
-                },
-                {
-                    "id": 3,
-                    "url": "https://via.placeholder.com/600/24f355"
-                },
-                {
-                    "id": 4,
-                    "url": "https://via.placeholder.com/600/d32776"
-                },
-                {
-                    "id": 5,
-                    "url": "https://via.placeholder.com/600/f66b97"
-                }
-            ]
-        }
+        return axios({
+            method: 'get',
+            url: GET_SALE_NOT_SALE_URL,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            params: {
+                status: 'NOT_FOR_SALES'
+            }
+        });
     }
 
     static async removeProduct(id) {

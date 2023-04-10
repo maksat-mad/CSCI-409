@@ -144,10 +144,16 @@ export default class UserService {
         });
     }
 
-    static async removeFromAdmin(id) {
-        return await axios.post('https://jsonplaceholder.typicode.com/posts', {
+    static async removeFromAdmin(email) {
+        return axios({
+            method: 'post',
+            url: MAKE_ADMIN_URL,
+            params: {
+                email: email
+            },
             headers: {
-                'Content-type': 'application/json; charset=UTF-8',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         });
     }
@@ -169,34 +175,18 @@ export default class UserService {
     }
 
     static async getUserForAdminManagement(query) {
-        return {
-            data: [
-                {
-                    id: 1,
-                    email: 'maksat111@gmail.com',
-                    phoneNumber: "+7(705)100-10-10"
-                },
-                {
-                    id: 2,
-                    email: 'maksat222@gmail.com',
-                    phoneNumber: "+7(705)100-10-10"
-                },
-                {
-                    id: 3,
-                    email: 'maksat333@gmail.com',
-                    phoneNumber: "+7(705)100-10-10"
-                },
-                {
-                    id: 4,
-                    email: 'maksat444@gmail.com',
-                    phoneNumber: "+7(705)100-10-10"
-                },
-                {
-                    id: 5,
-                    email: 'maksat555@gmail.com',
-                    phoneNumber: "+7(705)100-10-10"
-                },
-            ]
-        };
+        return axios({
+            method: 'get',
+            url: GET_ADMINS_URL,
+            params: {
+                email: query
+            },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(response => response.data.list)
+            .then(response => response.filter(user => user.isBlackList === false));
     }
 }

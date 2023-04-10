@@ -22,7 +22,7 @@ const AdminManagement = () => {
     const [fetchUsers, isUsersLoading, usersError] = useFetching(async () => {
         setIsLoading(true);
         const response = await UserService.getUserForAdminManagement(query);
-        setUsers([...response.data]);
+        setUsers([...response]);
         setIsLoading(false);
     });
 
@@ -41,8 +41,8 @@ const AdminManagement = () => {
         }
         setIsLoading(true);
         await UserService.removeFromAdmin(id)
-            .then(() => console.log('removed from admin successfully'))
-            .catch(() => console.log('failed to remove admin'));
+            .then(() => alert(id + ' removed from admin successfully'))
+            .catch(() => alert(id + ' failed to remove from admin'));
         fetchUsers();
         setIsLoading(false);
     }, [isChange]);

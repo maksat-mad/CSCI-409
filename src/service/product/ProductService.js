@@ -6,6 +6,7 @@ const PRODUCTS_URL = '/api/productType/list';
 
 const ADD_PRODUCT_URL = '/api/record/add';
 const EDIT_PRODUCT_URL = '/api/record/edit';
+const DELETE_PRODUCT_URL = '/api/record/delete';
 
 const GET_SALE_NOT_SALE_URL = '/api/record/getByStatus';
 
@@ -91,9 +92,15 @@ export default class ProductService {
     }
 
     static async removeProduct(id) {
-        return await axios.post('https://jsonplaceholder.typicode.com/posts', {
+        return axios({
+            method: 'post',
+            url: DELETE_PRODUCT_URL,
+            params: {
+                recordId: id
+            },
             headers: {
-                'Content-type': 'application/json; charset=UTF-8',
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         });
     }

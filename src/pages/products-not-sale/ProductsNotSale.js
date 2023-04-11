@@ -36,10 +36,9 @@ const ProductsNotSale = () => {
         }
         setIsLoading(true);
         await ProductService.removeProduct(deleteId)
-            .then(() => console.log('deleted successfully'))
-            .catch(() => console.log('failed to delete'));
+            .then(() => alert(deleteId + ' deleted successfully'))
+            .catch(() => alert(deleteId + ' failed to delete'));
         fetchMyProducts();
-        setIsLoading(false);
     }, [isChange]);
 
     return (

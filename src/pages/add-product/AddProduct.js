@@ -62,8 +62,13 @@ const AddProduct = () => {
 
     const handleProductTypeChange = async (id) => {
         setError('');
+        let firstId = 0;
         await ProductService.getProducts(id)
-            .then(response => setProducts([...response]));
+            .then(response => {
+                setProducts([...response]);
+                firstId = response[0].value;
+            });
+        setProductId(firstId);
     }
 
     const handleDescriptionChange = (e) => {

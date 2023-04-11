@@ -1,5 +1,4 @@
 import axios from "../../api/axios";
-import cookies from "js-cookie";
 
 const IN_PROGRESS_URL = '/api/purchase/purchaseList';
 const PURCHASE_STATUS = '/api/purchase/changeStatus';
@@ -105,8 +104,7 @@ export default class UserService {
             method: 'post',
             url: BAN_USER_URL,
             params: {
-                email: email,
-                lang: cookies.get('i18next') || 'en'
+                email: email
             },
             headers: {
                 'Content-Type': 'application/json',
@@ -120,8 +118,7 @@ export default class UserService {
             method: 'post',
             url: BAN_USER_URL,
             params: {
-                email: email,
-                lang: cookies.get('i18next') || 'en'
+                email: email
             },
             headers: {
                 'Content-Type': 'application/json',

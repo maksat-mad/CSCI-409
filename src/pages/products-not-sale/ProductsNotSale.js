@@ -44,6 +44,7 @@ const ProductsNotSale = () => {
 
     return (
         <>
+            <ExitButton link={"/profile"}/>
             {isLoading ?
                 <div className={"container"}>
                     <Loader/>
@@ -88,7 +89,6 @@ const ProductsNotSale = () => {
                             <div className={"my-container"}>
                                 <Link to="/profile">{t('cancel')}</Link>
                             </div>
-                            <ExitButton link={"/profile"}/>
                             {modalOpen &&
                                 <AreYouSureModal
                                     yes={t('yes')}

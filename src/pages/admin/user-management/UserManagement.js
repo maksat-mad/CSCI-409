@@ -48,6 +48,7 @@ const UserManagement = () => {
                     placeholder={t('search')} autoComplete={"off"}
                 />
             </div>
+            <ExitButton link={"/profile"}/>
             {isLoading ?
                 <div className={"container"}>
                     <Loader/>
@@ -80,7 +81,6 @@ const UserManagement = () => {
                                     <div className={"my-container"}>
                                         <Link to="/profile">{t('cancel')}</Link>
                                     </div>
-                                    <ExitButton link={"/profile"}/>
                                 </div>
                             </div>
                         </>

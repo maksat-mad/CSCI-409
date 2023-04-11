@@ -1,6 +1,6 @@
 import axios from "../../api/axios";
 
-const IN_PROGRESS_URL = '/api/purchase/purchaseList';
+const IN_PROGRESS_URL = '/api/purchase/customerList';
 const PURCHASE_STATUS = '/api/purchase/changeStatus';
 
 const BOUGHT_HISTORY_URL = '/api/purchase/purchaseList';

@@ -43,14 +43,15 @@ const InProgress = () => {
         }
         setIsLoading(true);
         await UserService.cancelRequest(cancelId)
-            .then(() => console.log('cancelled successfully'))
-            .catch(() => console.log('failed to cancel'));
+            .then(() => alert(cancelId + ' cancelled successfully'))
+            .catch(() => alert(cancelId + ' failed to cancel'));
         fetchRequests();
         setIsLoading(false);
     }, [isCancelChange]);
 
     return (
         <>
+            <ExitButton link={"/profile"}/>
             {isLoading ?
                 <div className={"container"}>
                     <Loader/>
@@ -94,7 +95,6 @@ const InProgress = () => {
                             <div className={"my-container"}>
                                 <Link to="/profile">{t('cancel')}</Link>
                             </div>
-                            <ExitButton link={"/profile"}/>
                             {modalOpen &&
                                 <AreYouSureModal
                                     yes={t('yes')}

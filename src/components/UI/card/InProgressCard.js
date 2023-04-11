@@ -7,8 +7,8 @@ const InProgressCard = ({userRequest, accepted, cancel, lang, tg, setCancelId, s
     const handleAcceptClick = async () => {
         setIsLoading(true);
         await UserService.acceptRequest(userRequest.id)
-            .then(() => console.log('accepted successfully'))
-            .catch(() => console.log('failed to accepted'));
+            .then(() => alert(userRequest.id + ' accepted successfully'))
+            .catch(() => alert(userRequest.id + ' failed to accept'));
         setIsAcceptChange(!isAcceptChange);
     }
 

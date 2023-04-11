@@ -27,6 +27,7 @@ const SoldHistory = () => {
 
     return (
         <>
+            <ExitButton link={"/profile"}/>
             {requests.length === 0
                 ?
                 <div className={"container"}>
@@ -57,7 +58,6 @@ const SoldHistory = () => {
                     <div className={"my-container"}>
                         <Link to="/profile">{t('cancel')}</Link>
                     </div>
-                    <ExitButton link={"/profile"}/>
                 </>
             }
         </>

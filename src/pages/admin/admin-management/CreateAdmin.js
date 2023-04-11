@@ -63,6 +63,7 @@ const CreateAdmin = () => {
                     placeholder={t('search')} autoComplete={"off"}
                 />
             </div>
+            <ExitButton link={"/profile"}/>
             {isLoading ?
                 <div className={"container"}>
                     <Loader/>
@@ -94,7 +95,6 @@ const CreateAdmin = () => {
                                     <div className={"my-container"}>
                                         <Link to="/profile">{t('cancel')}</Link>
                                     </div>
-                                    <ExitButton link={"/profile"}/>
                                     {modalOpen &&
                                         <AreYouSureModal
                                             yes={t('yes')}

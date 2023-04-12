@@ -47,8 +47,8 @@ const AdminManagement = () => {
         setIsLoading(false);
     }, [isChange]);
 
-    const handleInputChange = () => {
-        setQuery(query);
+    const handleInputChange = (event) => {
+        setQuery(event.target.value);
     }
 
     return (

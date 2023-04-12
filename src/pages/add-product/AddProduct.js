@@ -47,7 +47,7 @@ const AddProduct = () => {
         setError('');
         setProductId('');
 
-        let firstId = 0;
+        let firstId = 0, firstProductId = 0;
         await ProductService.getProductTypes(id)
             .then(response => {
                 setProductType([...response]);
@@ -55,9 +55,12 @@ const AddProduct = () => {
             });
 
         await ProductService.getProducts(firstId)
-            .then(response => setProducts([...response]));
+            .then(response => {
+                setProducts([...response]);
+                firstProductId = response[0].value;
+            });
 
-        setProductId(firstId);
+        setProductId(firstProductId);
     }
 
     const handleProductTypeChange = async (id) => {

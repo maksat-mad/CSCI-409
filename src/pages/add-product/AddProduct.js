@@ -112,7 +112,7 @@ const AddProduct = () => {
             return;
         }
 
-        if (description.length > 50) {
+        if (description.length > 100) {
             setError(t('description_error'));
             return;
         }

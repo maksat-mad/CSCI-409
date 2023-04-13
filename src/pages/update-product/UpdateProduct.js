@@ -15,10 +15,10 @@ const UpdateProduct = () => {
     const [success, setSuccess] = useState('');
     const [loading, setLoading] = useState(false);
 
-    const [description, setDescription] = useState(product.url);
-    const [maxNumBuy, setMaxNumBuy] = useState(product.id);
-    const [numStock, setNumStock] = useState(product.id);
-    const [productPrice, setProductPrice] = useState(product.id);
+    const [description, setDescription] = useState(product.description);
+    const [maxNumBuy, setMaxNumBuy] = useState(product.limit);
+    const [numStock, setNumStock] = useState(product.quantity);
+    const [productPrice, setProductPrice] = useState(product.price);
     const [productPicture, setProductPicture] = useState(null);
     const imageMimeType = /image\/(png|jpg|jpeg)/i;
 
@@ -60,7 +60,7 @@ const UpdateProduct = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (description.length > 50) {
+        if (description.length > 100) {
             setError(t('description_error'));
             return;
         }
@@ -93,7 +93,7 @@ const UpdateProduct = () => {
             price: productPrice,
             quantity: numStock,
             limit: maxNumBuy,
-            region: localStorage.getItem('city')
+            region: product.region
         }
 
         formData.append('recordAddDto', new Blob(

@@ -148,7 +148,7 @@ const AddProduct = () => {
             price: productPrice,
             quantity: numStock,
             limit: maxNumBuy,
-            region: localStorage.getItem('city')
+            region: localStorage.getItem('city') !== null ? localStorage.getItem('city') : 'astana'
         }
 
         formData.append('recordAddDto', new Blob(

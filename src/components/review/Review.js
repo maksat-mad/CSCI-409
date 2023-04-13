@@ -76,7 +76,7 @@ const Review = ({productId}) => {
                         <NotFound message={t("no_product")}/>
                     }
                     {reviewsToShow.map(review => {
-                        return <ReviewCard key={review.id} name={review.name} rating={review.rating}
+                        return <ReviewCard key={review.id} name={review.userName} rating={review.rating}
                                            comment={review.description}/>
                     })}
                     {showLoadMore &&

@@ -30,9 +30,17 @@ const SoldHistory = () => {
             <ExitButton link={"/profile"}/>
             {requests.length === 0
                 ?
-                <div className={"container"}>
-                    <h1>{t('no_sold_history')}</h1>
-                </div>
+                <>
+                    {isRequestsLoading ?
+                        <div className={"container"}>
+                            <Loader/>
+                        </div>
+                        :
+                        <div className={"container"}>
+                            <h1>{t('no_sold_history')}</h1>
+                        </div>
+                    }
+                </>
                 :
                 <>
                     <div className={"container"}>

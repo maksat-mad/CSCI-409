@@ -38,6 +38,10 @@ const Navbar = () => {
         dispatch({type: 'UPDATE_NAVBAR_INPUT', payload: event.target.value});
     }
 
+    const handleCategoryChange = (categoryName) => {
+        dispatch({type: 'UPDATE_CATEGORY', payload: categoryName});
+    }
+
     const menuClick = () => {
         if (isCategoryOpened === true) {
             setIsCategoryOpened(false);
@@ -106,16 +110,16 @@ const Navbar = () => {
             {isCategoryOpened &&
                 <div className={"menu"}>
                     <div className={"menu-buttons"}>
-                        <Link to={"/category"} state={{category: "fruits"}}>
+                        <Link to={"/category"} onClick={() => handleCategoryChange("fruits")}>
                             {t('fruits')}
                         </Link>
-                        <Link to={"/category"} state={{category: "vegetables"}}>
+                        <Link to={"/category"} onClick={() => handleCategoryChange("vegetables")}>
                             {t('vegetables')}
                         </Link>
-                        <Link to={"/category"} state={{category: "drinks"}}>
+                        <Link to={"/category"} onClick={() => handleCategoryChange("drinks")}>
                             {t('drinks')}
                         </Link>
-                        <Link to={"/category"} state={{category: "meats"}}>
+                        <Link to={"/category"} onClick={() => handleCategoryChange("meats")}>
                             {t('meats')}
                         </Link>
                     </div>

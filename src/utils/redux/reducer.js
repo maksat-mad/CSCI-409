@@ -7,7 +7,8 @@ const initialState = {
     cartItems: new Map(),
     cartItemsQuantity: 0,
     cartItemsIdsAndQuantity: new Map(),
-    totalMoney: 0
+    totalMoney: 0,
+    category: '',
 };
 
 const reducer = (state = initialState, action) => {
@@ -56,6 +57,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 totalMoney: action.payload
+            };
+        case 'UPDATE_CATEGORY':
+            return {
+                ...state,
+                category: action.payload
             };
         default:
             return state;

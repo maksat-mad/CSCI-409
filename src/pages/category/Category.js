@@ -7,7 +7,6 @@ import {useFetching} from "../../hook/useFetching";
 import {getPageCount} from "../../utils/pages";
 import Pagination from "../../components/pagination/Pagination";
 import Select from "../../components/UI/select/Select";
-import {useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
 import NotFound from "../../components/not-found/NotFound";
 import Error from "../../components/error/Error";
@@ -16,15 +15,16 @@ import {useTranslation} from "react-i18next";
 const Category = () => {
     const limit = 15;
     const {t} = useTranslation();
-    const { state } = useLocation();
-    const category = state === null ? "" : state.category;
+    const category = useSelector(state => state.category);
     const navbarInput = useSelector(state => state.navbarInput);
     const selectedCity = useSelector(state => state.city);
 
     const [cards, setCards] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [page, setPage] = useState(1);
-    const [filter, setFilter] = useState({category: '0', sort: 'DEFAULT',
+    const [filter, setFilter] = useState({
+        category: category === 'fruits' ? '1' : category === 'vegetables' ? '2' : category === 'drinks' ? '3' : '4',
+        sort: 'DEFAULT',
         priceFrom: '0', priceTo: '0', query: navbarInput, city: selectedCity});
 
     const [fetchCards, isCardsLoading, cardsError] = useFetching(async (limit, page, filter) => {
@@ -37,7 +37,7 @@ const Category = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
         localStorage.setItem('path', '/category');
-        setFilter({...filter, category: category});
+        setFilter({...filter, category: category === 'fruits' ? '1' : category === 'vegetables' ? '2' : category === 'drinks' ? '3' : '4'});
         fetchCards(limit, page, filter);
     }, []);
 
@@ -50,6 +50,11 @@ const Category = () => {
         setFilter({...filter, city: selectedCity});
         fetchCards(limit, page, filter);
     }, [selectedCity]);
+
+    useEffect(() => {
+        setFilter({...filter, category: category === 'fruits' ? '1' : category === 'vegetables' ? '2' : category === 'drinks' ? '3' : '4'});
+        fetchCards(limit, page, filter);
+    }, [category]);
 
     const changePage = (page) => {
         setPage(page);

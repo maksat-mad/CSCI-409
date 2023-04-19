@@ -6,6 +6,7 @@ import Card from '../UI/card/Card';
 import Loader from "../loader/Loader";
 import Error from '../error/Error';
 import {useTranslation} from "react-i18next";
+import {useDispatch} from "react-redux";
 
 const breakPoints = [
     {width: 1, itemsToShow: 1},
@@ -16,10 +17,16 @@ const breakPoints = [
 
 const MainCarousel = ({error, loading, cards, name}) => {
     const {t} = useTranslation();
+    const dispatch = useDispatch();
+
+    const handleCategoryChange = (categoryName) => {
+        dispatch({type: 'UPDATE_CATEGORY', payload: categoryName});
+    }
+
     return (
         <>
             <div className={"main-title"}>
-                <Link to={"/category"} state={{category: name.toLowerCase()}} style={{textDecoration: "none"}}>
+                <Link to={"/category"} onClick={() => handleCategoryChange(name.toLowerCase())} style={{textDecoration: "none"}}>
                     <h2>{t(name)}</h2>
                 </Link>
             </div>

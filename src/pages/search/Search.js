@@ -13,7 +13,7 @@ import Error from '../../components/error/Error';
 import {useTranslation} from "react-i18next";
 
 const Search = () => {
-    const limit = 15;
+    const limit = 10;
     const {t} = useTranslation();
 
     const navbarInput = useSelector(state => state.navbarInput);
@@ -38,12 +38,12 @@ const Search = () => {
 
     useEffect(() => {
         setFilter({...filter, query: navbarInput});
-        fetchCards(limit, page, filter);
+        fetchCards(limit, page, {...filter, query: navbarInput});
     }, [navbarInput]);
 
     useEffect(() => {
         setFilter({...filter, city: selectedCity});
-        fetchCards(limit, page, filter);
+        fetchCards(limit, page, {...filter, city: selectedCity});
     }, [selectedCity]);
 
     const changePage = (page) => {

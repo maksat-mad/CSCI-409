@@ -13,7 +13,7 @@ import Error from "../../components/error/Error";
 import {useTranslation} from "react-i18next";
 
 const Category = () => {
-    const limit = 15;
+    const limit = 10;
     const {t} = useTranslation();
     const category = useSelector(state => state.category);
     const navbarInput = useSelector(state => state.navbarInput);
@@ -38,22 +38,22 @@ const Category = () => {
         window.scrollTo(0, 0);
         localStorage.setItem('path', '/category');
         setFilter({...filter, category: category === 'fruits' ? '1' : category === 'vegetables' ? '2' : category === 'drinks' ? '3' : '4'});
-        fetchCards(limit, page, filter);
+        fetchCards(limit, page, {...filter, category: category === 'fruits' ? '1' : category === 'vegetables' ? '2' : category === 'drinks' ? '3' : '4'});
     }, []);
 
     useEffect(() => {
         setFilter({...filter, query: navbarInput});
-        fetchCards(limit, page, filter);
+        fetchCards(limit, page, {...filter, query: navbarInput});
     }, [navbarInput]);
 
     useEffect(() => {
         setFilter({...filter, city: selectedCity});
-        fetchCards(limit, page, filter);
+        fetchCards(limit, page, {...filter, city: selectedCity});
     }, [selectedCity]);
 
     useEffect(() => {
         setFilter({...filter, category: category === 'fruits' ? '1' : category === 'vegetables' ? '2' : category === 'drinks' ? '3' : '4'});
-        fetchCards(limit, page, filter);
+        fetchCards(limit, page, {...filter, category: category === 'fruits' ? '1' : category === 'vegetables' ? '2' : category === 'drinks' ? '3' : '4'});
     }, [category]);
 
     const changePage = (page) => {

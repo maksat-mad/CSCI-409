@@ -58,6 +58,10 @@ const Card = ({card, category}) => {
         dispatch({type: 'CART_ITEMS_IDS_AND_QUANTITY', payload: cartItemsIdsAndQuantity});
     }
 
+    const handleCategoryChange = (categoryName) => {
+        dispatch({type: 'UPDATE_CATEGORY', payload: categoryName});
+    }
+
     return (
         <div className={"card"}>
             <Link to={card !== undefined ? `/products/${card.id}` : '/'}
@@ -112,7 +116,7 @@ const Card = ({card, category}) => {
                         }
                     </>
                     :
-                    <Link to={"/category"} state={{category: category}} style={{textDecoration: "none"}}>
+                    <Link to={"/category"} onClick={() => handleCategoryChange(category)} style={{textDecoration: "none"}}>
                         <button className={"button-cart"}>{t("more")}</button>
                     </Link>
                 }

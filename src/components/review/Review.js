@@ -44,13 +44,13 @@ const Review = ({productId}) => {
 
     useEffect(() => {
         switch (sort) {
-            case 'lowRating':
-                setReviews([...reviews.sort((a, b) => b.id - a.id)]);
-                setReviewsToShow([...reviews.sort((a, b) => b.id - a.id).slice(0, numberOfShownComments)]);
-                break;
             case 'highRating':
-                setReviews([...reviews.sort((a, b) => a.id - b.id)]);
-                setReviewsToShow([...reviews.sort((a, b) => a.id - b.id).slice(0, numberOfShownComments)]);
+                setReviews([...reviews.sort((a, b) => b.rating - a.rating)]);
+                setReviewsToShow([...reviews.sort((a, b) => b.rating - a.rating).slice(0, numberOfShownComments)]);
+                break;
+            case 'lowRating':
+                setReviews([...reviews.sort((a, b) => a.rating - b.rating)]);
+                setReviewsToShow([...reviews.sort((a, b) => a.rating - b.rating).slice(0, numberOfShownComments)]);
         }
     }, [sort]);
 
